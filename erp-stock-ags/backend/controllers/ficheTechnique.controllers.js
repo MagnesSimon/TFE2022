@@ -15,9 +15,8 @@ exports.create = (req, res) => {
         materiaux: req.body.materiaux,
         nom_fournisseur: req.body.nom_fournisseur
     });
-    console.log(ficheTechnique);
 
-    FicheTechnique.create(famille, (err,data) =>{
+    FicheTechnique.create(ficheTechnique, (err,data) =>{
         if (err){
             res.status(500).send({
                 message: err.message || "Some error occurred while creating the 'ficheTechnique'."
@@ -34,7 +33,6 @@ exports.findAll = (req, res) => {
             });
         } else res.send(data);
     });
-    console.log("findAll appelé");
 }
 /*
 exports.findOne = (req, res) => {
