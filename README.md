@@ -2,6 +2,7 @@
 
 # Backend
 Node -v: v16.14.2
+Pour y accèder: http://localhost:3001/
 ## Modules à installer
 ** ATTENTION ces modules doivent être installé dans le folder /backend !!**
 * npm install express
