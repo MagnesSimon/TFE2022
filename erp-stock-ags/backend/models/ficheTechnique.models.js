@@ -1,4 +1,4 @@
-const sql = require("./db");
+const sql = require("./db.js");
 
 // Constructor
 const ficheTechnique = function (ficheTechnique) {
@@ -35,12 +35,12 @@ ficheTechnique.getAll = result => {
         "finition.effet_finition," + 
         "famille.nom_famille, " + 
         "famille.materiaux, " +
-        "fournisseur.nom_fournisseur" +
-    "FROM piece as piece" +
-        "INNER JOIN categorie as categorie ON piece.id_categorie = categorie.id_categorie" +
-        "INNER JOIN finition as finition ON piece.id_finition = finition.id_finition;" +
-        "INNER JOIN famille as famille ON piece.id_famille = famille.id_famille" +
-        "INNER JOIN fournisseur as fournisseur ON famille.id_fournisseur = fournisseur.id_fournisseur"
+        "fournisseur.nom_fournisseur " +
+    "FROM piece as piece " +
+        "INNER JOIN categorie as categorie ON piece.id_categorie = categorie.id_categorie " +
+        "INNER JOIN finition as finition ON piece.id_finition = finition.id_finition " +
+        "INNER JOIN famille as famille ON piece.id_famille = famille.id_famille " +
+        "INNER JOIN fournisseur as fournisseur ON famille.id_fournisseur = fournisseur.id_fournisseur "
     ,(err, res) => {
         if(err){
             console.log("Error: ", err);
@@ -50,6 +50,7 @@ ficheTechnique.getAll = result => {
             result(null, res);
         }
     });
+    console.log ("ficheTechnique.getAll appelé");
 }
 /*
 famille.getById = (reference, result) => {
@@ -103,4 +104,4 @@ famille.remove = (id, result) => {
 };
 */
 
-module.exports = famille;
+module.exports = ficheTechnique;

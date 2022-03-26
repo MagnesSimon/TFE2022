@@ -1,4 +1,4 @@
-const FicheTechnique = require("../config/models/ficheTechnique.models.js");
+const FicheTechnique = require("../models/ficheTechnique.models.js");
 
 exports.create = (req, res) => {
     if (!req.body){
@@ -15,6 +15,7 @@ exports.create = (req, res) => {
         materiaux: req.body.materiaux,
         nom_fournisseur: req.body.nom_fournisseur
     });
+    console.log(ficheTechnique);
 
     FicheTechnique.create(famille, (err,data) =>{
         if (err){
@@ -33,6 +34,7 @@ exports.findAll = (req, res) => {
             });
         } else res.send(data);
     });
+    console.log("findAll appelé");
 }
 /*
 exports.findOne = (req, res) => {
