@@ -23,10 +23,10 @@ ficheTechnique.create = (newFicheTechnique, result) => {
             console.log("famille crée avec succès",{ id: res.insertId, ...newFicheTechnique});
             result(null, { id: res.insertId, ...newFicheTechnique});
         }
-    });
+    });liste
 }
 /*
-Permet de récupérer la liste de toutes les pièces avec tout ses attributs
+Permet de récupérer les fiches techniques
  */
 ficheTechnique.getAll = result => {
     sql.query("SELECT piece.reference, categorie.nom_categorie, finition.effet_finition, famille.nom_famille famille.materiaux, " +
