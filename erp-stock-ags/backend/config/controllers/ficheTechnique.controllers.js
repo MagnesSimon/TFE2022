@@ -34,7 +34,7 @@ exports.findAll = (req, res) => {
         } else res.send(data);
     });
 }
-
+/*
 exports.findOne = (req, res) => {
     FicheTechnique.getById(req.params.id, (err, data) => {
         if (err) {
@@ -92,3 +92,4 @@ exports.delete = (req, res) => {
         } else res.send({message: `ficheTechnique was deleted successfully!`});
     });
 }
+*/
