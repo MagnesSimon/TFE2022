@@ -12,7 +12,7 @@ const ficheTechnique = function (ficheTechnique) {
 }
 /*
 Permet d'insérer une nouvelles pieces dans la DB
- */
+
 ficheTechnique.create = (newFicheTechnique, result) => {
     sql.query("INSERT INTO famille SET ?", newFicheTechnique, (err, res) => {
         if(err) {
@@ -25,6 +25,8 @@ ficheTechnique.create = (newFicheTechnique, result) => {
         }
     });liste
 }
+/*
+
 /*
 Permet de récupérer les fiches techniques
  */
@@ -50,7 +52,6 @@ ficheTechnique.getAll = result => {
             result(null, res);
         }
     });
-    console.log ("ficheTechnique.getAll appelé");
 }
 /*
 famille.getById = (reference, result) => {

@@ -28,3 +28,4 @@ app.listen(3001, () => {
 });
 
 require("./routes/ficheTechnique.routes.js")(app);
+require("./routes/listePieces.routes")(app);
