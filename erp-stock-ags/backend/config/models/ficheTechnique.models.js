@@ -29,13 +29,18 @@ ficheTechnique.create = (newFicheTechnique, result) => {
 Permet de récupérer les fiches techniques
  */
 ficheTechnique.getAll = result => {
-    sql.query("SELECT piece.reference, categorie.nom_categorie, finition.effet_finition, famille.nom_famille famille.materiaux, " +
+    sql.query("SELECT piece.reference," +
+        "categorie.nom_categorie," + 
+        "finition.nom_finition," +
+        "finition.effet_finition," + 
+        "famille.nom_famille, " + 
+        "famille.materiaux, " +
         "fournisseur.nom_fournisseur" +
     "FROM piece as piece" +
-    "INNER JOIN categorie as categorie ON piece.id_categorie = categorie.id_categorie" +
-    "INNER JOIN finition as finition ON piece.id_finition = finition.id_finition;" +
-    "INNER JOIN famille as famille ON piece.id_famille = famille.id_famille" +
-    "INNER JOIN fournisseur as fournisseur ON famille.id_fournisseur = fournisseur.id_fournisseur"
+        "INNER JOIN categorie as categorie ON piece.id_categorie = categorie.id_categorie" +
+        "INNER JOIN finition as finition ON piece.id_finition = finition.id_finition;" +
+        "INNER JOIN famille as famille ON piece.id_famille = famille.id_famille" +
+        "INNER JOIN fournisseur as fournisseur ON famille.id_fournisseur = fournisseur.id_fournisseur"
     ,(err, res) => {
         if(err){
             console.log("Error: ", err);
