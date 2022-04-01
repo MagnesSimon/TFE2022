@@ -26,3 +26,14 @@ Pour y accèder:
    * Les fichiers .routes.js définissent le type de méthode SQL (GET - PUT - UPDATE - DELETE) ansi que le path à partir duquel une méthode sera appelée
 5. Dans le fichier "index.js":
    * Il faut ajouter un require qui pointent vers le fichier .routes.js
+
+# Frontend
+npm -v: 8.5.0 <br>
+Version de réact:<br>
+![image](https://user-images.githubusercontent.com/55548308/161222275-353890e6-4287-4fd3-b99c-1cefd2745b83.png)
+
+Pour lancer l'application:
+* Se trouver dans le répertoire frontend, taper la commande "npm start"
+* http://localhost:3000/
+
+
