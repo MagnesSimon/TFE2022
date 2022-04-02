@@ -5,6 +5,8 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import ListePieces from './components/listePieces';
 
+const URL = 'http://localhost:3001/';
+
 ReactDOM.render(
   <React.StrictMode>
     <ListePieces />
@@ -16,3 +18,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+

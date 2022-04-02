@@ -1,4 +1,5 @@
 import '../styles/listePieces.css'
+import './usefull'
 
 const data =[
     {
@@ -15,6 +16,7 @@ const data =[
 ]
 
 function ListePieces(){ 
+
     return( 
         <table className='lmj-tableauListe'>
             <thead>
@@ -37,38 +39,6 @@ function ListePieces(){
             </tbody>
         </table>
        );
-    /* 
-    return(
-        <div>
-            <h1 className="lmj-listePieces">Liste des pieces en stock</h1>
-            <table className='lmj-element'>
-                array.forEach(element => {
-                });
-                <tr>
-                {data.map((el)=>(
-                    <td>{"el.reference"}</td>,
-                    <td>{"el.nom_famille"}</td>,
-                    <td>{"el.valeur_seuil"}</td>,
-                    <td>{"el.quantite_en_stock"}</td>
-                ))}
-                </tr>
-            </table>
-        </div>
-    );
-    */
-    /*
-    return(
-        <div>
-            <h1 className="lmj-listePieces">Liste des pieces en stock</h1>
-            <ul className='lmj-element'>
-                {data.map((el)=>(
-                    <li>{el.reference}</li>,
-                    <li>{el.nom_famille}</li>
-                ))}
-            </ul>
-        </div>
-    );
-    */
 }
 
 export default ListePieces;
