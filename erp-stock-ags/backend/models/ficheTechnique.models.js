@@ -2,13 +2,13 @@ const sql = require("./db.js");
 
 // Constructor
 const ficheTechnique = function (ficheTechnique) {
-    this.id_famille = ficheTechnique.id_famille;
+    this.reference = ficheTechnique.reference;
+    this.nom_categorie = ficheTechnique.nom_categorie;
+    this.nom_finition = ficheTechnique.nom_finition;
+    this.effet_finition = ficheTechnique.pour_trou;
     this.nom_famille = ficheTechnique.nom_famille;
-    this.materiau = ficheTechnique.materiau;
-    this.pour_trou = ficheTechnique.pour_trou;
-    this.specificite_technique = ficheTechnique.specificite_technique;
-    this.image = ficheTechnique.image;
-    this.id_fournisseur = ficheTechnique.id_fournisseur;
+    this.materiaux = ficheTechnique.materiaux;
+    this.nom_fournisseur = ficheTechnique.nom_fournisseur;
 }
 /*
 Permet d'insérer une nouvelles pieces dans la DB
@@ -32,26 +32,26 @@ Permet de récupérer les fiches techniques
  */
 ficheTechnique.getAll = result => {
     sql.query("SELECT piece.reference," +
-        "categorie.nom_categorie," + 
+        "categorie.nom_categorie," +
         "finition.nom_finition," +
-        "finition.effet_finition," + 
-        "famille.nom_famille, " + 
+        "finition.effet_finition," +
+        "famille.nom_famille, " +
         "famille.materiaux, " +
         "fournisseur.nom_fournisseur " +
-    "FROM piece as piece " +
+        "FROM piece as piece " +
         "INNER JOIN categorie as categorie ON piece.id_categorie = categorie.id_categorie " +
         "INNER JOIN finition as finition ON piece.id_finition = finition.id_finition " +
         "INNER JOIN famille as famille ON piece.id_famille = famille.id_famille " +
         "INNER JOIN fournisseur as fournisseur ON famille.id_fournisseur = fournisseur.id_fournisseur "
-    ,(err, res) => {
-        if(err){
-            console.log("Error: ", err);
-            result(null, err);
-            return;
-        }else {
-            result(null, res);
-        }
-    });
+        , (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else {
+                result(null, res);
+            }
+        });
 }
 /*
 famille.getById = (reference, result) => {
