@@ -13,7 +13,7 @@ const Piece = () => {
     return (
         <div>
             <p>Ceci est une pièce</p>
-            <table>
+            <table className='tableau'>
                 <thead>
                     <tr>
                         <th>Référence</th>

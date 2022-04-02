@@ -1,0 +1,27 @@
+.tableau {
+    margin: 15px;
+    border-collapse: collapse;
+    border-radius: 2em;
+    overflow: hidden;
+
+    th {
+        font-style: bold;
+        font-size: 125%;
+        border-bottom: 10px solid white;
+    }
+
+    td {
+        border-bottom: 5px solid white;
+    }
+
+    th,
+    td {
+        table-layout: auto;
+        width: 10%;
+        height: 50px;
+        text-align: center;
+        padding-top: 5px;
+        background: #ddd;
+        border-left: 5px solid white;
+    }
+}
