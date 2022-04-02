@@ -28,7 +28,14 @@ ficheTechnique.create = (newFicheTechnique, result) => {
 /*
 
 /*
-Permet de récupérer les fiches techniques
+Permet de récupérer la fiche technique de chaque pièce
+reference
+nom_categorie
+nom_finition
+effet_finition
+nom_famille
+materiaux
+nom_fournisseur
  */
 ficheTechnique.getAll = result => {
     sql.query("SELECT piece.reference," +
