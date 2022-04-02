@@ -13,6 +13,8 @@ Pour y accèder:
 * npm install nodemailer
 * npm install nodemon
 * npm install mysql
+* npm i -s react-router-dom sass
+   * Permet de router des pages
 * npm i axios
    * Axios est utilisé pour le liens vers l'API
 
