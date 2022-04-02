@@ -13,6 +13,8 @@ Pour y accèder:
 * npm install nodemailer
 * npm install nodemon
 * npm install mysql
+* npm i axios
+   * Axios est utilisé pour le liens vers l'API
 
 ## Fonctionnement
 1. Dans le dossier "config":
