@@ -6,7 +6,7 @@ const ListePieces = () => {
     return (
         <div>
             <Navigation />
-            <h1>Futur tableau avec la liste des pièces</h1>
+            <h1>Liste des pièces dans le stock</h1>
             <Piece />
         </div>
     );

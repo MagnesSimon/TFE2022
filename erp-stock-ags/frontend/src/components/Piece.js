@@ -12,9 +12,10 @@ const Piece = () => {
 
     return (
         <div>
-            <p>Ceci est une pièce</p>
+            {/* Création du tableau des pièces */}
             <table className='tableau'>
                 <thead>
+                    {/* Colonne faisant office de titre */}
                     <tr>
                         <th>Référence</th>
                         <th>Famille</th>
@@ -23,6 +24,11 @@ const Piece = () => {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* Les datas sont traitées. 
+                    Chaque élément de l'objet pièce mis dans une case de la ligne
+                    Une fois que l'on a traité toutes les données d'une pièce,
+                    on créer une ligne pour la pièce suivante
+                    */}
                     {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
                         <tr key={reference}>
                             <td>{reference}</td>
