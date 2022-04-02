@@ -40,4 +40,9 @@ Pour lancer l'application:
 * Se trouver dans le répertoire frontend, taper la commande "npm start"
 * http://localhost:3000/
 
-
+## Tips
+* rsc
+   * react-stateless-component a utilisé lors de la création d'un fichier .js
+   * Permet de mettre automatiquement le début du code.
+* "control + /"
+   * Pour mettre une ligne en commentaire   
