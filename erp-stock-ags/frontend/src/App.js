@@ -6,6 +6,11 @@ import ListePieces from './pages/ListePieces';
 
 const App = () => {
   return (
+    /*
+    Browser router va permettre le routage des différentes pages du site.
+    En fonction du path indiqué dans l'url, l'application nous affichera une certaine page.
+    Si le path est inexistant, l'application renvoie vers Home.
+    */
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
