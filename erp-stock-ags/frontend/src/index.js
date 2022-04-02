@@ -4,8 +4,6 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import './styles/index.scss'
 
-const URL = 'http://localhost:3001/';
-
 ReactDOM.render(
   <React.StrictMode>
     <App />
