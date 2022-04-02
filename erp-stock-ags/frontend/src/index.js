@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import './styles/index.css';
 import reportWebVitals from './reportWebVitals';
 import ListePieces from './components/listePieces';
+import App from './App';
 
 const URL = 'http://localhost:3001/';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ListePieces />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
