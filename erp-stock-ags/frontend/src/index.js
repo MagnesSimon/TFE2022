@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './styles/index.css';
+import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+import ListePieces from './components/listePieces';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ListePieces />
   </React.StrictMode>,
   document.getElementById('root')
 );
