@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.css';
 import reportWebVitals from './reportWebVitals';
-import ListePieces from './components/listePieces';
 import App from './App';
+import './styles/index.scss'
 
 const URL = 'http://localhost:3001/';
 

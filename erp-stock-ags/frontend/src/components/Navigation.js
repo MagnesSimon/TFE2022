@@ -4,15 +4,16 @@ import { NavLink } from 'react-router-dom';
 const Navigation = () => {
     return (
         <div>
-            <div className="Navigation">
+            {/* avec minuscule car dans le scss défini comme tel */}
+            <div className="navigation">
                 <ul>
-                    <NavLink to="/">
+                    <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Home</li>
                     </NavLink>
-                    <NavLink to="/listePieces">
+                    <NavLink to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Pièces</li>
                     </NavLink>
-                    <NavLink to="/familles">
+                    <NavLink to="/familles" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Familles</li>
                     </NavLink>
                 </ul>

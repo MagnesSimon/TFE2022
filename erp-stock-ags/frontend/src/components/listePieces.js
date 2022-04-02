@@ -1,24 +1,23 @@
-import '../styles/listePieces.css'
 import './usefull'
 
-const data =[
+const data = [
     {
-        reference:"TST101",
-        nom_famille:"famille test",
-        valeur_seuil:12,
-        quantite_en_stock:55
-    },    {
-        reference:"TST102",
-        nom_famille:"famille test",
-        valeur_seuil:12,
-        quantite_en_stock:55
+        reference: "TST101",
+        nom_famille: "famille test",
+        valeur_seuil: 12,
+        quantite_en_stock: 55
+    }, {
+        reference: "TST102",
+        nom_famille: "famille test",
+        valeur_seuil: 12,
+        quantite_en_stock: 55
     }
 ]
 
-function ListePieces(){ 
+function ListePieces() {
 
-    return( 
-        <table className='lmj-tableauListe'>
+    return (
+        <table>
             <thead>
                 <tr>
                     <th>Référence</th>
@@ -28,7 +27,7 @@ function ListePieces(){
                 </tr>
             </thead>
             <tbody>
-                {data.map(({reference, nom_famille, valeur_seuil, quantite_en_stock}) =>(
+                {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
                     <tr key={reference}>
                         <td>{reference}</td>
                         <td>{nom_famille}</td>
@@ -38,7 +37,7 @@ function ListePieces(){
                 ))}
             </tbody>
         </table>
-       );
+    );
 }
 
 export default ListePieces;
