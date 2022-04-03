@@ -21,7 +21,8 @@ listePieces.getAll = result => {
         "piece.valeur_seuil," +
         "piece.quantite_en_stock " +
         "FROM piece as piece " +
-        "INNER JOIN famille as famille ON piece.id_famille = famille.id_famille"
+        "INNER JOIN famille as famille " +
+        "ON piece.id_famille = famille.id_famille"
         , (err, res) => {
             if (err) {
                 console.log("Error: ", err);
@@ -29,6 +30,19 @@ listePieces.getAll = result => {
                 return;
             } else result(null, res);
         });
+}
+
+quantite_en_stock.update = (quantite_a_ajouter, reference, result) => {
+    sql.query("UPDATE piece " +
+        "SET quantite_en_stock = " + quantite_a_ajouter +
+        "WHERE reference = " + "\'" + reference + "\'",
+        (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else result(null, res);
+        })
 }
 
 module.exports = listePieces;
