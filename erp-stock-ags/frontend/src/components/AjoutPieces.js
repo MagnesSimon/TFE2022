@@ -9,7 +9,7 @@ const AjoutPieces = (piece) => {
 
     const Ajouter = () => {
         console.log(value + " pour " + piece.reference);
-        axios.post("/listePieces/update/" + piece.reference,
+        axios.post("/user" + piece,
         )
             .then((res) => setAxiosData(res.data))
     }

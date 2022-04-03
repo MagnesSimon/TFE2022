@@ -113,7 +113,7 @@ ficheTechnique.create = (newFicheTechnique, result) => {
     });liste
 }
 
-
+/*
 famille.remove = (id, result) => {
     sql.query("DELETE FROM famille WHERE id_famille = ?", id, (err, res) => {
         if (err) {

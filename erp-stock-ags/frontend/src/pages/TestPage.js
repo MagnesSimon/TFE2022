@@ -1,58 +1,33 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 
-// class TestPage extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             value: ''
-//         }
 
-//     }
-
-//     handleChange(evt) {
-//         const value = (evt.target.validity.valid) ? evt.target.value : this.state.value;
-
-//         this.setState({ value });
-//     }
-
-//     render() {
-//         function Ajouter() {
-//             const v = this.state.value
-//             console.log(v);
-//         }
-
-//         return (
-//             <div>
-//                 <input type="text"
-//                     pattern="[0-9]*"
-//                     onInput={this.handleChange.bind(this)}
-//                     value={this.state.value} />
-//                 <button onClick={Ajouter}>
-//                     Add
-//                 </button>
-//             </div>
-//         )
-//     }
-// }
 
 const TestPage = () => {
-
+    // Contient la valeur encodée dans l'input quantité de pièce
     const [value, setValue] = useState([])
+    const [axiosData, setAxiosData] = useState([])
+
+
     const Ajouter = () => {
-        console.log(value);
+
+        //     console.log(value + " pour " + piece.reference);
+        //     axios.post("/user" + piece.reference,)
+        //         .then((res) => setAxiosData(res.data))
     }
 
+    // Input avec un champ ou il est possible d'encoder que des nombre
+    // Et bouton qui permet d'ajouter la valeur reprise dans l'input à la quantité
     return (
-
-        <div>
+        <div className='ajoutPieceForm'>
             <Navigation />
             <input
                 type="text"
                 pattern="[0-9]*"
                 value={value}
                 onChange={(e) =>
-                    setValue((v) => (e.target.validity.valid ? e.target.value : v))
+                    setValue((value) => (e.target.validity.valid ? e.target.value : value))
                 }
             />
             <button onClick={Ajouter}>Add</button>

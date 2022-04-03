@@ -4,6 +4,7 @@ import AjoutPieces from './AjoutPieces';
 
 const Piece = () => {
 
+    // data contient la liste des pièces récupérée depuis la db
     const [data, setData] = useState([])
 
     // Le useEffect se joue quand le composant est monté 
