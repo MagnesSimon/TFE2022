@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const AjoutPieces = (piece) => {
-
-    // console.log(piece.reference)
 
     const [value, setValue] = useState([])
     const Ajouter = () => {
         console.log(value + " pour " + piece.reference);
-    }
-
-    function getValue() {
-        return value;
     }
 
     return (

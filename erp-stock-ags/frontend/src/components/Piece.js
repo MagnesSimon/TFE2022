@@ -3,12 +3,8 @@ import axios from "axios"
 import AjoutPieces from './AjoutPieces';
 
 const Piece = () => {
-    const [data, setData] = useState([])
-    const [value, setValue] = useState(0)
 
-    const Ajouter = () => {
-        console.log(AjoutPieces.getValue());
-    }
+    const [data, setData] = useState([])
 
     // Le useEffect se joue quand le composant est monté 
     useEffect(() => {
