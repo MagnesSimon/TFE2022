@@ -48,8 +48,13 @@ const TestPage = () => {
         <div>
             <Navigation />
             <input
-                onChange={event => setValue(event.target.value)}
-            ></input>
+                type="text"
+                pattern="[0-9]*"
+                value={value}
+                onChange={(e) =>
+                    setValue((v) => (e.target.validity.valid ? e.target.value : v))
+                }
+            />
             <button onClick={Ajouter}>Add</button>
         </div>
     );

@@ -4,6 +4,11 @@ import AjoutPieces from './AjoutPieces';
 
 const Piece = () => {
     const [data, setData] = useState([])
+    const [value, setValue] = useState(0)
+
+    const Ajouter = () => {
+        console.log(AjoutPieces.getValue());
+    }
 
     // Le useEffect se joue quand le composant est monté 
     useEffect(() => {
@@ -22,7 +27,7 @@ const Piece = () => {
                         <th>Famille</th>
                         <th>Valeur seuil</th>
                         <th>Quantité en stock</th>
-                        <th> </th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +42,10 @@ const Piece = () => {
                             <td>{nom_famille}</td>
                             <td>{valeur_seuil}</td>
                             <td>{quantite_en_stock}</td>
-                            <td><AjoutPieces /></td>
+                            <td>
+                                <AjoutPieces key={reference} reference={reference} />
+                            </td>
+
                         </tr>
                     ))}
                 </tbody>
