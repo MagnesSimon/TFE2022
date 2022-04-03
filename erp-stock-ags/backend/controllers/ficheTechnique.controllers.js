@@ -1,7 +1,7 @@
 const FicheTechnique = require("../models/ficheTechnique.models.js");
 
 exports.create = (req, res) => {
-    if (!req.body){
+    if (!req.body) {
         res.status(400).send({
             message: "Content can not be empty !"
         });
@@ -16,8 +16,8 @@ exports.create = (req, res) => {
         nom_fournisseur: req.body.nom_fournisseur
     });
 
-    FicheTechnique.create(ficheTechnique, (err,data) =>{
-        if (err){
+    FicheTechnique.create(ficheTechnique, (err, data) => {
+        if (err) {
             res.status(500).send({
                 message: err.message || "Some error occurred while creating the 'ficheTechnique'."
             });
@@ -27,20 +27,20 @@ exports.create = (req, res) => {
 
 exports.findAll = (req, res) => {
     FicheTechnique.getAll((err, data) => {
-        if (err){
+        if (err) {
             res.status(500).send({
                 message: err.message || "Some error occurred while retrieving 'ficheTechnique'."
             });
         } else res.send(data);
     });
 }
-/*
+
 exports.findOne = (req, res) => {
     FicheTechnique.getById(req.params.id, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
-                    message: `Not found ficheTechnique with id ${req.params.id}.`
+                    message: "Not found ficheTechnique with id " + req.params.id
                 });
             } else {
                 res.status(500).send({
@@ -50,7 +50,7 @@ exports.findOne = (req, res) => {
         } else res.send(data);
     });
 };
-
+/*
 exports.update = (req, res) => {
     if (!req.body) {
         res.status(400).send({
