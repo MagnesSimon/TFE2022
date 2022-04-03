@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios"
+import AjoutPieces from './AjoutPieces';
 
 const Piece = () => {
     const [data, setData] = useState([])
@@ -21,6 +22,7 @@ const Piece = () => {
                         <th>Famille</th>
                         <th>Valeur seuil</th>
                         <th>Quantité en stock</th>
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,6 +37,7 @@ const Piece = () => {
                             <td>{nom_famille}</td>
                             <td>{valeur_seuil}</td>
                             <td>{quantite_en_stock}</td>
+                            <td><AjoutPieces /></td>
                         </tr>
                     ))}
                 </tbody>

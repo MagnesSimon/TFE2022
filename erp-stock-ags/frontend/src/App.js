@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Famille from './pages/Famille';
 import Home from './pages/Home';
 import ListePieces from './pages/ListePieces';
+import TestPage from './pages/TestPage';
 
 const App = () => {
   return (
@@ -13,9 +14,11 @@ const App = () => {
     */
     <BrowserRouter>
       <Routes>
+        {/* Les routes permettent de définir la page que l'on affiche en fonction de son url */}
         <Route path='/' element={<Home />} />
         <Route path='/listepieces' element={<ListePieces />} />
         <Route path='/familles' element={<Famille />} />
+        <Route path='/testzone' element={<TestPage />} />
         <Route path='*' element={<Home />} />
       </Routes>
     </BrowserRouter>

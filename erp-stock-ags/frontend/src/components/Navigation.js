@@ -1,6 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+/*
+Cette fonction permet de créer une barre de navigation qui permet de naviguer entre les différentes pages
+*/
 const Navigation = () => {
     return (
         <div>
@@ -15,6 +18,9 @@ const Navigation = () => {
                     </NavLink>
                     <NavLink to="/familles" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Familles</li>
+                    </NavLink>
+                    <NavLink to="/testzone" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                        <li>Zone test</li>
                     </NavLink>
                 </ul>
             </div>
