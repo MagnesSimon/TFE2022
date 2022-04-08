@@ -26,27 +26,14 @@ const TestPage = () => {
     // }
 
     const Envoyer = () => {
-        console.log("ref: " + ref +
-            " seuil " + seuil +
-            " quantite " + quantite +
-            " finition " + finition +
-            " categorie " + categorie +
-            " famille " + famille);
-
-
-        console.log("piece: ")
-        console.log(piece)
-        console.log("JSON. Stringify ");
-        console.log(JSON.stringify(piece))
-
         axios.post('http://localhost:3001/addPiece', piece)
-            .then(console.log("piece"))
-            .then(console.log(piece))
             .then(function (res) {
-                console.log("axios res: " + res)
+                console.log('Succes ajout de pièce')
+                console.log(res)
             })
             .catch(function (err) {
-                console.log("axios err: " + err)
+                console.log("Error: ")
+                console.log(err)
             });
     }
 
