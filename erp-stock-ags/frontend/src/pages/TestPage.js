@@ -1,53 +1,105 @@
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 
-// class TestPage extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             value: ''
-//         }
-
-//     }
-
-//     handleChange(evt) {
-//         const value = (evt.target.validity.valid) ? evt.target.value : this.state.value;
-
-//         this.setState({ value });
-//     }
-
-//     render() {
-//         function Ajouter() {
-//             const v = this.state.value
-//             console.log(v);
-//         }
-
-//         return (
-//             <div>
-//                 <input type="text"
-//                     pattern="[0-9]*"
-//                     onInput={this.handleChange.bind(this)}
-//                     value={this.state.value} />
-//                 <button onClick={Ajouter}>
-//                     Add
-//                 </button>
-//             </div>
-//         )
-//     }
-// }
-
 const TestPage = () => {
 
-    const [value, setValue] = useState([])
-    const Ajouter = () => {
-        console.log(value);
+    const [ref, setRef] = useState([])
+    const [seuil, setSeuil] = useState([])
+    const [quantite, setQuantite] = useState([])
+    const [finition, setFinition] = useState([])
+    const [categorie, setCategorie] = useState([])
+    const [famille, setFamille] = useState([])
+    // const Ajouter = () => {
+    //     console.log(value);
+    // }
+
+    const Envoyer = () => {
+        console.log("ref: " + ref +
+            " seuil " + seuil +
+            " quantite " + quantite +
+            " finition " + finition +
+            " categorie " + categorie +
+            " famille " + famille);
     }
 
     return (
 
         <div>
             <Navigation />
-            <input
+            <form>
+                <label>
+                    Ref (ADD100) :
+                    <input type="text"
+                        name="ref"
+                        value={ref}
+                        onChange={(e) =>
+                            setRef((v) => (e.target.validity.valid ? e.target.value : v))
+                        } />
+                </label>
+                <label>
+                    Valeur seuil :
+                    <input
+                        type="text"
+                        name='seuil'
+                        pattern="[0-9]*"
+                        value={seuil}
+                        onChange={(e) =>
+                            setSeuil((v) => (e.target.validity.valid ? e.target.value : v))
+                        }
+                    />
+                </label>
+                <label>
+                    Quantité :
+                    <input
+                        type="text"
+                        name='quantite'
+                        pattern="[0-9]*"
+                        value={quantite}
+                        onChange={(e) =>
+                            setQuantite((v) => (e.target.validity.valid ? e.target.value : v))
+                        }
+                    />
+                </label>
+                <label>
+                    id finition (1) :
+                    <input
+                        type="text"
+                        name='finition'
+                        pattern="[0-9]*"
+                        value={finition}
+                        onChange={(e) =>
+                            setFinition((v) => (e.target.validity.valid ? e.target.value : v))
+                        }
+                    />
+                </label>
+                <label>
+                    id catégorie (1) :
+                    <input
+                        type="text"
+                        name='categorie'
+                        pattern="[0-9]*"
+                        value={categorie}
+                        onChange={(e) =>
+                            setCategorie((v) => (e.target.validity.valid ? e.target.value : v))
+                        }
+                    />
+                </label>
+                <label>
+                    id famille (1) :
+                    <input
+                        type="text"
+                        name='famille'
+                        pattern="[0-9]*"
+                        value={famille}
+                        onChange={(e) =>
+                            setFamille((v) => (e.target.validity.valid ? e.target.value : v))
+                        }
+                    />
+                </label>
+                <input onClick={Envoyer} />
+            </form>
+
+            {/* <input
                 type="text"
                 pattern="[0-9]*"
                 value={value}
@@ -55,7 +107,7 @@ const TestPage = () => {
                     setValue((v) => (e.target.validity.valid ? e.target.value : v))
                 }
             />
-            <button onClick={Ajouter}>Add</button>
+                <button onClick={Ajouter}>Add</button> */}
         </div>
     );
 };
