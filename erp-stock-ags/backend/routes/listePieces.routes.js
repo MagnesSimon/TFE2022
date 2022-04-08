@@ -3,5 +3,5 @@ module.exports = app => {
 
     app.get("/listePieces", listePieces.findAll);
 
-    app.update("/listePieces/update/:id", listePieces.update);
+    //app.update("/listePieces/update/:id", listePieces.update);
 }

@@ -32,17 +32,17 @@ listePieces.getAll = result => {
         });
 }
 
-quantite_en_stock.update = (quantite_a_ajouter, reference, result) => {
-    sql.query("UPDATE piece " +
-        "SET quantite_en_stock = " + quantite_a_ajouter +
-        "WHERE reference = " + "\'" + reference + "\'",
-        (err, res) => {
-            if (err) {
-                console.log("Error: ", err);
-                result(null, err);
-                return;
-            } else result(null, res);
-        })
-}
+// listePieces.update = (quantite_a_ajouter, reference, result) => {
+//     sql.query("UPDATE piece " +
+//         "SET quantite_en_stock = " + quantite_a_ajouter +
+//         "WHERE reference = " + "\'" + reference + "\'",
+//         (err, res) => {
+//             if (err) {
+//                 console.log("Error: ", err);
+//                 result(null, err);
+//                 return;
+//             } else result(null, res);
+//         })
+// }
 
 module.exports = listePieces;
