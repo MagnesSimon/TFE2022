@@ -5,5 +5,5 @@ module.exports = app => {
 
     //app.update("/listePieces/update/:id", listePieces.update);
 
-    app.post("/listePieces", ListePieces.create);
+    //app.post("/listePieces", ListePieces.create)
 }

@@ -1,4 +1,5 @@
 const ListePieces = require("../models/listePieces.models");
+const Piece = require("../models/listePieces.models")
 
 exports.findAll = (req, res) => {
     ListePieces.getAll((err, data) => {
@@ -17,7 +18,7 @@ exports.create = (req, res) => {
             message: "Content can not be empty !"
         });
     }
-    const Piece = new Piece({
+    const piece = new Piece({
         reference: req.body.reference,
         nom_famille: req.body.nom_famille,
         valeur_seuil: req.body.valeur_seuil,

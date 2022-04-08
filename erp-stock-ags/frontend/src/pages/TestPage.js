@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
+import axios from "axios"
 
 const TestPage = () => {
 
@@ -9,6 +10,16 @@ const TestPage = () => {
     const [finition, setFinition] = useState([])
     const [categorie, setCategorie] = useState([])
     const [famille, setFamille] = useState([])
+
+    let piece = {
+        ref,
+        seuil,
+        quantite,
+        finition,
+        categorie,
+        famille
+    }
+
     // const Ajouter = () => {
     //     console.log(value);
     // }
@@ -20,6 +31,18 @@ const TestPage = () => {
             " finition " + finition +
             " categorie " + categorie +
             " famille " + famille);
+
+
+        console.log(piece)
+        console.log(JSON.stringify(piece));
+
+        axios.post('http://localhost:3001/addPiece', piece)
+            .then(function (res) {
+                console.log("axios res: " + res)
+            })
+            .catch(function (err) {
+                console.log("axios err: " + err)
+            });
     }
 
     return (
@@ -95,10 +118,10 @@ const TestPage = () => {
                             setFamille((v) => (e.target.validity.valid ? e.target.value : v))
                         }
                     />
-                </label>
-                <input onClick={Envoyer} />
+                </label><div>
+                    <input onClick={Envoyer} />
+                </div>
             </form>
-
             {/* <input
                 type="text"
                 pattern="[0-9]*"
