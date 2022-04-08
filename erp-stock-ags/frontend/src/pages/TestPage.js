@@ -11,6 +11,7 @@ const TestPage = () => {
     const [categorie, setCategorie] = useState([])
     const [famille, setFamille] = useState([])
 
+
     let piece = {
         ref,
         seuil,
@@ -33,10 +34,14 @@ const TestPage = () => {
             " famille " + famille);
 
 
+        console.log("piece: ")
         console.log(piece)
-        console.log(JSON.stringify(piece));
+        console.log("JSON. Stringify ");
+        console.log(JSON.stringify(piece))
 
         axios.post('http://localhost:3001/addPiece', piece)
+            .then(console.log("piece"))
+            .then(console.log(piece))
             .then(function (res) {
                 console.log("axios res: " + res)
             })
