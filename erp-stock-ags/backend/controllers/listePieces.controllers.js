@@ -1,4 +1,16 @@
 const ListePieces = require("../models/listePieces.models");
+const Piece = require("../models/listePieces.models")
+
+exports.findAll = (req, res) => {
+    ListePieces.getAll((err, data) => {
+        if (err) {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving 'listePiece'."
+            });
+        } else res.send(data);
+    });
+}
+
 
 exports.create = (req, res) => {
     if (!req.body) {
@@ -6,14 +18,19 @@ exports.create = (req, res) => {
             message: "Content can not be empty !"
         });
     }
-    const listePieces = new ListePieces({
+    const piece = new Piece({
         reference: req.body.reference,
         nom_famille: req.body.nom_famille,
         valeur_seuil: req.body.valeur_seuil,
-        quantite_en_stock: req.body.quantite_en_stock
+        quantite_en_stock: req.body.quantite_en_stock,
+        // clés étrangères
+        id_finition: req.body.id_finition,
+        id_categorie: req.body.id_categorie,
+        id_famille: req.body.id_famille
+
     });
 
-    ListePieces.create()(listePieces, (err, data) => {
+    ListePieces.create()(Piece, (err, data) => {
         if (err) {
             res.status(500).send({
                 message: err.message || "Some error occurred while creating the 'listePiece'."
@@ -55,27 +72,3 @@ exports.update = (req, res) => {
     );
 };
 
-exports.create = (req, res) => {
-    if (!req.body) {
-        res.status(400).send({
-            message: "Content can not be empty !"
-        });
-    }
-    const listePiece = new ListePieces({
-        reference: req.body.reference,
-        // nom_categorie: req.body.nom_categorie,
-        // nom_finition: req.body.nom_finition,
-        // effet_finition: req.body.effet_finition,
-        // nom_famille: req.body.nom_famille,
-        // materiaux: req.body.materiaux,
-        // nom_fournisseur: req.body.nom_fournisseur
-    });
-
-    ListePieces.create(listePiece, (err, data) => {
-        if (err) {
-            res.status(500).send({
-                message: err.message || "Some error occurred while creating the 'ficheTechnique'."
-            });
-        } else res.send(data);
-    });
-};
