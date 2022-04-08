@@ -4,4 +4,6 @@ module.exports = app => {
     app.get("/listePieces", ListePieces.findAll);
 
     //app.update("/listePieces/update/:id", listePieces.update);
+
+    app.post("/listePieces", ListePieces.create);
 }

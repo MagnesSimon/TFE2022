@@ -32,18 +32,18 @@ ListePieces.getAll = result => {
         });
 }
 
-// ListePieces.create = (newPiece, result) => {
-//     sql.query("INSERT INTO piece SET ?", newPiece, (err, res) => {
-//         if(err) {
-//             console.log("error: ", err);
-//             result(err, null);
-//             return;
-//         }else {
-//             console.log("piece crée avec succès",{ id: res.insertId, ...newPiece});
-//             result(null, { id: res.insertId, ...newPiece});
-//         }
-//     });
-// }
+ListePieces.create = (newPiece, result) => {
+    sql.query("INSERT INTO piece SET ?", newPiece, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        } else {
+            console.log("piece crée avec succès", { id: res.insertId, ...newPiece });
+            result(null, { id: res.insertId, ...newPiece });
+        }
+    });
+}
 
 // ListePieces.update = (quantite_a_ajouter, reference, result) => {
 //     sql.query("UPDATE piece " +
