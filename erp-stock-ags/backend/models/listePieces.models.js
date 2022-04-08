@@ -1,7 +1,7 @@
 const sql = require("./db.js");
 
 // Constructor
-const listePieces = function (listePieces) {
+const ListePieces = function (listePieces) {
     this.reference = listePieces.reference;
     this.nom_famille = listePieces.nom_famille;
     this.valeur_seuil = listePieces.valeur_seuil;
@@ -15,7 +15,7 @@ nom_famille
 valeur_seuil
 quantite_en_stock
 */
-listePieces.getAll = result => {
+ListePieces.getAll = result => {
     sql.query("SELECT piece.reference," +
         "famille.nom_famille," +
         "piece.valeur_seuil," +
@@ -32,7 +32,20 @@ listePieces.getAll = result => {
         });
 }
 
-// listePieces.update = (quantite_a_ajouter, reference, result) => {
+// ListePieces.create = (newPiece, result) => {
+//     sql.query("INSERT INTO piece SET ?", newPiece, (err, res) => {
+//         if(err) {
+//             console.log("error: ", err);
+//             result(err, null);
+//             return;
+//         }else {
+//             console.log("piece crée avec succès",{ id: res.insertId, ...newPiece});
+//             result(null, { id: res.insertId, ...newPiece});
+//         }
+//     });
+// }
+
+// ListePieces.update = (quantite_a_ajouter, reference, result) => {
 //     sql.query("UPDATE piece " +
 //         "SET quantite_en_stock = " + quantite_a_ajouter +
 //         "WHERE reference = " + "\'" + reference + "\'",
@@ -45,4 +58,4 @@ listePieces.getAll = result => {
 //         })
 // }
 
-module.exports = listePieces;
+module.exports = ListePieces;
