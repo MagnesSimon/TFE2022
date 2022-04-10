@@ -11,8 +11,8 @@ const Piece = () => {
 
     // data contient la liste des pièces récupérée depuis la db
     const [data, setData] = useState([])
-
     // Le useEffect se joue quand le composant est monté 
+    // Requete pour récupérer la liste des pièces
     useEffect(() => {
         axios.get(window.url + "/listePieces")
             .then((res) => setData(res.data))
