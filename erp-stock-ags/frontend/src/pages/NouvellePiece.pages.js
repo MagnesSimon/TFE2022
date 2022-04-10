@@ -12,17 +12,21 @@ const NouvellePiece = () => {
     const [ref, setRef] = useState([])
     const [seuil, setSeuil] = useState([])
     const [quantite, setQuantite] = useState([])
-    const [finition, setFinition] = useState([])
-    const [categorie, setCategorie] = useState([])
-    const [famille, setFamille] = useState([])
+    // Contient les différentes possibilités de finition existante dans la DB
+    const [choixFinition, setChoixFinition] = useState([])
+    // Contient les différentes possibilités de catégorie existante dans la DB
+    const [choixCategorie, setChoixCategorie] = useState([])
+    // Contient les différentes possibilités de famille existante dans la DB
+    const [choixFamille, setChoixFamille] = useState([])
+
     // Création de l'objet avec les variables récupérées depuis les inputs
     let piece = {
         ref,
         seuil,
         quantite,
-        finition,
-        categorie,
-        famille
+        choixFinition,
+        choixCategorie,
+        choixFamille
     }
 
     // Fonction pour envoyer une nouvelle pièces vers la DB
@@ -47,18 +51,17 @@ const NouvellePiece = () => {
         navigate('/listePieces');
     }
 
-    // Contient les différentes possibilités de finition existante dans la DB
-    const [choixFinition, setChoixFinition] = useState([])
-    console.log("choixFinition")
-    console.log(choixFinition)
-    // Contient les différentes possibilités de catégorie existante dans la DB
-    const [choixCategorie, setChoixCategorie] = useState([])
-    // Contient les différentes possibilités de famille existante dans la DB
-    const [choixFamille, setChoixFamille] = useState([])
-
     useEffect(() => {
         axios.get(window.url + "/listeFinitions")
             .then((res) => setChoixFinition(res.data))
+    }, [])
+    useEffect(() => {
+        axios.get(window.url + "/listeCategories/")
+            .then((res) => setChoixCategorie(res.data))
+    }, [])
+    useEffect(() => {
+        axios.get(window.url + "/listeFamilles")
+            .then((res) => setChoixFamille(res.data))
     }, [])
 
     return (
@@ -68,7 +71,7 @@ const NouvellePiece = () => {
             <form>
                 <div>
                     <label>
-                        Ref (ADD100) :
+                        Ref  :
                         <input type="text"
                             name="ref"
                             value={ref}
@@ -114,46 +117,26 @@ const NouvellePiece = () => {
                             <option value={id_finition}>{nom_finition + " - " + effet_finition}</option>
                         ))}
                     </select>
-                    {/* <label>
-                        id finition (1) :
-                        <input
-                            type="text"
-                            name='finition'
-                            pattern="[0-9]*"
-                            value={finition}
-                            onChange={(e) =>
-                                setFinition((v) => (e.target.validity.valid ? e.target.value : v))
-                            }
-                        />
-                    </label> */}
                 </div>
                 <div>
                     <label>
-                        id catégorie (1) :
-                        <input
-                            type="text"
-                            name='categorie'
-                            pattern="[0-9]*"
-                            value={categorie}
-                            onChange={(e) =>
-                                setCategorie((v) => (e.target.validity.valid ? e.target.value : v))
-                            }
-                        />
+                        Famille :
                     </label>
+                    <select name="choixFamille" id="choixFamille">
+                        {choixFamille.map(({ id_famille, nom_famille, materiaux }) => (
+                            <option value={id_famille}>{nom_famille + " - " + materiaux}</option>
+                        ))}
+                    </select>
                 </div>
                 <div>
                     <label>
-                        id famille (1) :
-                        <input
-                            type="text"
-                            name='famille'
-                            pattern="[0-9]*"
-                            value={famille}
-                            onChange={(e) =>
-                                setFamille((v) => (e.target.validity.valid ? e.target.value : v))
-                            }
-                        />
+                        Catégorie :
                     </label>
+                    <select name="choixCategorie" id="choixCategorie">
+                        {choixCategorie.map(({ id_categorie, nom_categorie }) => (
+                            <option value={id_categorie}>{nom_categorie}</option>
+                        ))}
+                    </select>
                 </div>
                 <div>
                     <button onClick={Envoyer} >Envoyer </button>
