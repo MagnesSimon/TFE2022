@@ -4,6 +4,10 @@ import AjoutPieces from './AjoutPieces';
 
 const Piece = () => {
 
+    // function refreshPage() {
+    //     window.location.reload();
+    // }
+
     // data contient la liste des pièces récupérée depuis la db
     const [data, setData] = useState([])
 
@@ -12,10 +16,6 @@ const Piece = () => {
         axios.get("http://localhost:3001/listePieces")
             .then((res) => setData(res.data))
     }, [])
-
-    function refreshPage() {
-        window.location.reload();
-    }
 
     return (
         <div>

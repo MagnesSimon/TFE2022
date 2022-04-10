@@ -32,6 +32,11 @@ ListePieces.getAll = result => {
         });
 }
 
+/* 
+Permet de modifier la quantité d'un pièce
+reférence
+quantité en stock
+*/
 ListePieces.updateQtyById = (data, result) => {
     sql.query("UPDATE piece" +
         " SET quantite_en_stock = " + data.quantite_en_stock +

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 const AjoutPieces = (piece) => {
 
+    // Fonction permettant de refresh la page quand elle est appelée
     function refreshPage() {
         window.location.reload();
     }
@@ -11,12 +12,17 @@ const AjoutPieces = (piece) => {
     const [value, setValue] = useState([])
     const [axiosData, setAxiosData] = useState([])
 
+    // Variable qui contient les données à modifier
+    // @reference la récérence de la pièce à modifier
+    // @quantite_en_stock la quantité qui doit être mise
     let aModifier = {
         reference: piece.reference,
         quantite_en_stock: value
     }
 
-    const Ajouter = () => {
+    // Fonction qui permet de modifier la quantite
+    // Fait une requete qui envoie les données  à l'API
+    const ModifierQte = () => {
         console.log(value + " pour " + piece.reference);
         axios.post("http://localhost:3001/listePieces/updateOne", aModifier)
             .then(function (res) {
@@ -28,6 +34,7 @@ const AjoutPieces = (piece) => {
                 console.log(err)
             });
 
+        // refresh de la page après l'envoi de données
         refreshPage();
     }
 
@@ -43,7 +50,7 @@ const AjoutPieces = (piece) => {
                     setValue((value) => (e.target.validity.valid ? e.target.value : value))
                 }
             />
-            <button onClick={Ajouter}>Add</button>
+            <button onClick={ModifierQte}>Add</button>
         </div>
     );
 }

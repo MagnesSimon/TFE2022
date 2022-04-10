@@ -17,7 +17,6 @@ exports.updateQtyById = (req, res) => {
         });
     }
 
-
     const aUpdate = new ListePieces({
         reference: req.body.reference,
         quantite_en_stock: req.body.quantite_en_stock
