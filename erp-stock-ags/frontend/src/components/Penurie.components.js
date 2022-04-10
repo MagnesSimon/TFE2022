@@ -25,6 +25,7 @@ const ListePenurie = () => {
                         <th>Famille</th>
                         <th>Valeur seuil</th>
                         <th>Quantité en stock</th>
+                        <th>Déficit</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,7 @@ const ListePenurie = () => {
                             <td>{nom_famille}</td>
                             <td>{valeur_seuil}</td>
                             <td>{quantite_en_stock}</td>
+                            <td>{valeur_seuil - quantite_en_stock}</td>
                         </tr>
                     ))}
                 </tbody>
