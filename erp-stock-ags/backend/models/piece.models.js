@@ -2,10 +2,7 @@ const sql = require("./db");
 
 // Constructor
 const Piece = function (Piece) {
-    console.log(" *********************************************** ");
-    console.log(" piece ");
-    console.log(Piece)
-    console.log(" *********************************************** ");
+
     this.reference = Piece.reference;
     this.valeur_seuil = Piece.valeur_seuil;
     this.quantite_en_stock = Piece.quantite_en_stock;

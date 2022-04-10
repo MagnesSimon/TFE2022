@@ -1,7 +1,8 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import axios from "axios"
+
+const TestPage = () => {
 
     const [ref, setRef] = useState([])
     const [seuil, setSeuil] = useState([])
@@ -30,11 +31,11 @@ import axios from "axios"
                 console.log("Error: ")
                 console.log(err)
             });
+    }
 
-    // Input avec un champ ou il est possible d'encoder que des nombre
-    // Et bouton qui permet d'ajouter la valeur reprise dans l'input à la quantité
     return (
-        <div className='ajoutPieceForm'>
+
+        <div>
             <Navigation />
             <form>
                 <label>
@@ -109,6 +110,15 @@ import axios from "axios"
                     <input onClick={Envoyer} />
                 </div>
             </form>
+            {/* <input
+                type="text"
+                pattern="[0-9]*"
+                value={value}
+                onChange={(e) =>
+                    setValue((v) => (e.target.validity.valid ? e.target.value : v))
+                }
+            />
+                <button onClick={Ajouter}>Add</button> */}
         </div>
     );
 };
