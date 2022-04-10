@@ -44,7 +44,9 @@ const Piece = () => {
                             <td>{valeur_seuil}</td>
                             <td>{quantite_en_stock}</td>
                             <td>
-                                <AjoutPieces key={reference} reference={reference} />
+                                <AjoutPieces key={reference}
+                                    reference={reference}
+                                    qte={quantite_en_stock} />
                             </td>
 
                         </tr>

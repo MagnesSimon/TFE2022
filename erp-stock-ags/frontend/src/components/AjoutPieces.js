@@ -17,13 +17,12 @@ const AjoutPieces = (piece) => {
     // @quantite_en_stock la quantité qui doit être mise
     let aModifier = {
         reference: piece.reference,
-        quantite_en_stock: value
+        quantite_en_stock: parseInt(value) + piece.qte
     }
 
     // Fonction qui permet de modifier la quantite
     // Fait une requete qui envoie les données  à l'API
     const ModifierQte = () => {
-        console.log(value + " pour " + piece.reference);
         axios.post("http://localhost:3001/listePieces/updateOne", aModifier)
             .then(function (res) {
                 console.log('Succes Modification quantite')
@@ -43,8 +42,7 @@ const AjoutPieces = (piece) => {
     return (
         <div className='ajoutPieceForm'>
             <input
-                type="text"
-                pattern="[0-9]*"
+                type="number"
                 value={value}
                 onChange={(e) =>
                     setValue((value) => (e.target.validity.valid ? e.target.value : value))
