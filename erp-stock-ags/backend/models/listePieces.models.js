@@ -32,4 +32,10 @@ ListePieces.getAll = result => {
         });
 }
 
+ListePieces.updateQtyById = (data, result) => {
+    sql.query("UPDATE piece" +
+        " SET quantite_en_stock = " + data.quantite_en_stock +
+        " WHERE reference = '" + data.reference + "'")
+}
+
 module.exports = ListePieces;

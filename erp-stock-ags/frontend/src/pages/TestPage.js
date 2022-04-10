@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import axios from "axios"
+import GlobalData from '../GlobalData';
 
 const TestPage = () => {
 
@@ -10,7 +11,6 @@ const TestPage = () => {
     const [finition, setFinition] = useState([])
     const [categorie, setCategorie] = useState([])
     const [famille, setFamille] = useState([])
-
 
     let piece = {
         ref,
@@ -22,10 +22,11 @@ const TestPage = () => {
     }
 
     const Envoyer = () => {
-        axios.post('http://localhost:3001/addPiece', piece)
+        axios.post('http://localhost:3001/piece/addPiece/', piece)
+            //axios.post(GlobalData.URL + '/piece/addPiece/', piece)
             .then(function (res) {
                 console.log('Succes ajout de pièce')
-                console.log(res)
+                console.log(res.data)
             })
             .catch(function (err) {
                 console.log("Error: ")
@@ -106,19 +107,14 @@ const TestPage = () => {
                             setFamille((v) => (e.target.validity.valid ? e.target.value : v))
                         }
                     />
-                </label><div>
+                </label>
+                <div>
+                    <button onClick={Envoyer} >Envoyer </button>
+                </div>
+                <div>
                     <input onClick={Envoyer} />
                 </div>
             </form>
-            {/* <input
-                type="text"
-                pattern="[0-9]*"
-                value={value}
-                onChange={(e) =>
-                    setValue((v) => (e.target.validity.valid ? e.target.value : v))
-                }
-            />
-                <button onClick={Ajouter}>Add</button> */}
         </div>
     );
 };

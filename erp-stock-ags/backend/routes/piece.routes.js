@@ -1,6 +1,6 @@
 module.exports = app => {
     const Piece = require("../controllers/piece.controllers");
 
-    app.post("/addPiece/", Piece.create);
+    app.post("/piece/addPiece/", Piece.create);
 
 }

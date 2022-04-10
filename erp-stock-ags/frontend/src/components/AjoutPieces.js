@@ -7,11 +7,22 @@ const AjoutPieces = (piece) => {
     const [value, setValue] = useState([])
     const [axiosData, setAxiosData] = useState([])
 
+    let aModifier = {
+        reference: piece.reference,
+        quantite_en_stock: value
+    }
+
     const Ajouter = () => {
         console.log(value + " pour " + piece.reference);
-        axios.post("/user" + piece,
-        )
-            .then((res) => setAxiosData(res.data))
+        axios.post("http://localhost:3001/listePieces/updateOne", aModifier)
+            .then(function (res) {
+                console.log('Succes Modification quantite')
+                console.log(res.data)
+            })
+            .catch(function (err) {
+                console.log("Error: ")
+                console.log(err)
+            });
     }
 
     // Input avec un champ ou il est possible d'encoder que des nombre

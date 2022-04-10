@@ -14,7 +14,6 @@ const Piece = function (Piece) {
 
 Piece.create = (newPiece, result) => {
 
-
     sql.query("INSERT INTO piece SET ?", newPiece, (err, res) => {
         if (err) {
             console.log("error: ", err);
