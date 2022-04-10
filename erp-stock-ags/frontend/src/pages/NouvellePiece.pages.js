@@ -12,6 +12,11 @@ const NouvellePiece = () => {
     const [ref, setRef] = useState([])
     const [seuil, setSeuil] = useState([])
     const [quantite, setQuantite] = useState([])
+    const [finition, setFinition] = useState([])
+    const [categorie, setCategorie] = useState([])
+    const [famille, setFamille] = useState([])
+    // console.log("finition")
+    // console.log(finition)
     // Contient les différentes possibilités de finition existante dans la DB
     const [choixFinition, setChoixFinition] = useState([])
     // Contient les différentes possibilités de catégorie existante dans la DB
@@ -24,9 +29,9 @@ const NouvellePiece = () => {
         ref,
         seuil,
         quantite,
-        choixFinition,
-        choixCategorie,
-        choixFamille
+        finition,
+        categorie,
+        famille
     }
 
     // Fonction pour envoyer une nouvelle pièces vers la DB
@@ -51,6 +56,11 @@ const NouvellePiece = () => {
         navigate('/listePieces');
     }
 
+    // Fonction pour récupérer les listes d'élément
+    // Finitions
+    // Famille
+    // Categorie 
+    // Utilisé pour la création des choix déroulant
     useEffect(() => {
         axios.get(window.url + "/listeFinitions")
             .then((res) => setChoixFinition(res.data))
@@ -63,6 +73,18 @@ const NouvellePiece = () => {
         axios.get(window.url + "/listeFamilles")
             .then((res) => setChoixFamille(res.data))
     }, [])
+
+    // Fonctions pour récupérer la valeur des choix déroulants sélectionnés
+    // et les appliquer au attributs de la pièces
+    const finitionHandleChange = (e) => {
+        setFinition((v) => (e.target.validity.valid ? e.target.value : v))
+    }
+    const familleHandleChange = (e) => {
+        setFamille((v) => (e.target.validity.valid ? e.target.value : v))
+    }
+    const catégorieHandleChange = (e) => {
+        setCategorie((v) => (e.target.validity.valid ? e.target.value : v))
+    }
 
     return (
 
@@ -112,9 +134,14 @@ const NouvellePiece = () => {
                     <label>
                         Finition :
                     </label>
-                    <select name="choixFinition" id="choixFinition">
+                    <select name="choixFinition"
+                        id="selectChoixFinition"
+                        value={finition}
+                        onChange={finitionHandleChange}>
                         {choixFinition.map(({ id_finition, nom_finition, effet_finition }) => (
-                            <option value={id_finition}>{nom_finition + " - " + effet_finition}</option>
+                            <option value={id_finition}>
+                                {nom_finition + " - " + effet_finition}
+                            </option>
                         ))}
                     </select>
                 </div>
@@ -122,7 +149,10 @@ const NouvellePiece = () => {
                     <label>
                         Famille :
                     </label>
-                    <select name="choixFamille" id="choixFamille">
+                    <select name="choixFamille"
+                        id="selectChoixFamille"
+                        value={famille}
+                        onChange={familleHandleChange}>
                         {choixFamille.map(({ id_famille, nom_famille, materiaux }) => (
                             <option value={id_famille}>{nom_famille + " - " + materiaux}</option>
                         ))}
@@ -132,7 +162,10 @@ const NouvellePiece = () => {
                     <label>
                         Catégorie :
                     </label>
-                    <select name="choixCategorie" id="choixCategorie">
+                    <select name="choixCategorie"
+                        id="selectChoixCategorie"
+                        value={categorie}
+                        onChange={catégorieHandleChange}>
                         {choixCategorie.map(({ id_categorie, nom_categorie }) => (
                             <option value={id_categorie}>{nom_categorie}</option>
                         ))}
