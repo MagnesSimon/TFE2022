@@ -43,4 +43,22 @@ ListePieces.updateQtyById = (data, result) => {
         " WHERE reference = '" + data.reference + "'")
 }
 
+ListePieces.getPenurie = result => {
+    sql.query("SELECT piece.reference," +
+        "famille.nom_famille," +
+        "piece.valeur_seuil," +
+        "piece.quantite_en_stock " +
+        "FROM piece as piece " +
+        "INNER JOIN famille as famille " +
+        "ON piece.id_famille = famille.id_famille " +
+        "WHERE piece.quantite_en_stock < piece.valeur_seuil "
+        , (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else result(null, res);
+        });
+}
+
 module.exports = ListePieces;
