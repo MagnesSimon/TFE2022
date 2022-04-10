@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navigation from '../components/Navigation';
+import Navigation from '../components/Navigation.components';
 import axios from "axios"
 
 const TestPage = () => {

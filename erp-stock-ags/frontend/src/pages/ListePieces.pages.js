@@ -1,6 +1,6 @@
 import React from 'react';
-import Navigation from '../components/Navigation';
-import Piece from '../components/Piece';
+import Navigation from '../components/Navigation.components';
+import Piece from '../components/Piece.components';
 
 const ListePieces = () => {
     return (

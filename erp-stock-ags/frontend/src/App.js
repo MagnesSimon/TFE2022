@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Famille from './pages/Famille';
-import Home from './pages/Home';
-import ListePieces from './pages/ListePieces';
-import TestPage from './pages/TestPage';
-import Penuire from './pages/Penurie';
+import Famille from './pages/Famille.pages';
+import Home from './pages/Home.pages';
+import ListePieces from './pages/ListePieces.pages';
+import TestPage from './pages/TestPage.pages';
+import Penuire from './pages/Penurie.pages';
 
 const App = () => {
   return (
