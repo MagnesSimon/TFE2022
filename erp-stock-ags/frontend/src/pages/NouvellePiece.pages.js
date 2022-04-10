@@ -38,11 +38,14 @@ const NouvellePiece = () => {
                 console.log("Error: ")
                 console.log(err)
             });
+
+        //navigate('/listePiece');
+        GoToListePiece();
     }
 
     // Fonction pour retourner vers la liste des pièce
     const GoToListePiece = () => {
-        navigate('/listePiece');
+        navigate('/listePieces');
     }
 
     return (
