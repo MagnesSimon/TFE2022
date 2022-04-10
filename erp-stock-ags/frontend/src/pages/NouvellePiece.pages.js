@@ -15,7 +15,6 @@ const NouvellePiece = () => {
     const [finition, setFinition] = useState([])
     const [categorie, setCategorie] = useState([])
     const [famille, setFamille] = useState([])
-
     // Création de l'objet avec les variables récupérées depuis les inputs
     let piece = {
         ref,
@@ -47,6 +46,13 @@ const NouvellePiece = () => {
     const GoToListePiece = () => {
         navigate('/listePieces');
     }
+
+    // Contient les différentes possibilités de finition existante dans la DB
+    const [choixFinition, setChoixFinition] = useState([])
+    // Contient les différentes possibilités de catégorie existante dans la DB
+    const [choixCategorie, setChoixCategorie] = useState([])
+    // Contient les différentes possibilités de famille existante dans la DB
+    const [choixFamille, setChoixFamille] = useState([])
 
     return (
 

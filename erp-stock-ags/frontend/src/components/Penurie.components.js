@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios"
-import AjoutPieces from './AjoutPieces.components';
 import '../GlobalData'
 
 const ListePenurie = () => {
