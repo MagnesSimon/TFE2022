@@ -13,6 +13,10 @@ const Piece = () => {
             .then((res) => setData(res.data))
     }, [])
 
+    function refreshPage() {
+        window.location.reload();
+    }
+
     return (
         <div>
             {/* Création du tableau des pièces */}

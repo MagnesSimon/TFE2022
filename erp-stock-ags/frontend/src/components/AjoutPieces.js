@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 
 const AjoutPieces = (piece) => {
 
+    function refreshPage() {
+        window.location.reload();
+    }
+
     // Contient la valeur encodée dans l'input quantité de pièce
     const [value, setValue] = useState([])
     const [axiosData, setAxiosData] = useState([])
@@ -23,6 +27,8 @@ const AjoutPieces = (piece) => {
                 console.log("Error: ")
                 console.log(err)
             });
+
+        refreshPage();
     }
 
     // Input avec un champ ou il est possible d'encoder que des nombre
@@ -40,6 +46,6 @@ const AjoutPieces = (piece) => {
             <button onClick={Ajouter}>Add</button>
         </div>
     );
-
 }
+
 export default AjoutPieces;
