@@ -33,6 +33,7 @@ const Finition = () => {
                     */}
                     {finitions.map(({ id_finition, nom_finition, effet_finition }) => (
                         <tr key={id_finition}>
+                            <td>{id_finition}</td>
                             <td>{nom_finition}</td>
                             <td>{effet_finition}</td>
                         </tr>
