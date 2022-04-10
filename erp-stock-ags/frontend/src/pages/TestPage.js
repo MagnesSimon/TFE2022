@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import axios from "axios"
-import GlobalData from '../GlobalData';
 
 const TestPage = () => {
 

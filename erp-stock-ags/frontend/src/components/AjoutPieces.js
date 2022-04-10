@@ -11,7 +11,6 @@ const AjoutPieces = (piece) => {
 
     // Contient la valeur encodée dans l'input quantité de pièce
     const [value, setValue] = useState([])
-    const [axiosData, setAxiosData] = useState([])
 
     // Variable qui contient les données à modifier
     // @reference la récérence de la pièce à modifier

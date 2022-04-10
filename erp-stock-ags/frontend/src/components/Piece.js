@@ -14,7 +14,6 @@ const Piece = () => {
 
     // Le useEffect se joue quand le composant est monté 
     useEffect(() => {
-        // axios.get("http://localhost:3001/listePieces")
         axios.get(window.url + "/listePieces")
             .then((res) => setData(res.data))
     }, [])

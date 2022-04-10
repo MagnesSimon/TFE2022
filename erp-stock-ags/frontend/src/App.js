@@ -4,6 +4,7 @@ import Famille from './pages/Famille';
 import Home from './pages/Home';
 import ListePieces from './pages/ListePieces';
 import TestPage from './pages/TestPage';
+import Penuire from './pages/Penurie';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/listepieces' element={<ListePieces />} />
         <Route path='/familles' element={<Famille />} />
+        <Route path='/penurie' element={<Penuire />} />
         <Route path='/testzone' element={<TestPage />} />
         <Route path='*' element={<Home />} />
       </Routes>
