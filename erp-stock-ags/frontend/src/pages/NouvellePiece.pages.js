@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation.components';
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
@@ -49,10 +49,17 @@ const NouvellePiece = () => {
 
     // Contient les différentes possibilités de finition existante dans la DB
     const [choixFinition, setChoixFinition] = useState([])
+    console.log("choixFinition")
+    console.log(choixFinition)
     // Contient les différentes possibilités de catégorie existante dans la DB
     const [choixCategorie, setChoixCategorie] = useState([])
     // Contient les différentes possibilités de famille existante dans la DB
     const [choixFamille, setChoixFamille] = useState([])
+
+    useEffect(() => {
+        axios.get(window.url + "/listeFinitions")
+            .then((res) => setChoixFinition(res.data))
+    }, [])
 
     return (
 
@@ -100,6 +107,14 @@ const NouvellePiece = () => {
                 </div>
                 <div>
                     <label>
+                        Finition :
+                    </label>
+                    <select name="choixFinition" id="choixFinition">
+                        {choixFinition.map(({ id_finition, nom_finition, effet_finition }) => (
+                            <option value={id_finition}>{nom_finition + " - " + effet_finition}</option>
+                        ))}
+                    </select>
+                    {/* <label>
                         id finition (1) :
                         <input
                             type="text"
@@ -110,7 +125,7 @@ const NouvellePiece = () => {
                                 setFinition((v) => (e.target.validity.valid ? e.target.value : v))
                             }
                         />
-                    </label>
+                    </label> */}
                 </div>
                 <div>
                     <label>
