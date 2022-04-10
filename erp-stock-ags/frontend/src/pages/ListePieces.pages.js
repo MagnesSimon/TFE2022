@@ -5,10 +5,6 @@ import { NavLink } from 'react-router-dom';
 
 const ListePieces = () => {
 
-    const GoToNewPiece = () => {
-
-    }
-
     return (
         <div>
             <Navigation />

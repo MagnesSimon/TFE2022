@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 const NouvellePiece = () => {
 
+    // utiliser  pour changer de page
+    const navigate = useNavigate();
+
+    // Variable récupérée dans les inputs
     const [ref, setRef] = useState([])
     const [seuil, setSeuil] = useState([])
     const [quantite, setQuantite] = useState([])
@@ -12,6 +16,7 @@ const NouvellePiece = () => {
     const [categorie, setCategorie] = useState([])
     const [famille, setFamille] = useState([])
 
+    // Création de l'objet avec les variables récupérées depuis les inputs
     let piece = {
         ref,
         seuil,
@@ -21,6 +26,7 @@ const NouvellePiece = () => {
         famille
     }
 
+    // Fonction pour envoyer une nouvelle pièces vers la DB
     const Envoyer = () => {
         axios.post('http://localhost:3001/piece/addPiece/', piece)
             //axios.post(GlobalData.URL + '/piece/addPiece/', piece)
@@ -34,9 +40,8 @@ const NouvellePiece = () => {
             });
     }
 
-    const navigate = useNavigate();
-
-    const GoToHome = () => {
+    // Fonction pour retourner vers la liste des pièce
+    const GoToListePiece = () => {
         navigate('/listePiece');
     }
 
@@ -128,7 +133,7 @@ const NouvellePiece = () => {
                 </div>
                 <div>
                     <button onClick={Envoyer} >Envoyer </button>
-                    <button className="annuler" onClick={GoToHome}>Annuler </button>
+                    <button className="annuler" onClick={GoToListePiece}>Annuler </button>
                 </div>
             </form>
         </div>
