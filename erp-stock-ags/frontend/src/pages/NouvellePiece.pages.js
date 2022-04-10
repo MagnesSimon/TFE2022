@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation.components';
 import axios from "axios"
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const TestPage = () => {
+const NouvellePiece = () => {
 
     const [ref, setRef] = useState([])
     const [seuil, setSeuil] = useState([])
@@ -135,5 +135,4 @@ const TestPage = () => {
     );
 };
 
-
-export default TestPage
+export default NouvellePiece;
