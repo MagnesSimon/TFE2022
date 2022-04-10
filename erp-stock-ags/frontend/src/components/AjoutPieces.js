@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import "../GlobalData"
 
 const AjoutPieces = (piece) => {
 
@@ -23,7 +24,7 @@ const AjoutPieces = (piece) => {
     // Fonction qui permet de modifier la quantite
     // Fait une requete qui envoie les données  à l'API
     const ModifierQte = () => {
-        axios.post("http://localhost:3001/listePieces/updateOne", aModifier)
+        axios.post(window.url + "/listePieces/updateOne", aModifier)
             .then(function (res) {
                 console.log('Succes Modification quantite')
                 console.log(res.data)

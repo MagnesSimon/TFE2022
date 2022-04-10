@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios"
 import AjoutPieces from './AjoutPieces';
+import '../GlobalData'
 
 const Piece = () => {
 
@@ -13,7 +14,8 @@ const Piece = () => {
 
     // Le useEffect se joue quand le composant est monté 
     useEffect(() => {
-        axios.get("http://localhost:3001/listePieces")
+        // axios.get("http://localhost:3001/listePieces")
+        axios.get(window.url + "/listePieces")
             .then((res) => setData(res.data))
     }, [])
 
