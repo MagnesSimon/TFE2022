@@ -55,7 +55,6 @@ const Piece = () => {
                 </tbody>
             </table>
         </div>
-
     );
 };
 

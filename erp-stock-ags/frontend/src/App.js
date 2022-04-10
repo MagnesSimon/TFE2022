@@ -6,6 +6,7 @@ import ListePieces from './pages/ListePieces.pages';
 import TestPage from './pages/TestPage.pages';
 import Penuire from './pages/Penurie.pages';
 import NouvellePiece from './pages/NouvellePiece.pages';
+import Finition from './pages/Finition.pages';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path='/penurie' element={<Penuire />} />
         <Route path='/testzone' element={<TestPage />} />
         <Route path='/nouvellePiece' element={<NouvellePiece />} />
+        <Route path='/finitions' element={<Finition />} />
         <Route path='*' element={<Home />} />
       </Routes>
     </BrowserRouter>
