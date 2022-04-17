@@ -24,3 +24,4 @@ require("./routes/piece.routes")(app);
 require("./routes/listeFinitions.routes")(app);
 require("./routes/listeFamilles.routes")(app);
 require("./routes/listeCategories.routes")(app);
+require("./routes/fournisseur.routes")(app);

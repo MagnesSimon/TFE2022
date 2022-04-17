@@ -20,7 +20,8 @@ ListeFamilles.getAll = result => {
         "famille.materiaux," +
         "fournisseur.nom_fournisseur " +
         "FROM famille as famille " +
-        "INNER JOIN fournisseur as fournisseur"
+        "INNER JOIN fournisseur as fournisseur " +
+        "WHERE famille.id_fournisseur = fournisseur.id_fournisseur"
         , (err, res) => {
             if (err) {
                 console.log("Error: ", err);
