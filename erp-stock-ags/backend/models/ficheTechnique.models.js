@@ -9,6 +9,9 @@ const ficheTechnique = function (ficheTechnique) {
     this.nom_famille = ficheTechnique.nom_famille;
     this.materiaux = ficheTechnique.materiaux;
     this.nom_fournisseur = ficheTechnique.nom_fournisseur;
+    // this.valeur_seuil = ficheTechnique.valeur_seuil;
+    // this.quantite_en_stock = ficheTechnique.quantite_en_stock;
+
 }
 /*
 Permet de récupérer la fiche technique de chaque pièce

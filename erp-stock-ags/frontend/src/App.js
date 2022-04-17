@@ -7,6 +7,7 @@ import TestPage from './pages/TestPage.pages';
 import Penuire from './pages/Penurie.pages';
 import NouvellePiece from './pages/NouvellePiece.pages';
 import Finition from './pages/Finition.pages';
+import FicheTechnique from './pages/FicheTechnique.pages';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route path='/testzone' element={<TestPage />} />
         <Route path='/nouvellePiece' element={<NouvellePiece />} />
         <Route path='/finitions' element={<Finition />} />
+        <Route path='/ficheTechnique' element={<FicheTechnique />} />
         <Route path='*' element={<Home />} />
       </Routes>
     </BrowserRouter>
