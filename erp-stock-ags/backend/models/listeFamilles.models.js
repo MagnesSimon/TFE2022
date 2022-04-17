@@ -5,6 +5,7 @@ const ListeFamilles = function (listeFamilles) {
     this.id_famille = listeFamilles.id_famille;
     this.nom_famille = listeFamilles.nom_famille;
     this.materiaux = listeFamilles.materiaux;
+    this.id_fournisseur = listeFamilles.id_fournisseur;
 }
 
 /*
@@ -14,8 +15,13 @@ nom_finition
 effet_finition
 */
 ListeFamilles.getAll = result => {
-    sql.query("SELECT *  " +
-        "FROM famille", (err, res) => {
+    sql.query("SELECT famille.id_famille,  " +
+        "famille.nom_famille," +
+        "famille.materiaux," +
+        "fournisseur.nom_fournisseur " +
+        "FROM famille as famille " +
+        "INNER JOIN fournisseur as fournisseur"
+        , (err, res) => {
             if (err) {
                 console.log("Error: ", err);
                 result(null, err);
