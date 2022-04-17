@@ -4,7 +4,7 @@ const sql = require("./db")
 const ListeCategories = function (listeCategories) {
     this.id_categorie = listeCategories.id_categorie;
     this.nom_categorie = listeCategories.nom_categorie;
-    this.materiaux = listeCategories.materiaux;
+    this.pole = listeCategories.pole
 }
 
 /*
