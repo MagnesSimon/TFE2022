@@ -12,6 +12,7 @@ import Categorie from './pages/Categorie.pages';
 import Fournisseur from './pages/Fournisseur.pages';
 import NouvelleFinition from './pages/NouvelleFinition.pages';
 import NouvelleCategorie from './pages/NouvelleCategorie.pages';
+import NouveauFournisseur from './pages/NouveauFournisseur.pages';
 
 const App = () => {
   return (
@@ -35,7 +36,7 @@ const App = () => {
         <Route path='/fournisseur' element={<Fournisseur />} />
         <Route path='/nouvelleFinition' element={<NouvelleFinition />} />
         <Route path='/nouvelleCategorie' element={<NouvelleCategorie />} />
-
+        <Route path='/nouveauFournisseur' element={<NouveauFournisseur />} />
         <Route path='*' element={<Home />} />
       </Routes>
     </BrowserRouter>

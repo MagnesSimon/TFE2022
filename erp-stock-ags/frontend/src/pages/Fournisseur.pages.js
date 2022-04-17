@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Navigation from '../components/Navigation.components';
+import { NavLink } from 'react-router-dom';
 
 const Fournisseur = () => {
 
@@ -14,6 +15,11 @@ const Fournisseur = () => {
     return (
         <div>
             <Navigation />
+            <div>
+                <NavLink to='/nouveauFournisseur' className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                    <li>Ajouter un fournisseur</li>
+                </NavLink>
+            </div>
             <div>
                 {/* Création du tableau des pièces */}
                 <table className='tableau'>
