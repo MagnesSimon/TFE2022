@@ -30,7 +30,7 @@ ListeFinition.create = (newFinition, result) => {
             result(err, null);
             return;
         } else {
-            console.log("Finition crée avec succès", {});
+            console.log("Finition crée avec succès");
             result(null, { id: res.insertId, ...newFinition });
         }
     });
