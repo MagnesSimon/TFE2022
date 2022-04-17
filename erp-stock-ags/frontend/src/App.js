@@ -10,6 +10,7 @@ import Finition from './pages/Finition.pages';
 import FicheTechnique from './pages/FicheTechnique.pages';
 import Categorie from './pages/Categorie.pages';
 import Fournisseur from './pages/Fournisseur.pages';
+import NouvelleFinition from './pages/NouvelleFinition.pages';
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
         <Route path='/ficheTechnique' element={<FicheTechnique />} />
         <Route path='/categorie' element={<Categorie />} />
         <Route path='/fournisseur' element={<Fournisseur />} />
+        <Route path='/nouvelleFinition' element={<NouvelleFinition />} />
         <Route path='*' element={<Home />} />
       </Routes>
     </BrowserRouter>
