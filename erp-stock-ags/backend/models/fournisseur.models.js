@@ -22,7 +22,9 @@ Fournisseur.getAll = result => {
         "fournisseur.nom_fournisseur, " +
         "fournisseur.mail_fournisseur, " +
         "fournisseur.tel_fournisseur, " +
-        "fournisseur.adresse_fournisseur " +
+        "fournisseur.adresse_fournisseur, " +
+        "localite.code_postal, " +
+        "localite.localite " +
         "FROM fournisseur as fournisseur " +
         "INNER JOIN localite as localite " +
         "WHERE fournisseur.id_localite = localite.id_localite "
