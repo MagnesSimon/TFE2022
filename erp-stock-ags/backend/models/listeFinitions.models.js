@@ -2,7 +2,6 @@ const sql = require("./db")
 
 // Constructor
 const ListeFinition = function (listeFinition) {
-    this.id_finition = listeFinition.id_finition;
     this.nom_finition = listeFinition.nom_finition;
     this.effet_finition = listeFinition.effet_finition;
 }
@@ -22,6 +21,19 @@ ListeFinition.getAll = result => {
                 return;
             } else result(null, res);
         });
+}
+
+ListeFinition.create = (newFinition, result) => {
+    sql.query("INSERT INTO finition SET ?", newFinition, (err, res) => {
+        if (err) {
+            console.log("error: ", err)
+            result(err, null);
+            return;
+        } else {
+            console.log("Finition crée avec succès", {});
+            result(null, { id: res.insertId, ...newFinition });
+        }
+    });
 }
 
 module.exports = ListeFinition

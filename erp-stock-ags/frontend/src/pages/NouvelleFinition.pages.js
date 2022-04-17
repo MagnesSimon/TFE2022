@@ -23,18 +23,16 @@ const NouvelleFinition = () => {
     }
 
     const Envoyer = () => {
-        // axios.post('http://localhost:3001/piece/addPiece/', piece)
-        //     //axios.post(GlobalData.URL + '/piece/addPiece/', piece)
-        //     .then(function (res) {
-        //         console.log('Succes ajout de pièce')
-        //         console.log(res.data)
-        //     })
-        //     .catch(function (err) {
-        //         console.log("Error: ")
-        //         console.log(err)
-        //     });
+        axios.post('http://localhost:3001/listeFinitions/addFinition/', finition)
+            .then(function (res) {
+                console.log('Succes ajout de pièce')
+                console.log(res.data)
+            })
+            .catch(function (err) {
+                console.log("Error: ")
+                console.log(err)
+            });
 
-        //navigate('/listePiece');
         GoToListeFinition();
     }
 
@@ -42,7 +40,7 @@ const NouvelleFinition = () => {
         <div>
             <Navigation />
             <div>
-                <form action="onSubmit">
+                <form>
                     <div>
                         <label>
                             Nom de la finition
