@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Navigation from '../components/Navigation.components';
+import { NavLink } from 'react-router-dom';
+
 
 const Categorie = () => {
 
@@ -14,6 +16,11 @@ const Categorie = () => {
     return (
         <div>
             <Navigation />
+            <div>
+                <NavLink to='/nouvelleCategorie' className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                    <li>Ajouter une catégorie</li>
+                </NavLink>
+            </div>
             <div>
                 {/* Création du tableau des pièces */}
                 <table className='tableau'>

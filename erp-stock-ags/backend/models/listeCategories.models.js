@@ -2,7 +2,6 @@ const sql = require("./db")
 
 // Constructor
 const ListeCategories = function (listeCategories) {
-    this.id_categorie = listeCategories.id_categorie;
     this.nom_categorie = listeCategories.nom_categorie;
     this.pole = listeCategories.pole
 }
@@ -22,6 +21,19 @@ ListeCategories.getAll = result => {
                 return;
             } else result(null, res);
         });
+}
+
+ListeCategories.create = (newCategorie, result) => {
+    sql.query("INSERT INTO categorie SET ?", newCategorie, (err, res) => {
+        if (err) {
+            console.log("error: ", err)
+            result(err, null);
+            return;
+        } else {
+            console.log("Catégorie crée avec succès");
+            result(null, { id: res.insertId, ...newCategorie });
+        }
+    })
 }
 
 module.exports = ListeCategories

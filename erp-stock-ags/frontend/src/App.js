@@ -11,6 +11,7 @@ import FicheTechnique from './pages/FicheTechnique.pages';
 import Categorie from './pages/Categorie.pages';
 import Fournisseur from './pages/Fournisseur.pages';
 import NouvelleFinition from './pages/NouvelleFinition.pages';
+import NouvelleCategorie from './pages/NouvelleCategorie.pages';
 
 const App = () => {
   return (
@@ -33,6 +34,8 @@ const App = () => {
         <Route path='/categorie' element={<Categorie />} />
         <Route path='/fournisseur' element={<Fournisseur />} />
         <Route path='/nouvelleFinition' element={<NouvelleFinition />} />
+        <Route path='/nouvelleCategorie' element={<NouvelleCategorie />} />
+
         <Route path='*' element={<Home />} />
       </Routes>
     </BrowserRouter>

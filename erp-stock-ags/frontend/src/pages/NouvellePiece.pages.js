@@ -15,8 +15,6 @@ const NouvellePiece = () => {
     const [finition, setFinition] = useState([])
     const [categorie, setCategorie] = useState([])
     const [famille, setFamille] = useState([])
-    // console.log("finition")
-    // console.log(finition)
     // Contient les différentes possibilités de finition existante dans la DB
     const [choixFinition, setChoixFinition] = useState([])
     // Contient les différentes possibilités de catégorie existante dans la DB
