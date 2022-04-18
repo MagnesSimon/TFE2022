@@ -2,7 +2,6 @@ const sql = require("./db")
 
 // Constructor
 const ListeFamilles = function (listeFamilles) {
-    this.id_famille = listeFamilles.id_famille;
     this.nom_famille = listeFamilles.nom_famille;
     this.materiaux = listeFamilles.materiaux;
     this.id_fournisseur = listeFamilles.id_fournisseur;
@@ -29,6 +28,19 @@ ListeFamilles.getAll = result => {
                 return;
             } else result(null, res);
         });
+}
+
+ListeFamilles.create = (newFamille, result) => {
+    sql.query("INSERT INTO famille SET ?", newFamille, (err, res) => {
+        if (err) {
+            console.log("error: ", err)
+            result(err, null);
+            return;
+        } else {
+            console.log("famille crée avec succès");
+            result(null, { id: res.insertId, ...newFamille });
+        }
+    });
 }
 
 module.exports = ListeFamilles
