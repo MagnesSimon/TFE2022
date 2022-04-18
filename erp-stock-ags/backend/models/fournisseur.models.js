@@ -39,7 +39,7 @@ Fournisseur.getAll = result => {
 
 Fournisseur.create = (newFournisseur, result) => {
     console.log(newFournisseur)
-    sql.query("INSERT INTO categorie SET ?", newFournisseur, (err, res) => {
+    sql.query("INSERT INTO fournisseur SET ?", newFournisseur, (err, res) => {
         if (err) {
             console.log("error: ", err)
             result(err, null);

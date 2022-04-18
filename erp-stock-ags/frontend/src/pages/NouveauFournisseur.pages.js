@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navigation from '../components/Navigation.components';
 import axios from 'axios';
+import '../GlobalData'
 
 const NouveauFournisseur = () => {
 
@@ -28,7 +29,7 @@ const NouveauFournisseur = () => {
 
     // Fonction pour envoyer une nouvelle pièces vers la DB
     const Envoyer = () => {
-        axios.post('http://localhost:3001/fournisseur/addFournisseur/', fournisseur)
+        axios.post(window.url + '/fournisseur/addFournisseur/', fournisseur)
             .then(function (res) {
                 console.log('Succes ajout de fournisseur', res.data)
             })

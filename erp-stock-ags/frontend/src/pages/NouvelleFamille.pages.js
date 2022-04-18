@@ -24,7 +24,7 @@ const NouvelleFamille = () => {
 
     // Fonction pour envoyer une nouvelle pièces vers la DB
     const Envoyer = () => {
-        axios.post('http://localhost:3001/listeFamilles/addFamille/', famille)
+        axios.post(window.url + '/listeFamilles/addFamille/', famille)
             .then(function (res) {
                 console.log('Succes ajout de famille', res.data)
             })

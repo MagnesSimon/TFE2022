@@ -34,7 +34,7 @@ const NouvellePiece = () => {
 
     // Fonction pour envoyer une nouvelle pièces vers la DB
     const Envoyer = () => {
-        axios.post('http://localhost:3001/piece/addPiece/', piece)
+        axios.post(window.url + '/piece/addPiece/', piece)
             //axios.post(GlobalData.URL + '/piece/addPiece/', piece)
             .then(function (res) {
                 console.log('Succes ajout de pièce')

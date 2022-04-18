@@ -23,7 +23,7 @@ const NouvelleFinition = () => {
     }
 
     const Envoyer = () => {
-        axios.post('http://localhost:3001/listeFinitions/addFinition/', finition)
+        axios.post(window.url + '/listeFinitions/addFinition/', finition)
             .then(function (res) {
                 console.log('Succes ajout de pièce')
                 console.log(res.data)

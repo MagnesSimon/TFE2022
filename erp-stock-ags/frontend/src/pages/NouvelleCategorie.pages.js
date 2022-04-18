@@ -23,7 +23,7 @@ const NouvelleCategorie = () => {
     }
 
     const Envoyer = () => {
-        axios.post('http://localhost:3001/listeCategories/addCategorie', categorie)
+        axios.post(window.url + '/listeCategories/addCategorie', categorie)
             .then(function (res) {
                 console.log(res.data)
             })
