@@ -20,6 +20,7 @@ const Piece = () => {
     const [data, setData] = useState([])
     // fiche technique contient la liste des fiches techniques des pièces
     const [ficheTechniques, setFicheTechnique] = useState([])
+    console.log(ficheTechniques)
     // Va définir l'état visible de la boite de dialogue
     const [open, setOpen] = React.useState(false);
 

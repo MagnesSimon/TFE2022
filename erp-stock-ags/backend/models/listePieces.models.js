@@ -62,14 +62,35 @@ ListePieces.getPenurie = result => {
 }
 
 ListePieces.getOneById = (reference, result) => {
-    sql.query("SELECT piece.reference," +
-        "famille.nom_famille," +
-        "piece.valeur_seuil," +
-        "piece.quantite_en_stock " +
+    sql.query("SELECT piece.reference, " +
+        "piece.quantite_en_stock, " +
+        "famille.nom_famille, " +
+        "famille.materiaux, " +
+        "categorie.nom_categorie, " +
+        "categorie.pole, " +
+        "fournisseur.nom_fournisseur, " +
+        "finition.nom_finition, " +
+        "dimension.longueur, " +
+        "dimension.largeur, " +
+        "dimension.hauteur, " +
+        "dimension.profondeur, " +
+        "dimension.rayon " +
+
+        // FROM et JOIN
         "FROM piece as piece " +
         "INNER JOIN famille as famille " +
         "ON piece.id_famille = famille.id_famille " +
-        `WHERE reference ='${reference}'`
+        "INNER JOIN categorie as categorie " +
+        "ON famille.id_categorie = categorie.id_categorie " +
+        "INNER JOIN fournisseur as fournisseur " +
+        "ON famille.id_fournisseur = fournisseur.id_fournisseur " +
+        "INNER JOIN finition as finition " +
+        "ON piece.id_finition = finition.id_finition " +
+        "INNER JOIN dimension as dimension " +
+        "ON piece.id_dimension = dimension.id_dimension " +
+
+        // Condition
+        `WHERE piece.reference ='${reference}'`
         , (err, res) => {
             if (err) {
                 console.log("Error: ", err);
