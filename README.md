@@ -18,6 +18,7 @@ Pour y accèder:
 * npm i axios
    * Axios est utilisé pour le liens vers l'API
    * Mieux que fetch car il transforme le JSON directement en quelque chose de lisible
+* npm install @material-ui/core
 
 ## Fonctionnement
 1. Dans le dossier "config":
