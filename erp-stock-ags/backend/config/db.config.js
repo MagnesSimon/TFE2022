@@ -2,7 +2,7 @@ module.exports = {
     HOST: "localhost",
     USER: "root",
     PASSWORD: "",
-    DB: "erp_stock_2022"
+    DB: "erp_stock_2022_2"
 };
 
 // module.exports = {

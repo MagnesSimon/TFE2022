@@ -41,14 +41,14 @@ const Fournisseur = () => {
                             tel_fournisseur,
                             adresse_fournisseur,
                             code_postal,
-                            localite }) => (
+                            nom_localite }) => (
                             <tr key={id_fournisseur}>
                                 <td>{id_fournisseur}</td>
                                 <td>{nom_fournisseur}</td>
                                 <td>{mail_fournisseur}</td>
                                 <td>{tel_fournisseur}</td>
                                 <td>{adresse_fournisseur}</td>
-                                <td>{code_postal + ' ' + localite}</td>
+                                <td>{code_postal + ' - ' + nom_localite}</td>
                             </tr>
                         ))}
                     </tbody>

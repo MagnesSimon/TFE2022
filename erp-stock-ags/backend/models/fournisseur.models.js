@@ -24,7 +24,7 @@ Fournisseur.getAll = result => {
         "fournisseur.tel_fournisseur, " +
         "fournisseur.adresse_fournisseur, " +
         "localite.code_postal, " +
-        "localite.localite " +
+        "localite.nom_localite " +
         "FROM fournisseur as fournisseur " +
         "INNER JOIN localite as localite " +
         "WHERE fournisseur.id_localite = localite.id_localite "
@@ -33,7 +33,9 @@ Fournisseur.getAll = result => {
                 console.log("Error: ", err);
                 result(null, err);
                 return;
-            } else result(null, res);
+            } else
+                console.log(res);
+            result(null, res);
         });
 }
 
