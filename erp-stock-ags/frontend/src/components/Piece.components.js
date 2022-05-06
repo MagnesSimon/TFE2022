@@ -20,33 +20,19 @@ const Piece = () => {
     const [data, setData] = useState([])
     // fiche technique contient la liste des fiches techniques des pièces
     const [ficheTechniques, setFicheTechnique] = useState([])
-    console.log("fiche Techniques : ", ficheTechniques)
-    const [listeFinition, setListeFinitions] = useState([])
-
+    // Va définir l'état visible de la boite de dialogue
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = (v) => {
         setOpen(true);
-        console.log("Executé")
-        let aRecuperer = {
-            reference: v
-        }
-        // useEffect(() => {
-        //     axios.get(window.url + "/listePieces/getOne", aRecuperer)
-        //         .then((res) => setFicheTechnique(res.data))
-        // }, [])
-        axios.get(window.url + "/listePieces/getOne", aRecuperer)
-            .then((res) => setFicheTechnique(res.data))
 
-        console.log("fiche Techniques Apres : ", ficheTechniques)
+        axios.get(window.url + "/listePieces/" + v)
+            .then((res) => setFicheTechnique(res.data))
     };
 
     const handleClose = () => {
         setOpen(false);
     };
-
-    // const [tableVisible, setTableVisible] = useState(true)
-    // const [ficheTecnhiqueVisible, setFicheTechniqueVisible] = useState(false);
 
     // Le useEffect se joue quand le composant est monté 
     // Requete pour récupérer la liste des pièces
@@ -54,30 +40,6 @@ const Piece = () => {
         axios.get(window.url + "/listePieces")
             .then((res) => setData(res.data))
     }, [])
-
-    // useEffect(() => {
-    //     axios.get(window.url + "/ficheTechnique")
-    //         .then((res) => setFicheTechnique(res.data))
-    // }, [])
-
-    // const navigate = useNavigate();
-    // const GoToFicheTechnique = (ref) => {
-    //     navigate('/ficheTechnique/');
-    //     //console.log(ref)
-
-    // }
-
-    // const HideTable = () => {
-    //     setFicheTechniqueVisible = true;
-    //     setTableVisible = false;
-    //     refreshPage();
-    // }
-
-    // const ShowTable = () => {
-    //     setFicheTechniqueVisible = false;
-    //     setTableVisible = true;
-    //     refreshPage();
-    // }
 
     return (
         <div>
@@ -102,8 +64,6 @@ const Piece = () => {
                     */}
                     {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
                         <tr key={reference} >
-                            {/* <td onClick={(e) => (HideTable)}>{reference}</td> */}
-                            { }
                             <td onClick={() => handleClickOpen(reference)}>
                                 {reference}</td>
                             <td>{nom_famille}</td>
@@ -125,11 +85,24 @@ const Piece = () => {
             <div>
                 <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>
-                        Greetings from GeeksforGeeks
+                        Fiche technique
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            Do you do coding ?
+                            {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
+                                <tr key={reference} >
+                                    <td onClick={() => handleClickOpen(reference)}>
+                                        {reference}</td>
+                                    <td>{nom_famille}</td>
+                                    <td>{valeur_seuil}</td>
+                                    <td>{quantite_en_stock}</td>
+                                    <td>
+                                        <AjoutPieces key={reference}
+                                            reference={reference}
+                                            qte={quantite_en_stock} />
+                                    </td>
+                                </tr>
+                            ))}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
