@@ -8,7 +8,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
-import FicheTechnique from '../components/FicheTechnique.components';
 import { useNavigate } from 'react-router-dom';
 
 const Piece = () => {
@@ -21,12 +20,25 @@ const Piece = () => {
     const [data, setData] = useState([])
     // fiche technique contient la liste des fiches techniques des pièces
     const [ficheTechniques, setFicheTechnique] = useState([])
+    console.log("fiche Techniques : ", ficheTechniques)
+    const [listeFinition, setListeFinitions] = useState([])
 
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = (v) => {
         setOpen(true);
-        console.log(v);
+        console.log("Executé")
+        let aRecuperer = {
+            reference: v
+        }
+        // useEffect(() => {
+        //     axios.get(window.url + "/listePieces/getOne", aRecuperer)
+        //         .then((res) => setFicheTechnique(res.data))
+        // }, [])
+        axios.get(window.url + "/listePieces/getOne", aRecuperer)
+            .then((res) => setFicheTechnique(res.data))
+
+        console.log("fiche Techniques Apres : ", ficheTechniques)
     };
 
     const handleClose = () => {
@@ -43,10 +55,10 @@ const Piece = () => {
             .then((res) => setData(res.data))
     }, [])
 
-    useEffect(() => {
-        axios.get(window.url + "/ficheTechnique")
-            .then((res) => setFicheTechnique(res.data))
-    }, [])
+    // useEffect(() => {
+    //     axios.get(window.url + "/ficheTechnique")
+    //         .then((res) => setFicheTechnique(res.data))
+    // }, [])
 
     // const navigate = useNavigate();
     // const GoToFicheTechnique = (ref) => {

@@ -61,4 +61,40 @@ ListePieces.getPenurie = result => {
         });
 }
 
+ListePieces.getOneById = (reference, result) => {
+    sql.query("SELECT piece.reference," +
+        "famille.nom_famille," +
+        "piece.valeur_seuil," +
+        "piece.quantite_en_stock " +
+        "FROM piece as piece " +
+        "INNER JOIN famille as famille " +
+        "ON piece.id_famille = famille.id_famille " +
+        `WHERE reference ='${reference}'`
+        , (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else result(null, res);
+        });
+}
+
+// ListePieces.findById = (reference, result) => {
+//     sql.query(`SELECT * FROM piece WHERE reference ='${reference}'`, (err, res) => {
+//         if (err) {
+//             console.log("error: ", err);
+//             result(err, null);
+//             return;
+//         }
+
+//         if (res.length) {
+//             console.log("found article: ", res[0]);
+//             result(null, res[0]);
+//             return;
+//         }
+
+//         result({ kind: "not_found" }, null);
+//     });
+// };
+
 module.exports = ListePieces;

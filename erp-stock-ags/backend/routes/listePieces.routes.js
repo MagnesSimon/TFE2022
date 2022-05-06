@@ -6,4 +6,6 @@ module.exports = app => {
     app.post("/listePieces/updateOne", ListePieces.updateQtyById)
 
     app.get("/listePenurie", ListePieces.findPenurie);
+
+    app.get("/listePieces/:id", ListePieces.findOne);
 }
