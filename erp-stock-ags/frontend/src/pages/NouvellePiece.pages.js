@@ -17,8 +17,8 @@ const NouvellePiece = () => {
     const [famille, setFamille] = useState([])
     // Contient les différentes possibilités de finition existante dans la DB
     const [choixFinition, setChoixFinition] = useState([])
-    // Contient les différentes possibilités de catégorie existante dans la DB
-    const [choixCategorie, setChoixCategorie] = useState([])
+    // Contient les différentes possibilités de dimension existante dans la DB
+    const [choixDimension, setChoixDimension] = useState([])
     // Contient les différentes possibilités de famille existante dans la DB
     const [choixFamille, setChoixFamille] = useState([])
 
@@ -26,7 +26,7 @@ const NouvellePiece = () => {
     let piece = {
         ref,
         seuil,
-        quantite,
+        dimension,
         finition,
         famille
     }
