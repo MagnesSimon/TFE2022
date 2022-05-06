@@ -2,6 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios"
 import AjoutPieces from './AjoutPieces.components';
 import '../GlobalData'
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
 import FicheTechnique from '../components/FicheTechnique.components';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,6 +21,17 @@ const Piece = () => {
     const [data, setData] = useState([])
     // fiche technique contient la liste des fiches techniques des pièces
     const [ficheTechniques, setFicheTechnique] = useState([])
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = (v) => {
+        setOpen(true);
+        console.log(v);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     // const [tableVisible, setTableVisible] = useState(true)
     // const [ficheTecnhiqueVisible, setFicheTechniqueVisible] = useState(false);
@@ -74,7 +91,9 @@ const Piece = () => {
                     {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
                         <tr key={reference} >
                             {/* <td onClick={(e) => (HideTable)}>{reference}</td> */}
-                            <td>{reference}</td>
+                            { }
+                            <td onClick={() => handleClickOpen(reference)}>
+                                {reference}</td>
                             <td>{nom_famille}</td>
                             <td>{valeur_seuil}</td>
                             <td>{quantite_en_stock}</td>
@@ -91,6 +110,26 @@ const Piece = () => {
                 <FicheTechnique />
                 <button onClick={ShowTable}>Retour</button>
             </div>} */}
+            <div>
+                <Dialog open={open} onClose={handleClose}>
+                    <DialogTitle>
+                        Greetings from GeeksforGeeks
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Do you do coding ?
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Close
+                        </Button>
+                        <Button onClick={handleClose} color="primary" autoFocus>
+                            Yes
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
         </div>
     );
 };
