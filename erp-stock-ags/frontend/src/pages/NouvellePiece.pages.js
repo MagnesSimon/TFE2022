@@ -28,7 +28,6 @@ const NouvellePiece = () => {
         seuil,
         quantite,
         finition,
-        categorie,
         famille
     }
 
@@ -153,19 +152,6 @@ const NouvellePiece = () => {
                         onChange={familleHandleChange}>
                         {choixFamille.map(({ id_famille, nom_famille, materiaux }) => (
                             <option value={id_famille}>{nom_famille + " - " + materiaux}</option>
-                        ))}
-                    </select>
-                </div>
-                <div>
-                    <label>
-                        Catégorie :
-                    </label>
-                    <select name="choixCategorie"
-                        id="selectChoixCategorie"
-                        value={categorie}
-                        onChange={catégorieHandleChange}>
-                        {choixCategorie.map(({ id_categorie, nom_categorie }) => (
-                            <option value={id_categorie}>{nom_categorie}</option>
                         ))}
                     </select>
                 </div>

@@ -63,13 +63,14 @@ ListePieces.getPenurie = result => {
 
 ListePieces.getOneById = (reference, result) => {
     sql.query("SELECT piece.reference, " +
-        "piece.quantite_en_stock, " +
+        "famille.id_famille, " +
         "famille.nom_famille, " +
         "famille.materiaux, " +
         "categorie.nom_categorie, " +
         "categorie.pole, " +
         "fournisseur.nom_fournisseur, " +
         "finition.nom_finition, " +
+        "finition.effet_finition, " +
         "dimension.longueur, " +
         "dimension.largeur, " +
         "dimension.hauteur, " +

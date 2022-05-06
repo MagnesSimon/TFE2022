@@ -8,7 +8,6 @@ const Piece = function (Piece) {
     this.quantite_en_stock = Piece.quantite_en_stock;
     // clés étrangères
     this.id_finition = Piece.id_finition;
-    this.id_categorie = Piece.id_categorie;
     this.id_famille = Piece.id_famille;
 }
 
