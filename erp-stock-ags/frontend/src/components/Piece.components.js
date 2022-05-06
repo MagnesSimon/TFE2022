@@ -89,7 +89,7 @@ const Piece = () => {
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
+                            {ficheTechniques.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
                                 <tr key={reference} >
                                     <td onClick={() => handleClickOpen(reference)}>
                                         {reference}</td>
