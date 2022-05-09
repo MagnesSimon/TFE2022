@@ -24,12 +24,12 @@ ListePieces.getAll = result => {
     sql.query("SELECT piece.reference," +
         "famille.nom_famille," +
         "piece.valeur_seuil," +
-        "piece.quantite_en_stock " +
+        "piece.quantite_en_stock, " +
         "piece.longueur, " +
         "piece.largeur, " +
         "piece.hauteur, " +
         "piece.rayon, " +
-        "piece.poids, " +
+        "piece.poids " +
         "FROM piece as piece " +
         "INNER JOIN famille as famille " +
         "ON piece.id_famille = famille.id_famille"
@@ -77,7 +77,7 @@ ListePieces.getOneById = (reference, result) => {
         "piece.largeur, " +
         "piece.hauteur, " +
         "piece.rayon, " +
-        "piece.poids " +
+        "piece.poids, " +
         "famille.id_famille, " +
         "famille.nom_famille, " +
         "famille.materiaux, " +
@@ -88,7 +88,7 @@ ListePieces.getOneById = (reference, result) => {
         "fournisseur.nom_fournisseur, " +
         "finition.id_finition, " +
         "finition.nom_finition, " +
-        "finition.effet_finition, " +
+        "finition.effet_finition " +
 
         // FROM et JOIN
         "FROM piece as piece " +
@@ -100,8 +100,6 @@ ListePieces.getOneById = (reference, result) => {
         "ON famille.id_fournisseur = fournisseur.id_fournisseur " +
         "INNER JOIN finition as finition " +
         "ON piece.id_finition = finition.id_finition " +
-        "INNER JOIN dimension as dimension " +
-        "ON piece.id_dimension = dimension.id_dimension " +
 
         // Condition
         `WHERE piece.reference ='${reference}'`
