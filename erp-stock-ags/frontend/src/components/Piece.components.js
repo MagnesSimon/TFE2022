@@ -37,12 +37,12 @@ const Piece = () => {
     const [poidsToSend, setPoids] = useState([])
 
 
-    // Dimension à afficher dans la fiche technique
-    const [longueurFT, setLongueurFT] = useState([])
-    const [largeurFT, setLargeurFT] = useState([])
-    const [hauteurFT, setHauteurFT] = useState([])
-    const [profondeurFT, setProfondeurFT] = useState([])
-    const [rayonFT, setRayonFT] = useState([])
+    // // Dimension à afficher dans la fiche technique
+    // const [longueurFT, setLongueurFT] = useState([])
+    // const [largeurFT, setLargeurFT] = useState([])
+    // const [hauteurFT, setHauteurFT] = useState([])
+    // const [profondeurFT, setProfondeurFT] = useState([])
+    // const [rayonFT, setRayonFT] = useState([])
 
     // Variable qui vont contenir les différentes possibilité de la fiche technique
     const [choixFamille, setChoixFamille] = useState([])
@@ -150,26 +150,43 @@ const Piece = () => {
                                 id_finition,
                                 nom_finition,
                                 effet_finition,
-                                id_dimension,
                                 longueur,
                                 largeur,
                                 hauteur,
                                 profondeur,
                                 rayon }) => (
                                 < div >
-                                    <div>
-                                        <label>
-                                            Référence  : {reference}
-                                            {/* <input type="text"
-                                            name="reference"
-                                            value={reference}
-                                            onChange={(e) =>
-                                                setReferenceToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                            } /> */}
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>                </th>
+                                                <th>Valeure actuelle</th>
+                                                <th>Modification</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr key={reference}>
+                                                <td>Référence</td>
+                                                <td>{reference}</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Famille</td>
+                                                <td>{nom_famille} - {materiaux} - {pole} - {nom_categorie}</td>
+                                                <td>
+                                                    <select name="choixFamille"
+                                                        id="selectChoixFamille"
+                                                        value={id_familleToSend}
+                                                        onChange={familleHandleChange}>
+                                                        {choixFamille.map(({ id_famille, nom_famille, materiaux }) => (
+                                                            <option value={id_famille}>{nom_famille + " - " + materiaux}</option>
+                                                        ))}
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+                                        {/* <label>
                                             Famille :
                                             <select name="choixFamille"
                                                 id="selectChoixFamille"
@@ -180,18 +197,12 @@ const Piece = () => {
                                                 ))}
                                             </select>
                                         </label>
-                                    </div>
-                                    <div>
                                         <label>
                                             Catégorie : {nom_categorie + " - " + pole}
                                         </label>
-                                    </div>
-                                    <div>
                                         <label>
                                             Fournisseur : {nom_fournisseur}
                                         </label>
-                                    </div>
-                                    <div>
                                         <label>
                                             Finition :
                                             <select name="choixFinition"
@@ -203,21 +214,19 @@ const Piece = () => {
                                                 ))}
                                             </select>
                                         </label>
-                                    </div>
-                                    <div>
                                         <label>
                                             Longueur :
                                             <input
                                                 type="text"
                                                 name='longueur'
                                                 pattern="[0-9]*"
-                                                value={longueur}
+                                                value={longueurToSend}
                                                 onChange={(e) =>
                                                     setLongueurToSend((v) => (e.target.validity.valid ? e.target.value : v))
                                                 }
                                             />
-                                        </label>
-                                    </div>
+                                        </label> */}
+                                    </table>
                                 </div>
 
                             ))}
