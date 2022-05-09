@@ -19,6 +19,7 @@ Pour y accèder:
    * Axios est utilisé pour le liens vers l'API
    * Mieux que fetch car il transforme le JSON directement en quelque chose de lisible
 * npm install @material-ui/core
+* npm install dialog-size
 
 ## Fonctionnement
 1. Dans le dossier "config":
