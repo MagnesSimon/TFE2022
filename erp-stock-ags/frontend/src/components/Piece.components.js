@@ -70,8 +70,7 @@ const Piece = () => {
     const handleClose = () => {
         setOpen(false);
     };
-    const sendToAPI = (ref) => {
-        setReferenceToSend(ref);
+    const sendToAPI = () => {
         console.log("Modif", aEnvoyer)
 
     }
@@ -319,7 +318,7 @@ const Piece = () => {
                         <Button onClick={handleClose} color="primary">
                             Close
                         </Button>
-                        <Button onClick={sendToAPI(reference)} color="primary" autoFocus>
+                        <Button onClick={sendToAPI} color="primary" autoFocus>
                             Yes
                         </Button>
                     </DialogActions>
