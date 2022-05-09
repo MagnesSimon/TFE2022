@@ -66,11 +66,15 @@ ListePieces.getOneById = (reference, result) => {
         "famille.id_famille, " +
         "famille.nom_famille, " +
         "famille.materiaux, " +
+        "categorie.id_categorie," +
         "categorie.nom_categorie, " +
         "categorie.pole, " +
+        "fournisseur.id_fournisseur, " +
         "fournisseur.nom_fournisseur, " +
+        "finition.id_finition, " +
         "finition.nom_finition, " +
         "finition.effet_finition, " +
+        "dimension.id_dimension, " +
         "dimension.longueur, " +
         "dimension.largeur, " +
         "dimension.hauteur, " +

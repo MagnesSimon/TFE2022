@@ -13,7 +13,7 @@ const NouvellePiece = () => {
     const [seuil, setSeuil] = useState([])
     const [quantite, setQuantite] = useState([])
     const [finition, setFinition] = useState([])
-    const [categorie, setCategorie] = useState([])
+    const [dimension, setDimension] = useState([])
     const [famille, setFamille] = useState([])
     // Contient les différentes possibilités de finition existante dans la DB
     const [choixFinition, setChoixFinition] = useState([])

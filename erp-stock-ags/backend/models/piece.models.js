@@ -9,6 +9,7 @@ const Piece = function (Piece) {
     // clés étrangères
     this.id_finition = Piece.id_finition;
     this.id_famille = Piece.id_famille;
+    this.id_dimension = Piece.id_dimension;
 }
 
 Piece.create = (newPiece, result) => {

@@ -45,31 +45,31 @@ INSERT INTO `categorie` (`id_categorie`, `nom_categorie`, `pole`) VALUES
 (3, 'Cadran', 'Grands accessoires'),
 (4, 'Porte', 'Grands accessoires');
 
--- --------------------------------------------------------
+-- -- --------------------------------------------------------
 
---
--- Structure de la table `dimension`
---
+-- --
+-- -- Structure de la table `dimension`
+-- --
 
-DROP TABLE IF EXISTS `dimension`;
-CREATE TABLE IF NOT EXISTS `dimension` (
-  `id_dimension` int(11) NOT NULL AUTO_INCREMENT,
-  `longueur` int(11) NOT NULL DEFAULT '0',
-  `largeur` int(11) NOT NULL DEFAULT '0',
-  `hauteur` int(11) DEFAULT '0',
-  `profondeur` int(11) NOT NULL DEFAULT '0',
-  `rayon` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id_dimension`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `dimension`;
+-- CREATE TABLE IF NOT EXISTS `dimension` (
+--   `id_dimension` int(11) NOT NULL AUTO_INCREMENT,
+--   `longueur` int(11) NOT NULL DEFAULT '0',
+--   `largeur` int(11) NOT NULL DEFAULT '0',
+--   `hauteur` int(11) DEFAULT '0',
+--   `profondeur` int(11) NOT NULL DEFAULT '0',
+--   `rayon` int(11) NOT NULL DEFAULT '0',
+--   PRIMARY KEY (`id_dimension`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `dimension`
---
+-- --
+-- -- Déchargement des données de la table `dimension`
+-- --
 
-INSERT INTO `dimension` (`id_dimension`, `longueur`, `largeur`, `hauteur`, `profondeur`, `rayon`) VALUES
-(1, 10, 20, 30, 40, 50),
-(2, 20, 55, 18, 0, 0),
-(3, 0, 0, 0, 0, 96);
+-- INSERT INTO `dimension` (`id_dimension`, `longueur`, `largeur`, `hauteur`, `profondeur`, `rayon`) VALUES
+-- (1, 10, 20, 30, 40, 50),
+-- (2, 20, 55, 18, 0, 0),
+-- (3, 0, 0, 0, 0, 96);
 
 -- --------------------------------------------------------
 
@@ -3174,43 +3174,45 @@ CREATE TABLE IF NOT EXISTS `piece` (
   `reference` varchar(10) NOT NULL,
   `valeur_seuil` int(11) DEFAULT '0',
   `quantite_en_stock` int(11) DEFAULT '0',
+  `longueur` int(11) DEFAULT '0',
+  `largeur` int(11) DEFAULT '0',
+  `hauteur` int(11) DEFAULT '0',
+  `rayon` int(11) DEFAULT '0',
+  `poids` int(11) DEFAULT '0',  
   `id_finition` int(11) NOT NULL,
   `id_famille` int(11) NOT NULL,
-  `id_dimension` int(11) NOT NULL,
   PRIMARY KEY (`reference`),
   KEY `fk1_piece` (`id_finition`) USING BTREE,
-  KEY `fk2_piece` (`id_famille`) USING BTREE,
-  KEY `fk3_piece` (`id_dimension`) USING BTREE
-
+  KEY `fk2_piece` (`id_famille`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `piece`
 --
 
-INSERT INTO `piece` (`reference`, `valeur_seuil`, `quantite_en_stock`, `id_finition`,  `id_famille`, `id_dimension`) VALUES
-('ADD100', 14, 28, 1,  1, 1),
-('ADD101', 14, 5, 1,  1, 2),
-('ADD102', 14, 6295, 1,  1, 3),
-('ADD103', 14, 15, 1,  1, 1),
-('ADD104', 14, 15, 1,  1, 1),
-('ADD201', 78, 1654, 1,  1, 1),
-('ADD202', 78, 1654, 1,  1, 1),
-('CHOIX200', 14, 2, 3,  2, 1),
-('ENV100', 50, 30, 3,  10, 2),
-('JU123', 45, 16, 3,  2, 2),
-('NAV100', 66, 65, 1,  1, 2),
-('NAV101', 0, 9, 1, 1,  3),
-('NAV102', 14, 65, 1,  1, 1),
-('TSP', 10, 2, 1,  1, 1),
-('TST100', 12, 27, 1,  1, 1),
-('TST201', 4, 20, 1,  1, 1),
-('TST203', 50, 8, 1,  1, 1),
-('TST204', 0, 0, 1,  1, 1),
-('TST205', 56, 13, 1,  1, 1),
-('TST301', 0, 0, 1,  1, 1),
-('VEIL100', 100, 99, 4,  10, 3),
-('VEIL200', 100, 101, 3,  9, 3);
+INSERT INTO `piece` (`reference`, `valeur_seuil`, `quantite_en_stock`, `id_finition`,  `id_famille`,`longueur`,`largeur`, `hauteur`,  `rayon`, `poids` ) VALUES
+('ADD100', 14, 28, 1,  1,  20, 12, 25, 0, 800),
+('ADD101', 14, 5, 1,  1,  20, 12, 23, 0, 700),
+('ADD102', 14, 6295, 1,   9, 50, 35, 70, 0, 1350),
+('ADD103', 14, 15, 1,  1,  0, 0, 0, 30, 1125),
+('ADD104', 14, 15, 1,  1,  20, 12, 25, 0, 800),
+('ADD201', 78, 1654, 1,   1, 20, 12, 25, 0, 800),
+('ADD202', 78, 1654, 1,   1, 20, 12, 25, 0, 800),
+('CHOIX200', 14, 2, 3,  2,  20, 12, 25, 0, 800),
+('ENV100', 50, 30, 3,  10,  20, 12, 25, 0, 800),
+('JU123', 45, 16, 3,  2,  20, 12, 25, 0, 800),
+('NAV100', 66, 65, 1,  1,  20, 12, 25, 0, 800),
+('NAV101', 0, 9, 1, 1,   20, 12, 25, 0, 800),
+('NAV102', 14, 65, 1,   1, 20, 12, 25, 0, 800),
+('TSP', 10, 2, 1,  1,  20, 12, 25, 0, 800),
+('TST100', 12, 27, 1,   1, 20, 12, 25, 0, 800),
+('TST201', 4, 20, 1,  1,  20, 12, 25, 0, 800),
+('TST203', 50, 8, 1,  1,  20, 12, 25, 0, 800),
+('TST204', 0, 0, 1,  1,  20, 12, 25, 0, 800),
+('TST205', 56, 13, 1,   1, 20, 12, 25, 0, 800),
+('TST301', 0, 0, 1,  1,  20, 12, 25, 0, 800),
+('VEIL100', 100, 99, 4,  10,  20, 12, 25, 0, 800),
+('VEIL200', 100, 101, 3,  9,  20, 12, 25, 0, 800);
 
 --
 -- Déchargement des données de la table `utilisateur`
@@ -3255,9 +3257,7 @@ ALTER TABLE `historique`
 --
 ALTER TABLE `piece`
   ADD CONSTRAINT `piece_ibfk_1` FOREIGN KEY (`id_finition`) REFERENCES `finition` (`id_finition`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `piece_ibfk_2` FOREIGN KEY (`id_famille`) REFERENCES `famille` (`id_famille`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `piece_ibfk_3` FOREIGN KEY (`id_dimension`) REFERENCES `dimension` (`id_dimension`) ON UPDATE CASCADE;
-
+  ADD CONSTRAINT `piece_ibfk_2` FOREIGN KEY (`id_famille`) REFERENCES `famille` (`id_famille`) ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `utilisateur`
