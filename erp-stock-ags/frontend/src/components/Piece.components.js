@@ -33,8 +33,9 @@ const Piece = () => {
     const [longueurToSend, setLongueurToSend] = useState([])
     const [largeurToSend, setLargeurToSend] = useState([])
     const [hauteurToSend, setHauteurToSend] = useState([])
-    const [profondeurToSend, setProfondeurToSend] = useState([])
     const [rayonToSend, setRayonToSend] = useState([])
+    const [poidsToSend, setPoids] = useState([])
+
 
     // Dimension à afficher dans la fiche technique
     const [longueurFT, setLongueurFT] = useState([])

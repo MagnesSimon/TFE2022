@@ -25,11 +25,11 @@ ListePieces.getAll = result => {
         "famille.nom_famille," +
         "piece.valeur_seuil," +
         "piece.quantite_en_stock " +
-        "piece.longueur " +
-        "piece.largeur " +
-        "piece.hauteur " +
-        "piece.rayon " +
-        "piece.poids " +
+        "piece.longueur, " +
+        "piece.largeur, " +
+        "piece.hauteur, " +
+        "piece.rayon, " +
+        "piece.poids, " +
         "FROM piece as piece " +
         "INNER JOIN famille as famille " +
         "ON piece.id_famille = famille.id_famille"
