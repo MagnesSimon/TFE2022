@@ -49,31 +49,6 @@ exports.findPenurie = (req, res) => {
     });
 }
 
-// exports.findOneById = (req, res) => {
-//     if (!req.body) {
-//         res.status(400).send({
-//             message: "Content can not be empty!"
-//         });
-//     }
-//     const aRecuperer = new ListePieces({
-//         reference: req.body.reference,
-//     })
-//     ListePieces.getOneById(aRecuperer, (err, data) => {
-//         if (err) {
-//             if (err.kind === "not_found") {
-//                 res.status(404).send({
-//                     message: "Not found ListePieces with id " + req.params.id
-//                 });
-//             } else {
-//                 res.status(500).send({
-//                     message: "Error updating ListePieces with id " + req.params.id
-//                 });
-//             }
-//         } else
-//             res.send('Get Passé');
-//     });
-// }
-
 exports.findOne = (req, res) => {
     ListePieces.getOneById(req.params.id, (err, data) => {
         if (err) {
@@ -86,6 +61,40 @@ exports.findOne = (req, res) => {
                     message: "Error retrieving Article with id " + req.params.id
                 });
             }
+        } else res.send(data);
+    });
+};
+
+exports.create = (req, res) => {
+
+    if (!req.body) {
+        res.status(400).send({
+            message: "Content can not be empty !"
+        });
+    }
+
+    const newPiece = new ListePieces({
+        reference: req.body.ref,
+        nom_famille: req.body.famille,
+        valeur_seuil: req.body.seuil,
+        quantite_en_stock: req.body.quantite,
+        longueur: req.body.longueur,
+        largeur: req.body.largeur,
+        hauteur: req.body.hauteur,
+        rayon: req.body.rayon,
+        poids: req.body.poids,
+        // clés étrangères
+        id_finition: req.body.finition,
+        id_famille: req.body.famille
+
+    });
+
+    Piece.create(newPiece, (err, data) => {
+
+        if (err) {
+            res.status(500).send({
+                message: err.message || "Some error occurred while creating the 'newPiece'."
+            })
         } else res.send(data);
     });
 };

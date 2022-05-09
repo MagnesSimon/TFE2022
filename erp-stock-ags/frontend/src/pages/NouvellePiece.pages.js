@@ -12,13 +12,16 @@ const NouvellePiece = () => {
     const [ref, setRef] = useState([])
     const [seuil, setSeuil] = useState([])
     const [quantite, setQuantite] = useState([])
+    const [longeur, setLongueur] = useState([])
+    const [largeur, setLargeur] = useState([])
+    const [hauteur, setHauteur] = useState([])
+    const [rayon, setRayon] = useState([])
+    const [poids, setPoids] = useState([])
+    //Clé étrangère depuis les choix
     const [finition, setFinition] = useState([])
-    const [dimension, setDimension] = useState([])
     const [famille, setFamille] = useState([])
     // Contient les différentes possibilités de finition existante dans la DB
     const [choixFinition, setChoixFinition] = useState([])
-    // Contient les différentes possibilités de dimension existante dans la DB
-    const [choixDimension, setChoixDimension] = useState([])
     // Contient les différentes possibilités de famille existante dans la DB
     const [choixFamille, setChoixFamille] = useState([])
 
@@ -26,14 +29,19 @@ const NouvellePiece = () => {
     let piece = {
         ref,
         seuil,
-        dimension,
+        quantite,
+        longeur,
+        largeur,
+        hauteur,
+        rayon,
+        poids,
         finition,
         famille
     }
 
     // Fonction pour envoyer une nouvelle pièces vers la DB
     const Envoyer = () => {
-        axios.post(window.url + '/piece/addPiece/', piece)
+        axios.post(window.url + '/listePieces/addPiece/', piece)
             //axios.post(GlobalData.URL + '/piece/addPiece/', piece)
             .then(function (res) {
                 console.log('Succes ajout de pièce')
@@ -63,10 +71,6 @@ const NouvellePiece = () => {
             .then((res) => setChoixFinition(res.data))
     }, [])
     useEffect(() => {
-        axios.get(window.url + "/listeCategories/")
-            .then((res) => setChoixCategorie(res.data))
-    }, [])
-    useEffect(() => {
         axios.get(window.url + "/listeFamilles")
             .then((res) => setChoixFamille(res.data))
     }, [])
@@ -78,9 +82,6 @@ const NouvellePiece = () => {
     }
     const familleHandleChange = (e) => {
         setFamille((v) => (e.target.validity.valid ? e.target.value : v))
-    }
-    const catégorieHandleChange = (e) => {
-        setCategorie((v) => (e.target.validity.valid ? e.target.value : v))
     }
 
     return (
@@ -123,6 +124,76 @@ const NouvellePiece = () => {
                             value={quantite}
                             onChange={(e) =>
                                 setQuantite((v) => (e.target.validity.valid ? e.target.value : v))
+                            }
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Longueur :
+                        <input
+                            type="text"
+                            name='longueur'
+                            pattern="[0-9]*"
+                            value={longeur}
+                            onChange={(e) =>
+                                setLongueur((v) => (e.target.validity.valid ? e.target.value : v))
+                            }
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Largeur :
+                        <input
+                            type="text"
+                            name='largeur'
+                            pattern="[0-9]*"
+                            value={largeur}
+                            onChange={(e) =>
+                                setLargeur((v) => (e.target.validity.valid ? e.target.value : v))
+                            }
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Hauteur :
+                        <input
+                            type="text"
+                            name='hauteur'
+                            pattern="[0-9]*"
+                            value={hauteur}
+                            onChange={(e) =>
+                                setHauteur((v) => (e.target.validity.valid ? e.target.value : v))
+                            }
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Rayon :
+                        <input
+                            type="text"
+                            name='rayon'
+                            pattern="[0-9]*"
+                            value={rayon}
+                            onChange={(e) =>
+                                setRayon((v) => (e.target.validity.valid ? e.target.value : v))
+                            }
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Poids :
+                        <input
+                            type="text"
+                            name='poids'
+                            pattern="[0-9]*"
+                            value={poids}
+                            onChange={(e) =>
+                                setPoids((v) => (e.target.validity.valid ? e.target.value : v))
                             }
                         />
                     </label>

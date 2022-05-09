@@ -8,4 +8,6 @@ module.exports = app => {
     app.get("/listePenurie", ListePieces.findPenurie);
 
     app.get("/listePieces/:id", ListePieces.findOne);
+
+    app.post("/listePieces/addpiece", ListePieces.create);
 }

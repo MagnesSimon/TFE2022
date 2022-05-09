@@ -6,6 +6,11 @@ const ListePieces = function (listePieces) {
     this.nom_famille = listePieces.nom_famille;
     this.valeur_seuil = listePieces.valeur_seuil;
     this.quantite_en_stock = listePieces.quantite_en_stock;
+    this.longueur = listePieces.longeur;
+    this.largeur = listePieces.largeur;
+    this.hauteur = listePieces.hauteur;
+    this.rayon = listePieces.rayon;
+    this.poids = listePieces.poids;
 }
 
 /* 
@@ -20,6 +25,11 @@ ListePieces.getAll = result => {
         "famille.nom_famille," +
         "piece.valeur_seuil," +
         "piece.quantite_en_stock " +
+        "piece.longueur " +
+        "piece.largeur " +
+        "piece.hauteur " +
+        "piece.rayon " +
+        "piece.poids " +
         "FROM piece as piece " +
         "INNER JOIN famille as famille " +
         "ON piece.id_famille = famille.id_famille"
@@ -63,6 +73,11 @@ ListePieces.getPenurie = result => {
 
 ListePieces.getOneById = (reference, result) => {
     sql.query("SELECT piece.reference, " +
+        "piece.longueur, " +
+        "piece.largeur, " +
+        "piece.hauteur, " +
+        "piece.rayon, " +
+        "piece.poids " +
         "famille.id_famille, " +
         "famille.nom_famille, " +
         "famille.materiaux, " +
@@ -74,12 +89,6 @@ ListePieces.getOneById = (reference, result) => {
         "finition.id_finition, " +
         "finition.nom_finition, " +
         "finition.effet_finition, " +
-        "dimension.id_dimension, " +
-        "dimension.longueur, " +
-        "dimension.largeur, " +
-        "dimension.hauteur, " +
-        "dimension.profondeur, " +
-        "dimension.rayon " +
 
         // FROM et JOIN
         "FROM piece as piece " +
@@ -105,22 +114,18 @@ ListePieces.getOneById = (reference, result) => {
         });
 }
 
-// ListePieces.findById = (reference, result) => {
-//     sql.query(`SELECT * FROM piece WHERE reference ='${reference}'`, (err, res) => {
-//         if (err) {
-//             console.log("error: ", err);
-//             result(err, null);
-//             return;
-//         }
+ListePieces.create = (newPiece, result) => {
 
-//         if (res.length) {
-//             console.log("found article: ", res[0]);
-//             result(null, res[0]);
-//             return;
-//         }
-
-//         result({ kind: "not_found" }, null);
-//     });
-// };
+    sql.query("INSERT INTO piece SET ?", newPiece, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        } else {
+            console.log("piece crée avec succès", { id: res.insertId, ...newPiece });
+            result(null, { id: res.insertId, ...newPiece });
+        }
+    });
+}
 
 module.exports = ListePieces;
