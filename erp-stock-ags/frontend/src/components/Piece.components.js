@@ -131,7 +131,7 @@ const Piece = () => {
                 <button onClick={ShowTable}>Retour</button>
             </div>} */}
             <div>
-                <Dialog open={open} onClose={handleClose}>
+                <Dialog className='container' open={open} onClose={handleClose}>
                     <DialogTitle>
                         Fiche technique
                     </DialogTitle>
@@ -156,7 +156,7 @@ const Piece = () => {
                                 profondeur,
                                 rayon }) => (
                                 < div >
-                                    <table>
+                                    <table className='tableauFT'>
                                         <thead>
                                             <tr>
                                                 <th>                </th>
