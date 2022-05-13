@@ -70,31 +70,31 @@ const Piece = () => {
     const sendToAPI = () => {
         console.log("aEnvoyer", aEnvoyer)
         // Remplir les champ laissé vide
-        if (referenceToSend === "") {
+        if (referenceToSend == "") {
             aEnvoyer.referenceToSend = ficheTechniques[0].reference;
         }
-        if (valeur_seuilToSend === "") {
+        if (valeur_seuilToSend == "") {
             aEnvoyer.valeur_seuilToSend = ficheTechniques[0].valeur_seuil;
         }
-        if (id_familleToSend === "") {
+        if (id_familleToSend == "") {
             aEnvoyer.id_familleToSend = ficheTechniques[0].id_famille;
         }
-        if (id_finitionToSend === "") {
+        if (id_finitionToSend == "") {
             aEnvoyer.id_finitionToSend = ficheTechniques[0].id_finition;
         }
-        if (longueurToSend === "") {
+        if (longueurToSend == "") {
             aEnvoyer.longueurToSend = ficheTechniques[0].longueur;
         }
-        if (largeurToSend === "") {
+        if (largeurToSend == "") {
             aEnvoyer.largeurToSend = ficheTechniques[0].largeur;
         }
-        if (hauteurToSend === "") {
+        if (hauteurToSend == "") {
             aEnvoyer.hauteurToSend = ficheTechniques[0].hauteur;
         }
-        if (rayonToSend === "") {
+        if (rayonToSend == "") {
             aEnvoyer.rayonToSend = ficheTechniques[0].rayon;
         }
-        if (poidsToSend === "") {
+        if (poidsToSend == "") {
             aEnvoyer.poidsToSend = ficheTechniques[0].poids;
         }
         //refreshPage()

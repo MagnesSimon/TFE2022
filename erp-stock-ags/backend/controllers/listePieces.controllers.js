@@ -66,7 +66,7 @@ exports.findOne = (req, res) => {
 };
 
 exports.create = (req, res) => {
-
+    //console.log("req", req)
     if (!req.body) {
         res.status(400).send({
             message: "Content can not be empty !"
@@ -75,7 +75,6 @@ exports.create = (req, res) => {
 
     const newPiece = new ListePieces({
         reference: req.body.ref,
-        nom_famille: req.body.famille,
         valeur_seuil: req.body.seuil,
         quantite_en_stock: req.body.quantite,
         longueur: req.body.longueur,
@@ -88,9 +87,8 @@ exports.create = (req, res) => {
         id_famille: req.body.famille
 
     });
-
-    Piece.create(newPiece, (err, data) => {
-
+    console.log("new", newPiece)
+    ListePieces.create(newPiece, (err, data) => {
         if (err) {
             res.status(500).send({
                 message: err.message || "Some error occurred while creating the 'newPiece'."
@@ -100,7 +98,6 @@ exports.create = (req, res) => {
 };
 
 exports.updateById = (req, res) => {
-    //console.log("Controllers req", req)
     if (!req.body) {
         res.status(400).send({
             message: "Content can not be empty!"

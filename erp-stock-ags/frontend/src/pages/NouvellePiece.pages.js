@@ -10,13 +10,13 @@ const NouvellePiece = () => {
 
     // Variable récupérée dans les inputs
     const [ref, setRef] = useState([])
-    const [seuil, setSeuil] = useState([])
-    const [quantite, setQuantite] = useState([])
-    const [longeur, setLongueur] = useState([])
-    const [largeur, setLargeur] = useState([])
-    const [hauteur, setHauteur] = useState([])
-    const [rayon, setRayon] = useState([])
-    const [poids, setPoids] = useState([])
+    const [seuil = 0, setSeuil] = useState([])
+    const [quantite = 0, setQuantite] = useState([])
+    const [longueur = 0, setLongueur] = useState([])
+    const [largeur = 0, setLargeur] = useState([])
+    const [hauteur = 0, setHauteur] = useState([])
+    const [rayon = 0, setRayon] = useState([])
+    const [poids = 0, setPoids] = useState([])
     //Clé étrangère depuis les choix
     const [finition, setFinition] = useState([])
     const [famille, setFamille] = useState([])
@@ -30,7 +30,7 @@ const NouvellePiece = () => {
         ref,
         seuil,
         quantite,
-        longeur,
+        longueur,
         largeur,
         hauteur,
         rayon,
@@ -39,9 +39,35 @@ const NouvellePiece = () => {
         famille
     }
 
+    const Remplissage = () => {
+        console.log("piece", piece)
+        if (seuil == "") {
+            piece.seuil = 0
+        }
+        if (quantite == "") {
+            piece.quantite = 0
+        }
+        if (longueur == "") {
+            piece.longueur = 0
+        }
+        if (largeur == "") {
+            piece.largeur = 0
+        }
+        if (hauteur == "") {
+            piece.hauteur = 0
+        }
+        if (rayon == "") {
+            piece.rayon = 0
+        }
+        if (poids == "") {
+            piece.poids = 0
+        }
+        Envoyer();
+    }
     // Fonction pour envoyer une nouvelle pièces vers la DB
     const Envoyer = () => {
-        axios.post(window.url + '/listePieces/addPiece/', piece)
+        console.log(piece)
+        axios.post(window.url + '/listePieces/addpiece', piece)
             //axios.post(GlobalData.URL + '/piece/addPiece/', piece)
             .then(function (res) {
                 console.log('Succes ajout de pièce')
@@ -135,7 +161,7 @@ const NouvellePiece = () => {
                             type="text"
                             name='longueur'
                             pattern="[0-9]*"
-                            value={longeur}
+                            value={longueur}
                             onChange={(e) =>
                                 setLongueur((v) => (e.target.validity.valid ? e.target.value : v))
                             }
@@ -227,7 +253,7 @@ const NouvellePiece = () => {
                     </select>
                 </div>
                 <div>
-                    <button onClick={Envoyer} >Envoyer </button>
+                    <button onClick={Remplissage} >Envoyer </button>
                     <button className="annuler" onClick={GoToListePiece}>Annuler </button>
                 </div>
             </form>

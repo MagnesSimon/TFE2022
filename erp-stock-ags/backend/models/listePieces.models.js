@@ -14,8 +14,6 @@ const ListePieces = function (listePieces) {
     this.id_famille = listePieces.id_famille;
     this.id_finition = listePieces.id_finition;
     // Autres tables
-    this.nom_famille = listePieces.nom_famille;
-
 }
 
 /* 
@@ -119,7 +117,7 @@ ListePieces.getOneById = (reference, result) => {
 }
 
 ListePieces.create = (newPiece, result) => {
-
+    console.log("newPiece", newPiece)
     sql.query("INSERT INTO piece SET ?", newPiece, (err, res) => {
         if (err) {
             console.log("error: ", err);
