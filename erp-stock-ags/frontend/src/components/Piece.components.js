@@ -20,7 +20,9 @@ const Piece = () => {
     // fiche technique contient la liste des fiches techniques des pièces
     const [ficheTechniques, setFicheTechnique] = useState([])
     // Va définir l'état visible de la boite de dialogue
-    const [open, setOpen] = React.useState(false);
+    const [openFT, setOpenFT] = React.useState(false);
+    // Va définir l'état visible de la boite de dialigue validation
+    const [openValidation, setOpenValidation] = useState([])
 
     // Variable qui vont pouvoir être envoyée pour 
     // L'adaptation de la fiche technique
@@ -33,14 +35,6 @@ const Piece = () => {
     const [hauteurToSend, setHauteurToSend] = useState([])
     const [rayonToSend, setRayonToSend] = useState([])
     const [poidsToSend, setPoidsToSend] = useState([])
-
-
-    // // Dimension à afficher dans la fiche technique
-    // const [longueurFT, setLongueurFT] = useState([])
-    // const [largeurFT, setLargeurFT] = useState([])
-    // const [hauteurFT, setHauteurFT] = useState([])
-    // const [profondeurFT, setProfondeurFT] = useState([])
-    // const [rayonFT, setRayonFT] = useState([])
 
     // Variable qui vont contenir les différentes possibilité de la fiche technique
     const [choixFamille, setChoixFamille] = useState([])
@@ -61,22 +55,65 @@ const Piece = () => {
     // Fonction qui permet d'afficher une boite de dialogue
     // Lors du click sur la case référence du tableau
     const handleClickOpen = (v) => {
-        setOpen(true);
+        setOpenFT(true);
         // Requête pour aller chercher la fiche technique
         axios.get(window.url + "/listePieces/" + v)
             .then((res) => setFicheTechnique(res.data))
     };
 
+    // Fonction pour définir la ref de la fiche technique
     const handleClickSend = (v) => {
         setReferenceToSend(v)
     }
     // Fonction pour fermer la boîte de dialogue
     const handleClose = () => {
-        setOpen(false);
+        // Remise à vide des valeurs ToSend à la fermeture
+        resetToSend()
+        setOpenFT(false);
     };
     const sendToAPI = () => {
         console.log("Modif", aEnvoyer)
+        console.log("FT", ficheTechniques[0])
 
+        // Remplir les champ laissé vide
+        if (referenceToSend == "") {
+            aEnvoyer.referenceToSend = ficheTechniques[0].reference;
+        }
+        if (id_familleToSend == "") {
+            aEnvoyer.id_familleToSend = ficheTechniques[0].id_famille;
+        }
+        if (id_finitionToSend == "") {
+            aEnvoyer.id_finitionToSend = ficheTechniques[0].id_finition;
+        }
+        if (longueurToSend == "") {
+            aEnvoyer.longueurToSend = ficheTechniques[0].longueur;
+        }
+        if (largeurToSend == "") {
+            aEnvoyer.largeurToSend = ficheTechniques[0].largeur;
+        }
+        if (hauteurToSend == "") {
+            aEnvoyer.hauteurToSend = ficheTechniques[0].hauteur;
+        }
+        if (rayonToSend == "") {
+            aEnvoyer.rayonToSend = ficheTechniques[0].rayon;
+        }
+        if (poidsToSend == "") {
+            aEnvoyer.poidsToSend = ficheTechniques[0].poids;
+        }
+        refreshPage()
+        console.log("ToSend", aEnvoyer)
+    }
+
+    const resetToSend = () => {
+        // Remise à vide des ToSend
+        setReferenceToSend("")
+        setId_familleToSend("")
+        setId_finitionToSend("")
+        setLongueurToSend("")
+        setLargeurToSend("")
+        setHauteurToSend("")
+        setRayonToSend("")
+        setPoidsToSend("")
     }
 
     // Le useEffect se joue quand le composant est monté 
@@ -112,41 +149,43 @@ const Piece = () => {
         <div>
             {/* Création du tableau des pièces */}
             {/* {tableVisible && <table className='tableau'> */}
-            <table className='tableau'>
-                <thead>
-                    {/* Colonne faisant office de titre */}
-                    <tr>
-                        <th>Référence</th>
-                        <th>Famille</th>
-                        <th>Valeur seuil</th>
-                        <th>Quantité en stock</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* Les datas sont traitées. 
+            <div>
+                <table className='tableau'>
+                    <thead>
+                        {/* Colonne faisant office de titre */}
+                        <tr>
+                            <th>Référence</th>
+                            <th>Famille</th>
+                            <th>Valeur seuil</th>
+                            <th>Quantité en stock</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* Les datas sont traitées. 
                     Chaque élément de l'objet pièce mis dans une case de la ligne
                     Une fois que l'on a traité toutes les données d'une pièce,
                     on créer une ligne pour la pièce suivante
                     */}
-                    {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
-                        <tr key={reference} >
-                            <td onClick={() => handleClickOpen(reference)}>
-                                {reference}</td>
-                            <td>{nom_famille}</td>
-                            <td>{valeur_seuil}</td>
-                            <td>{quantite_en_stock}</td>
-                            <td>
-                                <AjoutPieces key={reference}
-                                    reference={reference}
-                                    qte={quantite_en_stock} />
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                        {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
+                            <tr key={reference} >
+                                <td onClick={() => handleClickOpen(reference)}>
+                                    {reference}</td>
+                                <td>{nom_famille}</td>
+                                <td>{valeur_seuil}</td>
+                                <td>{quantite_en_stock}</td>
+                                <td>
+                                    <AjoutPieces key={reference}
+                                        reference={reference}
+                                        qte={quantite_en_stock} />
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             <div>
-                <Dialog className='dialog' open={open} onClose={handleClose}>
+                <Dialog className='dialog' open={openFT} onClose={handleClose}>
                     <DialogTitle>
                         Fiche technique
                     </DialogTitle>
@@ -300,7 +339,9 @@ const Piece = () => {
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <Button id={reference} onClick={() => handleClickSend(reference)}>SEND</Button>
+                                    {/* <Button id={reference} onClick={() => handleClickSend(reference)}>
+                                        ENREGISTER LES MODIFICATIONS
+                                    </Button> */}
                                 </div>
 
                             ))}
@@ -308,10 +349,10 @@ const Piece = () => {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose} color="primary">
-                            Close
+                            Fermer
                         </Button>
                         <Button onClick={sendToAPI} color="primary" autoFocus>
-                            Yes
+                            Valider
                         </Button>
                     </DialogActions>
                 </Dialog>
