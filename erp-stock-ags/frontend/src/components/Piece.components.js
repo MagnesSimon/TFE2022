@@ -66,6 +66,10 @@ const Piece = () => {
         axios.get(window.url + "/listePieces/" + v)
             .then((res) => setFicheTechnique(res.data))
     };
+
+    const handleClickSend = (v) => {
+        setReferenceToSend(v)
+    }
     // Fonction pour fermer la boîte de dialogue
     const handleClose = () => {
         setOpen(false);
@@ -141,10 +145,6 @@ const Piece = () => {
                     ))}
                 </tbody>
             </table>
-            {/* {ficheTecnhiqueVisible && <div>
-                <FicheTechnique />
-                <button onClick={ShowTable}>Retour</button>
-            </div>} */}
             <div>
                 <Dialog className='dialog' open={open} onClose={handleClose}>
                     <DialogTitle>
@@ -167,7 +167,7 @@ const Piece = () => {
                                 rayon,
                                 poids }) => (
                                 < div >
-                                    <table className='tableauFT'>
+                                    <table className='tableauFT' id={reference}>
                                         <thead>
                                             <tr>
                                                 <th>                </th>
@@ -176,20 +176,11 @@ const Piece = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr key={reference}>
+                                            <tr key={reference} id={reference}>
                                                 <td>Référence</td>
-                                                <td>{reference}</td>
+                                                <td>{reference}
+                                                </td>
                                                 <td>
-                                                    <input
-                                                        className='hidden'
-                                                        type="text"
-                                                        name='Reference'
-                                                        pattern="[0-9]*"
-                                                        value={reference}
-                                                        onChange={(e) =>
-                                                            setReferenceToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                        }
-                                                    />
                                                 </td>
                                             </tr>
                                             <tr>
@@ -309,6 +300,7 @@ const Piece = () => {
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <Button id={reference} onClick={() => handleClickSend(reference)}>SEND</Button>
                                 </div>
 
                             ))}
