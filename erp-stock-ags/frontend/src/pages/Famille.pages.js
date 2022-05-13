@@ -2,16 +2,43 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Navigation from '../components/Navigation.components';
 import { NavLink } from 'react-router-dom';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
+
+
 
 const Famille = () => {
 
+    // Va définir l'état visible de la boite de dialogue
+    const [open, setOpen] = React.useState(false);
+    // Variable qui reprend la liste des familles
     const [famille, setFamilles] = useState([])
+    // Id de la famille à transmettre à la fiche famille
+    const [id_famille, setId_famille] = useState([])
+
+    // Fonction pour fermer la boîte de dialogue
+    const handleClose = () => {
+        // Remise à vide des valeurs ToSend à la fermeture
+        // resetToSend()
+        setOpen(false);
+    };
 
     useEffect(() => {
         axios.get(window.url + "/listeFamilles/")
             .then((res) => setFamilles(res.data))
     }, [])
 
+    const handleClickOpen = (id) => {
+        setOpen(true);
+        setId_famille(id)
+    }
+    const sendToAPI = () => {
+        console.log("aEnvoyer")
+    }
     return (
         <div>
             <Navigation />
@@ -40,7 +67,7 @@ const Famille = () => {
                     */}
                         {famille.map(({ id_famille, nom_famille, materiaux, nom_fournisseur }) => (
                             <tr key={id_famille}>
-                                <td>{id_famille}</td>
+                                <td onClick={() => handleClickOpen(id_famille)}>{id_famille}</td>
                                 <td>{nom_famille}</td>
                                 <td>{materiaux}</td>
                                 <td>{nom_fournisseur}</td>
@@ -48,6 +75,38 @@ const Famille = () => {
                         ))}
                     </tbody>
                 </table>
+            </div>
+            <div>
+                <Dialog className='dialog' open={open} onClose={handleClose}>
+                    <DialogTitle>
+                        Fiche technique
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            < div >
+                                <table className='tableauFT' id={"id_famille"}>
+                                    <thead>
+                                        <tr>
+                                            <th>                </th>
+                                            <th>Valeure actuelle</th>
+                                            <th>Modification</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Fermer
+                        </Button>
+                        <Button onClick={sendToAPI} color="primary" autoFocus>
+                            Valider
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         </div>
     );

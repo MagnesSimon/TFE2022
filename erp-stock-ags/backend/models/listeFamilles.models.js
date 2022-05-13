@@ -2,6 +2,7 @@ const sql = require("./db")
 
 // Constructor
 const ListeFamilles = function (listeFamilles) {
+    this.id_famille = listeFamilles.id_famille;
     this.nom_famille = listeFamilles.nom_famille;
     this.materiaux = listeFamilles.materiaux;
     this.id_fournisseur = listeFamilles.id_fournisseur;
@@ -42,6 +43,15 @@ ListeFamilles.create = (newFamille, result) => {
             result(null, { id: res.insertId, ...newFamille });
         }
     });
+}
+
+ListeFamilles.updateById = (data, result) => {
+    sql.query("UPDATE `famille` " +
+        "SET `nom_famille` = " + data.nom_famille + " , " +
+        "`materieaux` = " + data.materiaux + " , " +
+        "`id_fournisseur` = " + data.id_fournisseur + " , " +
+        "`id_categorie` = " + data.id_categorie +
+        " WHERE `id_famille` = " + "'" + data.id_famille + "'")
 }
 
 module.exports = ListeFamilles

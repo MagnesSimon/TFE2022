@@ -66,7 +66,6 @@ exports.findOne = (req, res) => {
 };
 
 exports.create = (req, res) => {
-    //console.log("req", req)
     if (!req.body) {
         res.status(400).send({
             message: "Content can not be empty !"
@@ -87,7 +86,6 @@ exports.create = (req, res) => {
         id_famille: req.body.famille
 
     });
-    console.log("new", newPiece)
     ListePieces.create(newPiece, (err, data) => {
         if (err) {
             res.status(500).send({
