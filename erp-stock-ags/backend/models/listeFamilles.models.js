@@ -45,6 +45,34 @@ ListeFamilles.create = (newFamille, result) => {
     });
 }
 
+ListeFamilles.getOneById = (id_famille, result) => {
+    sql.query("SELECT famille.id_famille, " +
+        "famille.nom_famille, " +
+        "famille.materiaux, " +
+        "famille.id_fournisseur, " +
+        "famille.id_categorie, " +
+        "fournisseur.nom_fournisseur, " +
+        "categorie.nom_categorie, " +
+        "categorie.pole " +
+
+        // FROM et JOIN
+        "FROM famille as famille " +
+        "INNER JOIN categorie as categorie " +
+        "ON famille.id_categorie = categorie.id_categorie " +
+        "INNER JOIN fournisseur as fournisseur " +
+        "ON famille.id_fournisseur = fournisseur.id_fournisseur " +
+
+        // Condition
+        `WHERE famille.id_famille ='${id_famille}'`
+        , (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else result(null, res);
+        });
+}
+
 ListeFamilles.updateById = (data, result) => {
     sql.query("UPDATE `famille` " +
         "SET `nom_famille` = " + data.nom_famille + " , " +

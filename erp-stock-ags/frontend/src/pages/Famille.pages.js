@@ -18,8 +18,19 @@ const Famille = () => {
     // Variable qui reprend la liste des familles
     const [famille, setFamilles] = useState([])
     // Id de la famille à transmettre à la fiche famille
-    const [id_famille, setId_famille] = useState([])
+    const [ficheFamille, setFicheFamille] = useState([]);
 
+    useEffect(() => {
+        axios.get(window.url + "/listeFamilles/")
+            .then((res) => setFamilles(res.data))
+    }, [])
+
+    // Fonction pour ouvrir la boîte de dialogue
+    const handleClickOpen = (v) => {
+        setOpen(true);
+        axios.get(window.url + "/listeFamilles/" + v)
+            .then((res) => setFicheFamille(res.data))
+    }
     // Fonction pour fermer la boîte de dialogue
     const handleClose = () => {
         // Remise à vide des valeurs ToSend à la fermeture
@@ -27,15 +38,6 @@ const Famille = () => {
         setOpen(false);
     };
 
-    useEffect(() => {
-        axios.get(window.url + "/listeFamilles/")
-            .then((res) => setFamilles(res.data))
-    }, [])
-
-    const handleClickOpen = (id) => {
-        setOpen(true);
-        setId_famille(id)
-    }
     const sendToAPI = () => {
         console.log("aEnvoyer")
     }
@@ -79,23 +81,64 @@ const Famille = () => {
             <div>
                 <Dialog className='dialog' open={open} onClose={handleClose}>
                     <DialogTitle>
-                        Fiche technique
+                        Fiche famille
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            < div >
-                                <table className='tableauFT' id={"id_famille"}>
-                                    <thead>
-                                        <tr>
-                                            <th>                </th>
-                                            <th>Valeure actuelle</th>
-                                            <th>Modification</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
+                            {ficheFamille.map(({
+                                id_famille,
+                                nom_famille,
+                                materiaux,
+                                id_fournisseur,
+                                id_categorie,
+                                nom_fournisseur,
+                                nom_categorie,
+                                pole
+                            }) => (
+                                < div >
+                                    <table className='tableauFT' id={"id_famille"}>
+                                        <thead>
+                                            <tr>
+                                                <th>                </th>
+                                                <th>Valeure actuelle</th>
+                                                <th>Modification</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr key={id_famille}>
+                                                <td>ID</td>
+                                                <td>{id_famille}</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr key={nom_famille}>
+                                                <td>NOM</td>
+                                                <td>{nom_famille}</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr key={materiaux}>
+                                                <td>MATERIAUX</td>
+                                                <td>{materiaux}</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr key={id_fournisseur}>
+                                                <td>FOURNISSEUR</td>
+                                                <td>{nom_fournisseur}</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr key={id_categorie}>
+                                                <td>CATEGORIE</td>
+                                                <td>{nom_categorie}</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr key={pole}>
+                                                <td>POLE</td>
+                                                <td>{pole}</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            ))}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
@@ -111,5 +154,8 @@ const Famille = () => {
         </div>
     );
 };
+
+
+
 
 export default Famille;
