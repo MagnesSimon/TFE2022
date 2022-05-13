@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navigation from '../components/Navigation.components';
-
 
 const FicheTechnique = () => {
 
-    const [piece, setPiece] = useState
+    //const [piece, setPiece] = useState
 
     const navigate = useNavigate();
     // Revenir à la liste des pièces
@@ -17,7 +15,7 @@ const FicheTechnique = () => {
         <div>
             <button onClick={GoToListePiece}>Retour</button>
             <div>
-                <p>{piece}</p>
+                <p></p>
             </div>
         </div>
     );
