@@ -249,8 +249,8 @@ const Piece = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Famille</td>
-                                                <td>{nom_famille} - {materiaux}</td>
+                                                <td>Famille : Nom</td>
+                                                <td>{nom_famille}</td>
                                                 <td>
                                                     <select name="choixFamille"
                                                         id="selectChoixFamille"
@@ -263,19 +263,14 @@ const Piece = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Catégorie</td>
-                                                <td>{nom_categorie + " - " + pole}</td>
+                                                <td>Matériaux</td>
+                                                <td>{materiaux}</td>
                                                 <td></td>
                                             </tr>
                                             <tr>
-                                                <td>Fournisseur </td>
-                                                <td>{nom_fournisseur}</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Finition</td>
+                                                <td>Finition : Nom</td>
                                                 <td>
-                                                    {nom_finition + " - " + effet_finition}
+                                                    {nom_finition}
                                                 </td>
                                                 <td>
                                                     <select name="choixFinition"
@@ -287,6 +282,11 @@ const Piece = () => {
                                                         ))}
                                                     </select>
                                                 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Finition : Effet </td>
+                                                <td>{effet_finition}</td>
+                                                <td></td>
                                             </tr>
                                             <tr>
                                                 <td>Longueur</td>
@@ -362,6 +362,21 @@ const Piece = () => {
                                                         }
                                                     />
                                                 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Catégorie</td>
+                                                <td>{nom_categorie}</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Pôle</td>
+                                                <td>{pole}</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fournisseur </td>
+                                                <td>{nom_fournisseur}</td>
+                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </table>
