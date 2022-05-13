@@ -10,4 +10,7 @@ module.exports = app => {
     app.get("/listePieces/:id", ListePieces.findOne);
 
     app.post("/listePieces/addpiece", ListePieces.create);
+
+    app.post("/listePieces/updateFT", ListePieces.updateById);
+
 }

@@ -28,6 +28,7 @@ const Piece = () => {
     // L'adaptation de la fiche technique
     // const [referenceToSend, setReferenceToSend] = useState([])
     const [referenceToSend, setReferenceToSend] = useState([])
+    const [valeur_seuilToSend, setValeur_seuilToSend] = useState([])
     const [id_familleToSend, setId_familleToSend] = useState([])
     const [id_finitionToSend, setId_finitionToSend] = useState([])
     const [longueurToSend, setLongueurToSend] = useState([])
@@ -43,6 +44,7 @@ const Piece = () => {
     //Fiche technique modifiée à envoyé
     const aEnvoyer = {
         referenceToSend,
+        valeur_seuilToSend,
         id_familleToSend,
         id_finitionToSend,
         longueurToSend,
@@ -61,10 +63,6 @@ const Piece = () => {
             .then((res) => setFicheTechnique(res.data))
     };
 
-    // Fonction pour définir la ref de la fiche technique
-    const handleClickSend = (v) => {
-        setReferenceToSend(v)
-    }
     // Fonction pour fermer la boîte de dialogue
     const handleClose = () => {
         // Remise à vide des valeurs ToSend à la fermeture
@@ -72,12 +70,13 @@ const Piece = () => {
         setOpenFT(false);
     };
     const sendToAPI = () => {
-        console.log("Modif", aEnvoyer)
-        console.log("FT", ficheTechniques[0])
-
+        console.log("aEnvoyer", aEnvoyer)
         // Remplir les champ laissé vide
         if (referenceToSend == "") {
             aEnvoyer.referenceToSend = ficheTechniques[0].reference;
+        }
+        if (valeur_seuilToSend == "") {
+            aEnvoyer.valeur_seuilToSend = ficheTechniques[0].valeur_seuil;
         }
         if (id_familleToSend == "") {
             aEnvoyer.id_familleToSend = ficheTechniques[0].id_famille;
@@ -100,13 +99,24 @@ const Piece = () => {
         if (poidsToSend == "") {
             aEnvoyer.poidsToSend = ficheTechniques[0].poids;
         }
-        refreshPage()
-        console.log("ToSend", aEnvoyer)
+        //refreshPage()
+        axios.post(window.url + "/listePieces/updateFT", aEnvoyer)
+            .then(function (res) {
+                console.log('Succes Modification Fiche Technique')
+                console.log(res.data)
+            })
+            .catch(function (err) {
+                console.log("Error: ")
+                console.log(err)
+            });
+
+        refreshPage();
     }
 
     const resetToSend = () => {
         // Remise à vide des ToSend
         setReferenceToSend("")
+        setValeur_seuilToSend("")
         setId_familleToSend("")
         setId_finitionToSend("")
         setLongueurToSend("")
@@ -193,6 +203,7 @@ const Piece = () => {
                         <DialogContentText>
                             {ficheTechniques.map(({
                                 reference,
+                                valeur_seuil,
                                 nom_famille,
                                 materiaux,
                                 nom_categorie,
@@ -220,6 +231,21 @@ const Piece = () => {
                                                 <td>{reference}
                                                 </td>
                                                 <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Valeur Seuil</td>
+                                                <td>{valeur_seuil}</td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        name='longueur'
+                                                        pattern="[0-9]*"
+                                                        value={valeur_seuilToSend}
+                                                        onChange={(e) =>
+                                                            setValeur_seuilToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                        }
+                                                    />
                                                 </td>
                                             </tr>
                                             <tr>

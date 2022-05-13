@@ -3,14 +3,19 @@ const sql = require("./db.js");
 // Constructor
 const ListePieces = function (listePieces) {
     this.reference = listePieces.reference;
-    this.nom_famille = listePieces.nom_famille;
     this.valeur_seuil = listePieces.valeur_seuil;
     this.quantite_en_stock = listePieces.quantite_en_stock;
-    this.longueur = listePieces.longeur;
+    this.longueur = listePieces.longueur;
     this.largeur = listePieces.largeur;
     this.hauteur = listePieces.hauteur;
     this.rayon = listePieces.rayon;
     this.poids = listePieces.poids;
+    // Clé étrangère
+    this.id_famille = listePieces.id_famille;
+    this.id_finition = listePieces.id_finition;
+    // Autres tables
+    this.nom_famille = listePieces.nom_famille;
+
 }
 
 /* 
@@ -73,6 +78,7 @@ ListePieces.getPenurie = result => {
 
 ListePieces.getOneById = (reference, result) => {
     sql.query("SELECT piece.reference, " +
+        "piece.valeur_seuil, " +
         "piece.longueur, " +
         "piece.largeur, " +
         "piece.hauteur, " +
@@ -124,6 +130,19 @@ ListePieces.create = (newPiece, result) => {
             result(null, { id: res.insertId, ...newPiece });
         }
     });
+}
+
+ListePieces.updateById = (data, result) => {
+    sql.query("UPDATE `piece` " +
+        "SET `valeur_seuil` = " + data.valeur_seuil + " , " +
+        "`longueur` = " + data.longueur + " , " +
+        "`largeur` = " + data.largeur + " , " +
+        "`hauteur` = " + data.hauteur + " , " +
+        "`rayon` = " + data.rayon + " , " +
+        "`poids` = " + data.poids + " , " +
+        "`id_finition` = " + data.id_finition + " , " +
+        "`id_famille` = " + data.id_famille + //" , " +
+        " WHERE `reference` = " + "'" + data.reference + "'")
 }
 
 module.exports = ListePieces;
