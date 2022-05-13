@@ -34,13 +34,11 @@ Fournisseur.getAll = result => {
                 result(null, err);
                 return;
             } else
-                console.log(res);
-            result(null, res);
+                result(null, res);
         });
 }
 
 Fournisseur.create = (newFournisseur, result) => {
-    console.log(newFournisseur)
     sql.query("INSERT INTO fournisseur SET ?", newFournisseur, (err, res) => {
         if (err) {
             console.log("error: ", err)

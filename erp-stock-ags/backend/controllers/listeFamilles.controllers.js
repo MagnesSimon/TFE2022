@@ -20,6 +20,7 @@ exports.create = (req, res) => {
         nom_famille: req.body.nom_famille,
         materiaux: req.body.materiaux,
         id_fournisseur: req.body.id_fournisseur,
+        id_categorie: req.body.id_categorie
     });
 
     ListeFamilles.create(famille, (err, data) => {

@@ -11,14 +11,18 @@ const NouvelleFamille = () => {
     const [nom_famille, setNom_famille] = useState([])
     const [materiaux, setMateriaux] = useState([])
     const [id_fournisseur, setId_fournisseur] = useState([])
+    const [id_categorie, setId_categorie] = useState([])
 
     // Contient les différentes possibilitées des localités
     const [choixFournisseur, setChoixFournisseur] = useState([])
+    // Contient les d!fférente catégorie existante
+    const [choixCategorie, setChoixCategorie] = useState([])
 
     // Création de l'objet
     let famille = {
         nom_famille,
         materiaux,
+        id_categorie,
         id_fournisseur
     }
 
@@ -39,16 +43,28 @@ const NouvelleFamille = () => {
     }
 
     /*
-    Récupération de la liste des localite
+    Récupération de la liste des Fournisseurs
     */
     useEffect(() => {
         axios.get(window.url + "/fournisseur/")
             .then((res) => setChoixFournisseur(res.data))
     }, [])
+    /*
+Récupération de la liste des Catégories
+*/
+    useEffect(() => {
+        axios.get(window.url + "/listeCategories")
+            .then((res) => setChoixCategorie(res.data))
+    }, [])
+
 
     // Fonction pour récupérer la valeur dans la liste déroulante
     const fournisseurHandleChange = (e) => {
         setId_fournisseur((v) => (e.target.validity.valid ? e.target.value : v))
+    }
+    // Fonction pour récupérer la valeur dans la liste déroulante
+    const categorieHandleChange = (e) => {
+        setId_categorie((v) => (e.target.validity.valid ? e.target.value : v))
     }
 
     return (
@@ -75,18 +91,35 @@ const NouvelleFamille = () => {
                 </div>
                 <div>
                     <label>
-                        Localité
+                        Catégorie
+                    </label>
+                    <select name="choixCategorie"
+                        id="selectIdCategorie"
+                        value={id_categorie}
+                        onChange={categorieHandleChange}>
+                        {choixCategorie.map(({
+                            id_categorie,
+                            nom_categorie,
+                            pole
+                        }) => (
+                            <option value={id_categorie}>
+                                {nom_categorie + " - " + pole}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div>
+                    <label>
+                        Fournisseur
                     </label>
                     <select name="choixFournisseur"
                         id="selectChoixFournisseur"
                         value={id_fournisseur}
                         onChange={fournisseurHandleChange}>
-                        {choixFournisseur.map(({ id_fournisseur,
+                        {choixFournisseur.map(({
+                            id_fournisseur,
                             nom_fournisseur,
-                            mail_fournisseur,
-                            tel_fournisseur,
-                            adresse_fournisseur,
-                            id_localite }) => (
+                        }) => (
                             <option value={id_fournisseur}>
                                 {nom_fournisseur}
                             </option>

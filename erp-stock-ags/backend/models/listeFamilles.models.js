@@ -5,6 +5,7 @@ const ListeFamilles = function (listeFamilles) {
     this.nom_famille = listeFamilles.nom_famille;
     this.materiaux = listeFamilles.materiaux;
     this.id_fournisseur = listeFamilles.id_fournisseur;
+    this.id_categorie = listeFamilles.id_categorie;
 }
 
 /*
