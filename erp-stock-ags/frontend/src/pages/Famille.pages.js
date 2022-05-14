@@ -25,11 +25,11 @@ const Famille = () => {
     const [ficheFamille, setFicheFamille] = useState([]);
 
     // Variable à envoyer vers la DB pour modification
-    const [id_familleToSend, setId_familleToSend] = useState([])
-    const [nom_familleToSend, setNom_familleToSend] = useState([])
-    const [materiauxToSend, setMateriauxToSend] = useState([])
-    const [id_fournisseurToSend, setId_fournisseurToSend] = useState([])
-    const [id_categorieToSend, setId_categorieToSend] = useState([])
+    const [id_familleToSend, setId_familleToSend] = useState("")
+    const [nom_familleToSend, setNom_familleToSend] = useState("")
+    const [materiauxToSend, setMateriauxToSend] = useState("")
+    const [id_fournisseurToSend, setId_fournisseurToSend] = useState("")
+    const [id_categorieToSend, setId_categorieToSend] = useState("")
 
     // Contient le possibilité de fournisseurs pour la liste déroulante
     const [choixFournisseur, setChoixFournisseur] = useState([])
@@ -220,6 +220,7 @@ const Famille = () => {
                                                 <td>
                                                     <select name="choixFournisseur"
                                                         id="selectChoixFournisseur"
+                                                        multiple={false}
                                                         value={id_fournisseurToSend}
                                                         onChange={fournisseurHandleChange}>
                                                         {choixFournisseur.map(({ id_fournisseur, nom_fournisseur }) => (
@@ -234,6 +235,7 @@ const Famille = () => {
                                                 <td>
                                                     <select name="choixCategorie"
                                                         id="selectChoixCategorie"
+                                                        multiple={false}
                                                         value={id_categorieToSend}
                                                         onChange={catégorieHandleChange}>
                                                         {choixCategorie.map(({ id_categorie, nom_categorie, pole }) => (

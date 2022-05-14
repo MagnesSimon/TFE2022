@@ -25,15 +25,15 @@ const Piece = () => {
     // Variable qui vont pouvoir être envoyée pour 
     // L'adaptation de la fiche technique
     // const [referenceToSend, setReferenceToSend] = useState([])
-    const [referenceToSend, setReferenceToSend] = useState([])
-    const [valeur_seuilToSend, setValeur_seuilToSend] = useState([])
-    const [id_familleToSend, setId_familleToSend] = useState([])
-    const [id_finitionToSend, setId_finitionToSend] = useState([])
-    const [longueurToSend, setLongueurToSend] = useState([])
-    const [largeurToSend, setLargeurToSend] = useState([])
-    const [hauteurToSend, setHauteurToSend] = useState([])
-    const [rayonToSend, setRayonToSend] = useState([])
-    const [poidsToSend, setPoidsToSend] = useState([])
+    const [referenceToSend, setReferenceToSend] = useState("")
+    const [valeur_seuilToSend, setValeur_seuilToSend] = useState("")
+    const [id_familleToSend, setId_familleToSend] = useState("")
+    const [id_finitionToSend, setId_finitionToSend] = useState("")
+    const [longueurToSend, setLongueurToSend] = useState("")
+    const [largeurToSend, setLargeurToSend] = useState("")
+    const [hauteurToSend, setHauteurToSend] = useState("")
+    const [rayonToSend, setRayonToSend] = useState("")
+    const [poidsToSend, setPoidsToSend] = useState("")
 
     // Variable qui vont contenir les différentes possibilité de la fiche technique
     const [choixFamille, setChoixFamille] = useState([])
