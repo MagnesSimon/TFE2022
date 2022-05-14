@@ -13,12 +13,37 @@ import Button from '@material-ui/core/Button';
 
 const Famille = () => {
 
+    function refreshPage() {
+        window.location.reload();
+    }
+
     // Va définir l'état visible de la boite de dialogue
     const [open, setOpen] = React.useState(false);
     // Variable qui reprend la liste des familles
     const [famille, setFamilles] = useState([])
     // Id de la famille à transmettre à la fiche famille
     const [ficheFamille, setFicheFamille] = useState([]);
+
+    // Variable à envoyer vers la DB pour modification
+    const [id_familleToSend, setId_familleToSend] = useState([])
+    const [nom_familleToSend, setNom_familleToSend] = useState([])
+    const [materiauxToSend, setMateriauxToSend] = useState([])
+    const [id_fournisseurToSend, setId_fournisseurToSend] = useState([])
+    const [id_categorieToSend, setId_categorieToSend] = useState([])
+
+    // Contient le possibilité de fournisseurs pour la liste déroulante
+    const [choixFournisseur, setChoixFournisseur] = useState([])
+    const [choixCategorie, setChoixCategorie] = useState([])
+
+    // Fiche famille modifiée à envoyée
+    const aEnvoyer = {
+        id_familleToSend,
+        nom_familleToSend,
+        materiauxToSend,
+        id_fournisseurToSend,
+        id_categorieToSend
+    }
+
 
     useEffect(() => {
         axios.get(window.url + "/listeFamilles/")
@@ -38,9 +63,60 @@ const Famille = () => {
         setOpen(false);
     };
 
-    const sendToAPI = () => {
-        console.log("aEnvoyer")
+    // Permet de récupérer les fournisseurs pour la liste déroulante
+    useEffect(() => {
+        axios.get(window.url + "/fournisseur/")
+            .then((res) => setChoixFournisseur(res.data))
+    }, [])
+
+    const fournisseurHandleChange = (e) => {
+        setId_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
     }
+
+    // Permet de récupérer les catégories pour la liste déroulante
+    useEffect(() => {
+        axios.get(window.url + "/listeCategories/")
+            .then((res) => setChoixCategorie(res.data))
+    }, [])
+
+    const catégorieHandleChange = (e) => {
+        setId_categorieToSend((v) => (e.target.validity.valid ? e.target.value : v))
+    }
+
+    // Pour envoyer vers la DB
+    const sendToAPI = () => {
+        console.log("aEnvoyer", aEnvoyer)
+        // Remplir les champ laissé vide
+        if (id_familleToSend == "") {
+            aEnvoyer.id_familleToSend = ficheFamille[0].id_famille;
+        }
+        if (nom_familleToSend == "") {
+            aEnvoyer.nom_familleToSend = ficheFamille[0].nom_famille;
+        }
+        if (materiauxToSend == "") {
+            aEnvoyer.materiauxToSend = ficheFamille[0].materiaux;
+        }
+        if (id_fournisseurToSend == "") {
+            aEnvoyer.id_fournisseurToSend = ficheFamille[0].id_fournisseur;
+        }
+        if (id_categorieToSend == "") {
+            aEnvoyer.id_categorieToSend = ficheFamille[0].id_categorie;
+        }
+
+        // axios.post(window.url + "/listePieces/updateFT", aEnvoyer)
+        //     .then(function (res) {
+        //         console.log('Succes Modification Fiche Technique')
+        //         console.log(res.data)
+        //     })
+        //     .catch(function (err) {
+        //         console.log("Error: ")
+        //         console.log(err)
+        //     });
+        window.alert("La pièce " + aEnvoyer.referenceToSend + " A bien été mise à jour")
+
+        //refreshPage();
+    }
+
     return (
         <div>
             <Navigation />
@@ -113,22 +189,58 @@ const Famille = () => {
                                             <tr key={nom_famille}>
                                                 <td>NOM</td>
                                                 <td>{nom_famille}</td>
-                                                <td></td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        name='nom_famille'
+                                                        value={nom_familleToSend}
+                                                        onChange={(e) =>
+                                                            setNom_familleToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                        }
+                                                    />
+                                                </td>
                                             </tr>
                                             <tr key={materiaux}>
                                                 <td>MATERIAUX</td>
                                                 <td>{materiaux}</td>
-                                                <td></td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        name='materiaux'
+                                                        value={materiauxToSend}
+                                                        onChange={(e) =>
+                                                            setMateriauxToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                        }
+                                                    />
+                                                </td>
                                             </tr>
                                             <tr key={id_fournisseur}>
                                                 <td>FOURNISSEUR</td>
                                                 <td>{nom_fournisseur}</td>
-                                                <td></td>
+                                                <td>
+                                                    <select name="choixFournisseur"
+                                                        id="selectChoixFournisseur"
+                                                        value={id_fournisseurToSend}
+                                                        onChange={fournisseurHandleChange}>
+                                                        {choixFournisseur.map(({ id_fournisseur, nom_fournisseur }) => (
+                                                            <option value={id_fournisseur}>{nom_fournisseur}</option>
+                                                        ))}
+                                                    </select>
+                                                </td>
                                             </tr>
                                             <tr key={id_categorie}>
                                                 <td>CATEGORIE</td>
                                                 <td>{nom_categorie}</td>
-                                                <td></td>
+                                                <td>
+                                                    <select name="choixCategorie"
+                                                        id="selectChoixCategorie"
+                                                        value={id_categorieToSend}
+                                                        onChange={catégorieHandleChange}>
+                                                        {choixCategorie.map(({ id_categorie, nom_categorie, pole }) => (
+                                                            <option value={id_categorie}>{nom_categorie + " - " + pole}</option>
+                                                        ))}
+                                                    </select>
+                                                </td>
                                             </tr>
                                             <tr key={pole}>
                                                 <td>POLE</td>
