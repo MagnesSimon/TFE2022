@@ -112,7 +112,7 @@ const Famille = () => {
                 console.log("Error: ")
                 console.log(err)
             });
-        window.alert("La pièce " + aEnvoyer.referenceToSend + " A bien été mise à jour")
+        window.alert("La famille " + aEnvoyer.id_familleToSend + " A bien été mise à jour")
 
         refreshPage();
     }

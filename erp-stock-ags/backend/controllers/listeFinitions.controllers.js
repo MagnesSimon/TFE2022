@@ -55,10 +55,10 @@ exports.updateById = (req, res) => {
         });
     }
 
-    const aUpdate = new ListeFamilles({
+    const aUpdate = new ListeFinition({
         id_finition: req.body.id_finitionToSend,
         nom_finition: req.body.nom_finitionToSend,
-        effetFinition: req.body.effet_finitionToSend,
+        effet_finition: req.body.effet_finitionToSend,
     });
 
     ListeFinition.updateById(aUpdate, (err, data) => {

@@ -40,7 +40,7 @@ ListeFinition.create = (newFinition, result) => {
 ListeFinition.getOneById = (id_finition, result) => {
     sql.query("SELECT finition.id_finition, " +
         "finition.nom_finition, " +
-        "finition.effet_finition, " +
+        "finition.effet_finition " +
 
         // FROM et JOIN
         "FROM finition as finition " +
