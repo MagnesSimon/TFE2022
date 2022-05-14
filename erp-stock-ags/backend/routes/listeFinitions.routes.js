@@ -4,4 +4,8 @@ module.exports = app => {
     app.get("/listeFinitions/", ListeFinition.findAll);
 
     app.post("/listeFinitions/addFinition", ListeFinition.create)
+
+    app.post("/listeFinitions/updateById", ListeFinition.updateById);
+
+    app.get("/listeFinitions/:id", ListeFinition.findOne);
 }

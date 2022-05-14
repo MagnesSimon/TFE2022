@@ -2,6 +2,7 @@ const sql = require("./db")
 
 // Constructor
 const ListeFinition = function (listeFinition) {
+    this.id_finition = listeFinition.id_finition;
     this.nom_finition = listeFinition.nom_finition;
     this.effet_finition = listeFinition.effet_finition;
 }
@@ -34,6 +35,32 @@ ListeFinition.create = (newFinition, result) => {
             result(null, { id: res.insertId, ...newFinition });
         }
     });
+}
+
+ListeFinition.getOneById = (id_finition, result) => {
+    sql.query("SELECT finition.id_finition, " +
+        "finition.nom_finition, " +
+        "finition.effet_finition, " +
+
+        // FROM et JOIN
+        "FROM finition as finition " +
+
+        // Condition
+        `WHERE finition.id_finition ='${id_finition}'`
+        , (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else result(null, res);
+        });
+}
+
+ListeFinition.updateById = (data, result) => {
+    sql.query("UPDATE `finition` " +
+        "SET `nom_finition` = '" + data.nom_finition + "' , " +
+        "`effet_finition` = '" + data.effet_finition + "'" +
+        " WHERE `id_finition` = " + "'" + data.id_finition + "'")
 }
 
 module.exports = ListeFinition

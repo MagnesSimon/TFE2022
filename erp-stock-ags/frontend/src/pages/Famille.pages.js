@@ -114,7 +114,7 @@ const Famille = () => {
             });
         window.alert("La pièce " + aEnvoyer.referenceToSend + " A bien été mise à jour")
 
-        //refreshPage();
+        refreshPage();
     }
 
     // Permet de reset les valeur des ToSend
