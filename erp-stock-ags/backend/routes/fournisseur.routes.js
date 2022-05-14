@@ -6,4 +6,8 @@ module.exports = app => {
     app.post("/fournisseur/addFournisseur/", Fournisseur.create);
 
     app.get("/localite/", Fournisseur.findAllLocalite);
+
+    app.post("/fournisseur/updateById", Fournisseur.updateById);
+
+    app.get("/fournisseur/:id", Fournisseur.findOne);
 }
