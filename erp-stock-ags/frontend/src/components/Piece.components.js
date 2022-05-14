@@ -217,175 +217,169 @@ const Piece = () => {
                                 hauteur,
                                 rayon,
                                 poids }) => (
-                                < div >
-                                    <table className='tableauFT' id={reference}>
-                                        <thead>
-                                            <tr>
-                                                <th>                </th>
-                                                <th>Valeure actuelle</th>
-                                                <th>Modification</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr key={reference} id={reference}>
-                                                <td>Référence</td>
-                                                <td>{reference}
-                                                </td>
-                                                <td>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Valeur Seuil</td>
-                                                <td>{valeur_seuil}</td>
-                                                <td>
-                                                    <input
-                                                        type="text"
-                                                        name='longueur'
-                                                        pattern="[0-9]*"
-                                                        value={valeur_seuilToSend}
-                                                        onChange={(e) =>
-                                                            setValeur_seuilToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                        }
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Famille : Nom</td>
-                                                <td>{nom_famille}</td>
-                                                <td>
-                                                    <select name="choixFamille"
-                                                        id="selectChoixFamille"
-                                                        value={id_familleToSend}
-                                                        onChange={familleHandleChange}>
-                                                        {choixFamille.map(({ id_famille, nom_famille, materiaux }) => (
-                                                            <option value={id_famille}>{nom_famille + " - " + materiaux}</option>
-                                                        ))}
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Matériaux</td>
-                                                <td>{materiaux}</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Finition : Nom</td>
-                                                <td>
-                                                    {nom_finition}
-                                                </td>
-                                                <td>
-                                                    <select name="choixFinition"
-                                                        id="selectChoixFinition"
-                                                        value={id_finitionToSend}
-                                                        onChange={finitionHandleChange}>
-                                                        {choixFinition.map(({ id_finition, nom_finition, effet_finition }) => (
-                                                            <option value={id_finition}>{nom_finition + " - " + effet_finition}</option>
-                                                        ))}
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Finition : Effet </td>
-                                                <td>{effet_finition}</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Longueur</td>
-                                                <td>{longueur}</td>
-                                                <td>
-                                                    <input
-                                                        type="text"
-                                                        name='longueur'
-                                                        pattern="[0-9]*"
-                                                        value={longueurToSend}
-                                                        onChange={(e) =>
-                                                            setLongueurToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                        }
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Largeur</td>
-                                                <td>{largeur}</td>
-                                                <td>
-                                                    <input
-                                                        type="text"
-                                                        name='largeur'
-                                                        pattern="[0-9]*"
-                                                        value={largeurToSend}
-                                                        onChange={(e) =>
-                                                            setLargeurToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                        }
-                                                    />
-                                                </td>
-                                            </tr>
+                                <table className='tableauFT' id={reference}>
+                                    <thead>
+                                        <tr>
+                                            <th>                </th>
+                                            <th>Valeure actuelle</th>
+                                            <th>Modification</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr key={reference} id={reference}>
+                                            <td>Référence</td>
+                                            <td>{reference}
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Valeur Seuil</td>
+                                            <td>{valeur_seuil}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='longueur'
+                                                    pattern="[0-9]*"
+                                                    value={valeur_seuilToSend}
+                                                    onChange={(e) =>
+                                                        setValeur_seuilToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Famille : Nom</td>
+                                            <td>{nom_famille}</td>
+                                            <td>
+                                                <select name="choixFamille"
+                                                    id="selectChoixFamille"
+                                                    value={id_familleToSend}
+                                                    onChange={familleHandleChange}>
+                                                    {choixFamille.map(({ id_famille, nom_famille, materiaux }) => (
+                                                        <option value={id_famille}>{nom_famille + " - " + materiaux}</option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Matériaux</td>
+                                            <td>{materiaux}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Finition : Nom</td>
+                                            <td>
+                                                {nom_finition}
+                                            </td>
+                                            <td>
+                                                <select name="choixFinition"
+                                                    id="selectChoixFinition"
+                                                    value={id_finitionToSend}
+                                                    onChange={finitionHandleChange}>
+                                                    {choixFinition.map(({ id_finition, nom_finition, effet_finition }) => (
+                                                        <option value={id_finition}>{nom_finition + " - " + effet_finition}</option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Finition : Effet </td>
+                                            <td>{effet_finition}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Longueur</td>
+                                            <td>{longueur}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='longueur'
+                                                    pattern="[0-9]*"
+                                                    value={longueurToSend}
+                                                    onChange={(e) =>
+                                                        setLongueurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Largeur</td>
+                                            <td>{largeur}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='largeur'
+                                                    pattern="[0-9]*"
+                                                    value={largeurToSend}
+                                                    onChange={(e) =>
+                                                        setLargeurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
 
-                                            <tr><td>Hauteur</td>
-                                                <td>{hauteur}</td>
-                                                <td>
-                                                    <input
-                                                        type="text"
-                                                        name='hauteur'
-                                                        pattern="[0-9]*"
-                                                        value={hauteurToSend}
-                                                        onChange={(e) =>
-                                                            setHauteurToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                        }
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rayon</td>
-                                                <td>{rayon}</td>
-                                                <td>
-                                                    <input
-                                                        type="text"
-                                                        name='longueur'
-                                                        pattern="[0-9]*"
-                                                        value={rayonToSend}
-                                                        onChange={(e) =>
-                                                            setRayonToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                        }
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Poids</td>
-                                                <td>{poids}</td>
-                                                <td>
-                                                    <input
-                                                        type="text"
-                                                        name='poids'
-                                                        pattern="[0-9]*"
-                                                        value={poidsToSend}
-                                                        onChange={(e) =>
-                                                            setPoidsToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                        }
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Catégorie</td>
-                                                <td>{nom_categorie}</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Pôle</td>
-                                                <td>{pole}</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fournisseur </td>
-                                                <td>{nom_fournisseur}</td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    {/* <Button id={reference} onClick={() => handleClickSend(reference)}>
-                                        ENREGISTER LES MODIFICATIONS
-                                    </Button> */}
-                                </div>
-
+                                        <tr><td>Hauteur</td>
+                                            <td>{hauteur}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='hauteur'
+                                                    pattern="[0-9]*"
+                                                    value={hauteurToSend}
+                                                    onChange={(e) =>
+                                                        setHauteurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rayon</td>
+                                            <td>{rayon}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='longueur'
+                                                    pattern="[0-9]*"
+                                                    value={rayonToSend}
+                                                    onChange={(e) =>
+                                                        setRayonToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Poids</td>
+                                            <td>{poids}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='poids'
+                                                    pattern="[0-9]*"
+                                                    value={poidsToSend}
+                                                    onChange={(e) =>
+                                                        setPoidsToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Catégorie</td>
+                                            <td>{nom_categorie}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pôle</td>
+                                            <td>{pole}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fournisseur </td>
+                                            <td>{nom_fournisseur}</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             ))}
                         </DialogContentText>
                     </DialogContent>

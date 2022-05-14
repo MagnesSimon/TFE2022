@@ -139,52 +139,50 @@ const Finition = () => {
                                 nom_finition,
                                 effet_finition,
                             }) => (
-                                < div >
-                                    <table className='tableauFT' id={"id_finition"}>
-                                        <thead>
-                                            <tr>
-                                                <th>                </th>
-                                                <th>Valeure actuelle</th>
-                                                <th>Modification</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr key={id_finitionToSend}>
-                                                <td>ID</td>
-                                                <td>{id_finition}</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr key={nom_finition}>
-                                                <td>NOM</td>
-                                                <td>{nom_finition}</td>
-                                                <td>
-                                                    <input
-                                                        type="text"
-                                                        name='nom_finition'
-                                                        value={nom_finitionToSend}
-                                                        onChange={(e) =>
-                                                            setNom_finitionToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                        }
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr key={effet_finition}>
-                                                <td>EFFET</td>
-                                                <td>{effet_finition}</td>
-                                                <td>
-                                                    <input
-                                                        type="text"
-                                                        name='effet_finition'
-                                                        value={effet_finitionToSend}
-                                                        onChange={(e) =>
-                                                            setEffet_finitionToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                        }
-                                                    />
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <table className='tableauFT' id={"id_finition"}>
+                                    <thead>
+                                        <tr>
+                                            <th>                </th>
+                                            <th>Valeure actuelle</th>
+                                            <th>Modification</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>{id_finition}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NOM</td>
+                                            <td>{nom_finition}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='nom_finition'
+                                                    value={nom_finitionToSend}
+                                                    onChange={(e) =>
+                                                        setNom_finitionToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>EFFET</td>
+                                            <td>{effet_finition}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='effet_finition'
+                                                    value={effet_finitionToSend}
+                                                    onChange={(e) =>
+                                                        setEffet_finitionToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             ))}
                         </DialogContentText>
                     </DialogContent>

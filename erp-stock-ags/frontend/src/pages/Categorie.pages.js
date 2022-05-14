@@ -169,7 +169,7 @@ const Categorie = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>EFFET</td>
+                                            <td>POLE</td>
                                             <td>{pole}</td>
                                             <td>
                                                 <input
