@@ -28,7 +28,7 @@ const Finition = () => {
     const [nom_finitionToSend, setNom_finitionToSend] = useState("")
     const [effet_finitionToSend, setEffet_finitionToSend] = useState("")
 
-    // Fiche famille modifiée à envoyée
+    // Fiche finition modifiée à envoyée
     const aEnvoyer = {
         id_finitionToSend,
         nom_finitionToSend,
@@ -36,7 +36,7 @@ const Finition = () => {
     }
 
     // Le useEffect se joue quand le composant est monté 
-    // Requete pour récupérer la liste des pièces
+    // Requete pour récupérer la liste des finitions
     useEffect(() => {
         axios.get(window.url + "/listeFinitions")
             .then((res) => setFinitions(res.data))

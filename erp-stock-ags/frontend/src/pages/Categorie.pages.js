@@ -2,16 +2,95 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Navigation from '../components/Navigation.components';
 import { NavLink } from 'react-router-dom';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
 
 
 const Categorie = () => {
 
-    const [categorie, setCategorie] = useState([])
+    function refreshPage() {
+        window.location.reload();
+    }
 
+    // Contient la liste des catégories
+    const [categorie, setCategorie] = useState([])
+    // Va définir l'état visible de la boite de dialogue
+    const [open, setOpen] = React.useState(false);
+    // Id de la famille à transmettre à la fiche famille
+    const [ficheCategorie, setFicheCategorie] = useState([]);
+
+    // Variable à envoyer vers la DB pour modification
+    const [id_categorieToSend, setId_categorieToSend] = useState("")
+    const [nom_categorieToSend, setNom_categorieToSend] = useState("")
+    const [poleToSend, setPoleToSend] = useState("")
+
+    // Fiche categorie modifiée à envoyée
+    const aEnvoyer = {
+        id_categorieToSend,
+        nom_categorieToSend,
+        poleToSend,
+    }
+
+    // Le useEffect se joue quand le composant est monté 
+    // Requete pour récupérer la liste des catégorie
     useEffect(() => {
         axios.get(window.url + "/listeCategories/")
             .then((res) => setCategorie(res.data))
     }, [])
+
+    // Fonction pour ouvrir la boîte de dialogue
+    const handleClickOpen = (v) => {
+        setOpen(true);
+        axios.get(window.url + "/listeCategories/" + v)
+            .then((res) => setFicheCategorie(res.data))
+    }
+
+    // Fonction pour fermer la boîte de dialogue
+    const handleClose = () => {
+        // Remise à vide des valeurs ToSend à la fermeture
+        resetToSend()
+        setOpen(false);
+    };
+    // Permet de reset les valeur des ToSend
+    const resetToSend = () => {
+        // Remise à vide des ToSend
+        setId_categorieToSend("")
+        setNom_categorieToSend("")
+        setPoleToSend("")
+    }
+
+    // Pour envoyer vers la DB
+    const sendToAPI = () => {
+        console.log("aEnvoyer", aEnvoyer)
+        // Remplir les champ laissé vide
+        if (id_categorieToSend == "") {
+            aEnvoyer.id_categorieToSend = ficheCategorie[0].id_categorie;
+        }
+        if (nom_categorieToSend == "") {
+            aEnvoyer.nom_categorieToSend = ficheCategorie[0].nom_categorie;
+        }
+        if (poleToSend == "") {
+            aEnvoyer.poleToSend = ficheCategorie[0].pole;
+        }
+
+        axios.post(window.url + "/listeCategories/updateById", aEnvoyer)
+            .then(function (res) {
+                console.log('Succes Modification Fiche Catégorie')
+                console.log(res.data)
+            })
+            .catch(function (err) {
+                console.log("Error: ")
+                console.log(err)
+            });
+        window.alert("La catégorie " + aEnvoyer.id_categorieToSend + " A bien été mise à jour")
+
+        refreshPage();
+    }
+
 
     return (
         <div>
@@ -40,7 +119,7 @@ const Categorie = () => {
                     */}
                         {categorie.map(({ id_categorie, nom_categorie, pole }) => (
                             <tr key={id_categorie}>
-                                <td>{id_categorie}</td>
+                                <td onClick={() => handleClickOpen(id_categorie)}>{id_categorie}</td>
                                 <td>{nom_categorie}</td>
                                 <td>{pole}</td>
                             </tr>
@@ -55,57 +134,57 @@ const Categorie = () => {
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            {ficheFinition.map(({
-                                id_finition,
-                                nom_finition,
-                                effet_finition,
+                            {ficheCategorie.map(({
+                                id_categorie,
+                                nom_categorie,
+                                pole,
                             }) => (
-                                < div >
-                                    <table className='tableauFT' id={"id_finition"}>
-                                        <thead>
-                                            <tr>
-                                                <th>                </th>
-                                                <th>Valeure actuelle</th>
-                                                <th>Modification</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr key={id_finitionToSend}>
-                                                <td>ID</td>
-                                                <td>{id_finition}</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr key={nom_finition}>
-                                                <td>NOM</td>
-                                                <td>{nom_finition}</td>
-                                                <td>
-                                                    <input
-                                                        type="text"
-                                                        name='nom_finition'
-                                                        value={nom_finitionToSend}
-                                                        onChange={(e) =>
-                                                            setNom_finitionToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                        }
-                                                    />
-                                                </td>
-                                            </tr>
-                                            <tr key={effet_finition}>
-                                                <td>EFFET</td>
-                                                <td>{effet_finition}</td>
-                                                <td>
-                                                    <input
-                                                        type="text"
-                                                        name='effet_finition'
-                                                        value={effet_finitionToSend}
-                                                        onChange={(e) =>
-                                                            setEffet_finitionToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                        }
-                                                    />
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+
+                                <table className='tableauFT' id={"id_categorie"}>
+                                    <thead>
+                                        <tr>
+                                            <th>                </th>
+                                            <th>Valeure actuelle</th>
+                                            <th>Modification</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>{id_categorie}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NOM</td>
+                                            <td>{nom_categorie}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='nom_categorie'
+                                                    value={nom_categorieToSend}
+                                                    onChange={(e) =>
+                                                        setNom_categorieToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>EFFET</td>
+                                            <td>{pole}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='pole'
+                                                    value={poleToSend}
+                                                    onChange={(e) =>
+                                                        setPoleToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
                             ))}
                         </DialogContentText>
                     </DialogContent>
