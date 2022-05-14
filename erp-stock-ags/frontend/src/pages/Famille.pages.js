@@ -59,7 +59,7 @@ const Famille = () => {
     // Fonction pour fermer la boîte de dialogue
     const handleClose = () => {
         // Remise à vide des valeurs ToSend à la fermeture
-        // resetToSend()
+        resetToSend()
         setOpen(false);
     };
 
@@ -103,18 +103,28 @@ const Famille = () => {
             aEnvoyer.id_categorieToSend = ficheFamille[0].id_categorie;
         }
 
-        // axios.post(window.url + "/listePieces/updateFT", aEnvoyer)
-        //     .then(function (res) {
-        //         console.log('Succes Modification Fiche Technique')
-        //         console.log(res.data)
-        //     })
-        //     .catch(function (err) {
-        //         console.log("Error: ")
-        //         console.log(err)
-        //     });
+        axios.post(window.url + "/listeFamilles/updateById", aEnvoyer)
+            .then(function (res) {
+                console.log('Succes Modification Fiche Technique')
+                console.log(res.data)
+            })
+            .catch(function (err) {
+                console.log("Error: ")
+                console.log(err)
+            });
         window.alert("La pièce " + aEnvoyer.referenceToSend + " A bien été mise à jour")
 
         //refreshPage();
+    }
+
+    // Permet de reset les valeur des ToSend
+    const resetToSend = () => {
+        // Remise à vide des ToSend
+        setId_familleToSend("")
+        setNom_familleToSend("")
+        setMateriauxToSend("")
+        setId_fournisseurToSend("")
+        setId_categorieToSend("")
     }
 
     return (
@@ -181,7 +191,7 @@ const Famille = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr key={id_famille}>
+                                            <tr key={id_familleToSend}>
                                                 <td>ID</td>
                                                 <td>{id_famille}</td>
                                                 <td></td>

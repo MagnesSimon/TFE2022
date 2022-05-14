@@ -75,10 +75,10 @@ ListeFamilles.getOneById = (id_famille, result) => {
 
 ListeFamilles.updateById = (data, result) => {
     sql.query("UPDATE `famille` " +
-        "SET `nom_famille` = " + data.nom_famille + " , " +
-        "`materieaux` = " + data.materiaux + " , " +
-        "`id_fournisseur` = " + data.id_fournisseur + " , " +
-        "`id_categorie` = " + data.id_categorie +
+        "SET `nom_famille` = '" + data.nom_famille + "' , " +
+        "`materiaux` = '" + data.materiaux + "' , " +
+        "`id_fournisseur` = '" + data.id_fournisseur + "' , " +
+        "`id_categorie` = '" + data.id_categorie + "'" +
         " WHERE `id_famille` = " + "'" + data.id_famille + "'")
 }
 
