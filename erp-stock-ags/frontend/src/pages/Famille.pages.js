@@ -130,39 +130,37 @@ const Famille = () => {
         <div>
             <Navigation />
             <div>
-                <div>
-                    <NavLink to='/nouvelleFamille' className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                        <li>Ajouter une famille</li>
-                    </NavLink>
-                </div>
-                {/* Création du tableau des pièces */}
-                <table className='tableau'>
-                    <thead>
-                        {/* Colonne faisant office de titre */}
-                        <tr>
-                            <th>Id famille</th>
-                            <th>Nom famille</th>
-                            <th>Matériaux</th>
-                            <th>Fournisseur</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/* Les datas sont traitées. 
+                <NavLink to='/nouvelleFamille' className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                    <li>Ajouter une famille</li>
+                </NavLink>
+            </div>
+            {/* Création du tableau des pièces */}
+            <table className='tableau'>
+                <thead>
+                    {/* Colonne faisant office de titre */}
+                    <tr>
+                        <th>Id famille</th>
+                        <th>Nom famille</th>
+                        <th>Matériaux</th>
+                        <th>Fournisseur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {/* Les datas sont traitées. 
                     Chaque élément de l'objet pièce mis dans une case de la ligne
                     Une fois que l'on a traité toutes les données d'une pièce,
                     on créer une ligne pour la pièce suivante
                     */}
-                        {famille.map(({ id_famille, nom_famille, materiaux, nom_fournisseur }) => (
-                            <tr key={id_famille}>
-                                <td onClick={() => handleClickOpen(id_famille)}>{id_famille}</td>
-                                <td>{nom_famille}</td>
-                                <td>{materiaux}</td>
-                                <td>{nom_fournisseur}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+                    {famille.map(({ id_famille, nom_famille, materiaux, nom_fournisseur }) => (
+                        <tr key={id_famille}>
+                            <td onClick={() => handleClickOpen(id_famille)}>{id_famille}</td>
+                            <td>{nom_famille}</td>
+                            <td>{materiaux}</td>
+                            <td>{nom_fournisseur}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
 
             <Dialog className='dialog' open={open} onClose={handleClose}>
                 <DialogTitle>

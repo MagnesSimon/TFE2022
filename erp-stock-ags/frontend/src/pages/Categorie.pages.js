@@ -100,104 +100,100 @@ const Categorie = () => {
                     <li>Ajouter une catégorie</li>
                 </NavLink>
             </div>
-            <div>
-                {/* Création du tableau des pièces */}
-                <table className='tableau'>
-                    <thead>
-                        {/* Colonne faisant office de titre */}
-                        <tr>
-                            <th>Id catégorie</th>
-                            <th>Nom catégorie</th>
-                            <th>Pôle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/* Les datas sont traitées. 
+            {/* Création du tableau des pièces */}
+            <table className='tableau'>
+                <thead>
+                    {/* Colonne faisant office de titre */}
+                    <tr>
+                        <th>Id catégorie</th>
+                        <th>Nom catégorie</th>
+                        <th>Pôle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {/* Les datas sont traitées. 
                     Chaque élément de l'objet pièce mis dans une case de la ligne
                     Une fois que l'on a traité toutes les données d'une pièce,
                     on créer une ligne pour la pièce suivante
                     */}
-                        {categorie.map(({ id_categorie, nom_categorie, pole }) => (
-                            <tr key={id_categorie}>
-                                <td onClick={() => handleClickOpen(id_categorie)}>{id_categorie}</td>
-                                <td>{nom_categorie}</td>
-                                <td>{pole}</td>
-                            </tr>
+                    {categorie.map(({ id_categorie, nom_categorie, pole }) => (
+                        <tr key={id_categorie}>
+                            <td onClick={() => handleClickOpen(id_categorie)}>{id_categorie}</td>
+                            <td>{nom_categorie}</td>
+                            <td>{pole}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <Dialog className='dialog' open={open} onClose={handleClose}>
+                <DialogTitle>
+                    Fiche famille
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        {ficheCategorie.map(({
+                            id_categorie,
+                            nom_categorie,
+                            pole,
+                        }) => (
+
+                            <table className='tableauFT' id={"id_categorie"}>
+                                <thead>
+                                    <tr>
+                                        <th>                </th>
+                                        <th>Valeure actuelle</th>
+                                        <th>Modification</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>{id_categorie}</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>NOM</td>
+                                        <td>{nom_categorie}</td>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                name='nom_categorie'
+                                                value={nom_categorieToSend}
+                                                onChange={(e) =>
+                                                    setNom_categorieToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                }
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>POLE</td>
+                                        <td>{pole}</td>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                name='pole'
+                                                value={poleToSend}
+                                                onChange={(e) =>
+                                                    setPoleToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                }
+                                            />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
                         ))}
-                    </tbody>
-                </table>
-            </div>
-            <div>
-                <Dialog className='dialog' open={open} onClose={handleClose}>
-                    <DialogTitle>
-                        Fiche famille
-                    </DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            {ficheCategorie.map(({
-                                id_categorie,
-                                nom_categorie,
-                                pole,
-                            }) => (
-
-                                <table className='tableauFT' id={"id_categorie"}>
-                                    <thead>
-                                        <tr>
-                                            <th>                </th>
-                                            <th>Valeure actuelle</th>
-                                            <th>Modification</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>ID</td>
-                                            <td>{id_categorie}</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>NOM</td>
-                                            <td>{nom_categorie}</td>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    name='nom_categorie'
-                                                    value={nom_categorieToSend}
-                                                    onChange={(e) =>
-                                                        setNom_categorieToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                    }
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>POLE</td>
-                                            <td>{pole}</td>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    name='pole'
-                                                    value={poleToSend}
-                                                    onChange={(e) =>
-                                                        setPoleToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                    }
-                                                />
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                            ))}
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose} color="primary">
-                            Fermer
-                        </Button>
-                        <Button onClick={sendToAPI} color="primary" autoFocus>
-                            Valider
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-            </div>
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Fermer
+                    </Button>
+                    <Button onClick={sendToAPI} color="primary" autoFocus>
+                        Valider
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };
