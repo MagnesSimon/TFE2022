@@ -38,6 +38,10 @@ const Navigation = () => {
                     <NavLink to="/fournisseur" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Fournisseur</li>
                     </NavLink>
+                    {/* Page de connexion TEMP  */}
+                    <NavLink to="/connexion" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                        <li>Connexion</li>
+                    </NavLink>
                     {/* Page de test  */}
                     <NavLink to="/testzone" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Zone test</li>

@@ -14,6 +14,7 @@ import NouvelleFinition from './pages/NouvelleFinition.pages';
 import NouvelleCategorie from './pages/NouvelleCategorie.pages';
 import NouveauFournisseur from './pages/NouveauFournisseur.pages';
 import NouvelleFamille from './pages/NouvelleFamille.pages';
+import Connexion from './components/connexion.components';
 
 const App = () => {
   return (
@@ -25,7 +26,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         {/* Les routes permettent de définir la page que l'on affiche en fonction de son url */}
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Connexion />} />
         <Route path='/listepieces' element={<ListePieces />} />
         <Route path='/familles' element={<Famille />} />
         <Route path='/penurie' element={<Penuire />} />
@@ -39,6 +40,7 @@ const App = () => {
         <Route path='/nouvelleCategorie' element={<NouvelleCategorie />} />
         <Route path='/nouveauFournisseur' element={<NouveauFournisseur />} />
         <Route path='/nouvelleFamille' element={<NouvelleFamille />} />
+        <Route path='/connexion' element={<Home />} />
         <Route path='*' element={<Home />} />
       </Routes>
     </BrowserRouter>

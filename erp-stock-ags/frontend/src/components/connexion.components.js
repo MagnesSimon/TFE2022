@@ -1,8 +1,9 @@
 import axios from "axios";
 import React from "react";
-import '../../global.js'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navigation from '../components/Navigation.components';
+
 
 class Connexion extends React.Component {
 
@@ -64,6 +65,7 @@ class Connexion extends React.Component {
 
     render() {
         return <div className={'row-wrapper'}>
+            <Navigation />
             <div className="column-wrapper connexion">
 
                 <ToastContainer />
