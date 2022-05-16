@@ -20,6 +20,7 @@ Pour y accèder:
    * Mieux que fetch car il transforme le JSON directement en quelque chose de lisible
 * npm install @material-ui/core
 * npm install dialog-size
+* npm install --save react-toastify
 
 ## Fonctionnement
 1. Dans le dossier "config":
