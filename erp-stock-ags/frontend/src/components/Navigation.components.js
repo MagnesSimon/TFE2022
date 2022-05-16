@@ -1,55 +1,95 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 /*
 Cette fonction permet de créer une barre de navigation qui permet de naviguer entre les différentes pages
 */
 const Navigation = () => {
-    return (
-        <div>
-            {/* avec minuscule car dans le scss défini comme tel */}
-            <div className="navigation">
-                <ul>
-                    {/* Page Home */}
-                    <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                        <li>Home</li>
-                    </NavLink>
-                    {/* Page de la liste des pièces */}
-                    <NavLink to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                        <li>Pièces</li>
-                    </NavLink>
-                    {/* Page de la liste des pièces en pénurie */}
-                    <NavLink to="/penurie" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                        <li>Pénurie</li>
-                    </NavLink>
-                    {/* Page de la liste des familles */}
-                    <NavLink to="/familles" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                        <li>Familles</li>
-                    </NavLink>
-                    {/* Page de la liste des finition */}
-                    <NavLink to="/finitions" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                        <li>Finitions</li>
-                    </NavLink>
-                    {/* Page de la liste des catégorie */}
-                    <NavLink to="/categorie" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                        <li>Catégorie</li>
-                    </NavLink>
-                    {/* Page de la liste des fournisseurs */}
-                    <NavLink to="/fournisseur" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                        <li>Fournisseur</li>
-                    </NavLink>
-                    {/* Page de connexion TEMP  */}
-                    <NavLink to="/connexion" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                        <li>Connexion</li>
-                    </NavLink>
-                    {/* Page de test  */}
-                    <NavLink to="/testzone" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                        <li>Zone test</li>
-                    </NavLink>
-                </ul>
+
+    const [utilisateur, setUtilisateur] = useState([localStorage.getItem("utilisateur")])
+    const [profil, setProfil] = useState(localStorage.getItem("profil"))
+
+    const [log, setLog] = useState('')
+
+    console.log('user dans nav', utilisateur)
+    console.log("profil", profil)
+
+    const isLog = () => {
+        setUtilisateur(localStorage.getItem("utilisateur"))
+        if (utilisateur) {
+            console.log("true user", utilisateur)
+        }
+        else {
+            console.log("false utilisateur", utilisateur)
+        }
+    }
+
+    if (profil == 1) {
+        return (
+            < div >
+                {/* avec minuscule car dans le scss défini comme tel */}
+                < div className="navigation" >
+                    <ul>
+                        {/* Page de connexion TEMP  */}
+                        <NavLink to="/connexion" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Connexion</li>
+                        </NavLink>
+                        {/* Page Home */}
+                        <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Home</li>
+                        </NavLink>
+                        {/* Page de la liste des pièces */}
+                        <NavLink to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Pièces</li>
+                        </NavLink>
+                        {/* Page de la liste des pièces en pénurie */}
+                        <NavLink to="/penurie" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Pénurie</li>
+                        </NavLink>
+                        {/* Page de la liste des familles */}
+                        <NavLink to="/familles" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Familles</li>
+                        </NavLink>
+                        {/* Page de la liste des finition */}
+                        <NavLink to="/finitions" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Finitions</li>
+                        </NavLink>
+                        {/* Page de la liste des catégorie */}
+                        <NavLink to="/categorie" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Catégorie</li>
+                        </NavLink>
+                        {/* Page de la liste des fournisseurs */}
+                        <NavLink to="/fournisseur" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Fournisseur</li>
+                        </NavLink>
+                        {/* Page de test  */}
+                        <NavLink to="/testzone" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Zone test</li>
+                        </NavLink>
+                    </ul>
+                </div >
+            </div >
+        );
+    }
+    else {
+        return (
+            < div >
+                {/* avec minuscule car dans le scss défini comme tel */}
+                < div className="navigation" >
+                    <ul>
+                        {/* Page de connexion TEMP  */}
+                        <NavLink to="/connexion" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Connexion</li>
+                        </NavLink>
+                        {/* Page Home */}
+                        <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Home</li>
+                        </NavLink>
+                    </ul>
+                </div>
             </div>
-        </div>
-    );
+        )
+    }
 };
 
 export default Navigation;

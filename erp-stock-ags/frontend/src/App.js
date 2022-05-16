@@ -17,7 +17,14 @@ import NouvelleFamille from './pages/NouvelleFamille.pages';
 import Connexion from './components/connexion.components';
 
 const App = () => {
+  if (localStorage.getItem('utilisateur') == 0) {
+    return
+  }
   return (
+    // Condition pour voir si on est connecté
+    // if (localStorage.getItem('utilisateur') == 0){
+
+    // }
     /*
     Browser router va permettre le routage des différentes pages du site.
     En fonction du path indiqué dans l'url, l'application nous affichera une certaine page.
@@ -26,7 +33,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         {/* Les routes permettent de définir la page que l'on affiche en fonction de son url */}
-        <Route path='/' element={<Connexion />} />
+        <Route path='/' element={<Home />} />
         <Route path='/listepieces' element={<ListePieces />} />
         <Route path='/familles' element={<Famille />} />
         <Route path='/penurie' element={<Penuire />} />
@@ -40,7 +47,7 @@ const App = () => {
         <Route path='/nouvelleCategorie' element={<NouvelleCategorie />} />
         <Route path='/nouveauFournisseur' element={<NouveauFournisseur />} />
         <Route path='/nouvelleFamille' element={<NouvelleFamille />} />
-        <Route path='/connexion' element={<Home />} />
+        <Route path='/connexion' element={<Connexion />} />
         <Route path='*' element={<Home />} />
       </Routes>
     </BrowserRouter>

@@ -42,7 +42,7 @@ const Fournisseur = () => {
         id_localiteToSend
     }
 
-    // Permet de récupérer la liste des fournisseurdepuis l'API
+    // Permet de récupérer la liste des fournisseur depuis l'API
     useEffect(() => {
         axios.get(window.url + "/fournisseur/")
             .then((res) => setFournisseur(res.data))

@@ -1,89 +1,97 @@
-import axios from "axios";
-import React from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect, useState } from 'react';
 import Navigation from '../components/Navigation.components';
+import axios from 'axios';
+import "animate.css/animate.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast, cssTransition } from "react-toastify";
 
 
-class Connexion extends React.Component {
+const Connexion = () => {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            posts: [],
-            username: '',
-            mdp: '',
-            connecte: false
-        }
-        this.handleChange = this.handleChange.bind(this)
-    }
+    // Constient la liste des utilisateurs
+    const [listeUtilisateur, setListeUtilisateur] = useState([])
+    // Contient les infos que l'utilisateur encode
+    const [nom_utilisateur, setNom_utilisateur] = useState('')
+    const [mot_de_passe, setMot_de_passe] = useState('')
+    // Contient l'état de connexion
+    const [connecte, setConnecte] = useState();
+    // définit sur false au chargement
 
-    handleChange(e) {
-        const name = e.target.name
-        this.setState({
-            [name]: e.target.value
+    // Permet de récupérer la liste des utilisateurs depuis l'API
+    useEffect(() => {
+        axios.get(window.url + "/listeUtilisateur")
+            .then((res) => setListeUtilisateur(res.data))
+    }, [])
+
+    const bounce = cssTransition({
+        enter: "animate__animated animate__bounceIn",
+        exit: "animate__animated animate__bounceOut"
+    });
+
+    const seConnecter = () => {
+        setConnecte(false)
+
+
+        listeUtilisateur.find((user) => {
+            if (nom_utilisateur == user.nom_utilisateur && mot_de_passe == user.mot_de_passe) {
+                setConnecte(true)
+                localStorage.setItem("utilisateur", JSON.stringify(user));
+                localStorage.setItem("profil", user.id_profil);
+                toast.dark("Vous êtes connecté", {
+                    transition: bounce
+                });
+                console.log("Liste: ", listeUtilisateur)
+                console.log("Username:", nom_utilisateur)
+                console.log("Mdp :", mot_de_passe)
+            }
         })
+
+        if (connecte == false) {
+            alert("Identifiants incorrects")
+        }
     }
 
 
-    seConnecter = () => {
-        axios.get(window.url + '/listeUtilisateur')
-            .then(res => {
-                const posts = res.data.map(obj => ({
-                    id_utilisateur: obj.id_utilisateur,
-                    nom_utilisateur: obj.nom_utilisateur,
-                    mot_de_passe: obj.mot_de_passe,
-                    prenom_utilisateur: obj.prenom_utilisateur,
-                    nom_famille_utilisateur: obj.nom_famille_utilisateur,
-                    telephone_utilisateur: obj.telephone_utilisateur,
-                    id_profil: obj.id_profil
-                }))
-                console.log(posts)
-                posts.find((post) => {
-                    if (this.state.username == post.username && this.state.mot_de_passe == post.mot_de_passe) {
-                        this.state.connecte = true
-                        localStorage.setItem("utilisateur", JSON.stringify(post));
-                        //localStorage.setItem("admin", JSON.stringify(post.admin));
 
-                        toast("Vous êtes maintenant connecté");
-                        this.props.history.push('/listePieces')
-                        window.location.reload(false);
-
-                        console.log('utilisateur: ', localStorage.getItem('utilisateur'))
-                        //console.log('admin: ', localStorage.getItem('admin'))
-                    }
-                })
-                if (this.state.connecte === false) {
-                    alert("Mauvaise username/mauvais mot de passe.")
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-
-
-    render() {
-        return <div className={'row-wrapper'}>
+    return (
+        <div>
             <Navigation />
-            <div className="column-wrapper connexion">
-
-                <ToastContainer />
-                <h2>Se connecter</h2>
-                <div id="contact-form">
-                    <label htmlFor="username">username :</label>
-                    <input type="texte" id="username" name="username" value={this.state.username} onChange={this.handleChange} required />
-                </div>
-                <div>
-                    <label htmlFor="mot_de_passe">Mot de passe :</label>
-                    <input type="password" id="mot_de_passe" name="mot_de_passe" value={this.state.mot_de_passe} onChange={this.handleChange} required />
-                </div>
-                <div>
-                    <button className='btn btn-primary' id="connection" name="connection" onClick={this.seConnecter}>Se connecter</button>
-                </div>
+            <ToastContainer />
+            <h1>Connexion</h1>
+            <div id="contact-form">
+                <label >Nom d'utilisateur :</label>
+                <input
+                    type="texte"
+                    id="username"
+                    name="username"
+                    value={nom_utilisateur}
+                    onChange={(e) =>
+                        setNom_utilisateur((v) =>
+                            (e.target.validity.valid ? e.target.value : v))}
+                    required />
             </div>
+            <div>
+                <label htmlFor="mot_de_passe">Mot de passe :</label>
+                <input
+                    type="password"
+                    id="mot_de_passe"
+                    name="mot_de_passe"
+                    value={mot_de_passe}
+                    onChange={(e) =>
+                        setMot_de_passe((v) =>
+                            (e.target.validity.valid ? e.target.value : v))}
+                    required />
+            </div>
+            <div>
+                <button
+                    className='btn btn-primary'
+                    id="connection"
+                    name="connection"
+                    onClick={seConnecter}>Se connecter</button>
+            </div>
+
         </div>
-    }
-}
+    );
+};
 
 export default Connexion
