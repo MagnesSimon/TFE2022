@@ -103,4 +103,4 @@ Utilisateur.updateById = (data, result) => {
 //     });
 // };
 
-module.exports = User;
+module.exports = Utilisateur;

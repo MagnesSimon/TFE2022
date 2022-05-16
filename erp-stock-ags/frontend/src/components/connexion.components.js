@@ -1,11 +1,8 @@
 import axios from "axios";
 import React from "react";
 import '../../global.js'
-import { Form, Button } from 'react-bootstrap';
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { NavigationBarCO, NavigationBarNOCO } from "../navbar/NavigationBar";
 
 class Connexion extends React.Component {
 
@@ -13,9 +10,9 @@ class Connexion extends React.Component {
         super(props)
         this.state = {
             posts: [],
-            mail: '',
+            username: '',
             mdp: '',
-            connecté: false
+            connecte: false
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -29,26 +26,34 @@ class Connexion extends React.Component {
 
 
     seConnecter = () => {
-        axios.get(window.url + '/user')
+        axios.get(window.url + '/listeUtilisateur')
             .then(res => {
-                const posts = res.data.map(obj => ({ id: obj.id, nom: obj.nom, prenom: obj.prenom, mail: obj.mail, tel: obj.tel, mdp: obj.mdp, admin: obj.admin }))
+                const posts = res.data.map(obj => ({
+                    id_utilisateur: obj.id_utilisateur,
+                    nom_utilisateur: obj.nom_utilisateur,
+                    mot_de_passe: obj.mot_de_passe,
+                    prenom_utilisateur: obj.prenom_utilisateur,
+                    nom_famille_utilisateur: obj.nom_famille_utilisateur,
+                    telephone_utilisateur: obj.telephone_utilisateur,
+                    id_profil: obj.id_profil
+                }))
                 console.log(posts)
                 posts.find((post) => {
-                    if (this.state.mail == post.mail && this.state.mdp == post.mdp) {
-                        this.state.connecté = true
-                        localStorage.setItem("user", JSON.stringify(post));
-                        localStorage.setItem("admin", JSON.stringify(post.admin));
+                    if (this.state.username == post.username && this.state.mot_de_passe == post.mot_de_passe) {
+                        this.state.connecte = true
+                        localStorage.setItem("utilisateur", JSON.stringify(post));
+                        //localStorage.setItem("admin", JSON.stringify(post.admin));
 
                         toast("Vous êtes maintenant connecté");
-                        this.props.history.push('/home')
+                        this.props.history.push('/listePieces')
                         window.location.reload(false);
 
-                        console.log('user: ', localStorage.getItem('user'))
-                        console.log('admin: ', localStorage.getItem('admin'))
+                        console.log('utilisateur: ', localStorage.getItem('utilisateur'))
+                        //console.log('admin: ', localStorage.getItem('admin'))
                     }
                 })
-                if (this.state.connecté === false) {
-                    alert("Mauvaise adresse Email/mauvais mot de passe.")
+                if (this.state.connecte === false) {
+                    alert("Mauvaise username/mauvais mot de passe.")
                 }
             })
             .catch(error => {
@@ -64,12 +69,12 @@ class Connexion extends React.Component {
                 <ToastContainer />
                 <h2>Se connecter</h2>
                 <div id="contact-form">
-                    <label htmlFor="Mail">E-mail :</label>
-                    <input type="texte" id="mail" name="mail" value={this.state.mail} onChange={this.handleChange} required />
+                    <label htmlFor="username">username :</label>
+                    <input type="texte" id="username" name="username" value={this.state.username} onChange={this.handleChange} required />
                 </div>
                 <div>
-                    <label htmlFor="Mdp">Mot de passe :</label>
-                    <input type="password" id="mdp" name="mdp" value={this.state.mdp} onChange={this.handleChange} required />
+                    <label htmlFor="mot_de_passe">Mot de passe :</label>
+                    <input type="password" id="mot_de_passe" name="mot_de_passe" value={this.state.mot_de_passe} onChange={this.handleChange} required />
                 </div>
                 <div>
                     <button className='btn btn-primary' id="connection" name="connection" onClick={this.seConnecter}>Se connecter</button>
