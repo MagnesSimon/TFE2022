@@ -79,7 +79,14 @@ ListeFamilles.updateById = (data, result) => {
         "`materiaux` = '" + data.materiaux + "' , " +
         "`id_fournisseur` = '" + data.id_fournisseur + "' , " +
         "`id_categorie` = '" + data.id_categorie + "'" +
-        " WHERE `id_famille` = " + "'" + data.id_famille + "'")
+        " WHERE `id_famille` = " + "'" + data.id_famille + "'"
+        , (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else result(null, res);
+        });
 }
 
 module.exports = ListeFamilles
