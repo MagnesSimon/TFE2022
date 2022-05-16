@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Navigation from '../components/Navigation.components';
 import axios from 'axios';
+import "animate.css/animate.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast, cssTransition } from "react-toastify";
+
+
 
 const Home = () => {
 
@@ -19,16 +24,25 @@ const Home = () => {
             .then((res) => setListeUtilisateur(res.data))
     }, [])
 
+    const bounce = cssTransition({
+        enter: "animate__animated animate__bounceIn",
+        exit: "animate__animated animate__bounceOut"
+    });
+
     const seConnecter = () => {
         setConnecte(false)
-        console.log("Liste: ", listeUtilisateur)
-        console.log("Username:", nom_utilisateur)
-        console.log("Mdp :", mot_de_passe)
+
 
         listeUtilisateur.find((user) => {
             if (nom_utilisateur == user.nom_utilisateur && mot_de_passe == user.mot_de_passe) {
                 setConnecte(true)
-                alert("Connecté")
+                localStorage.setItem("utilisateur", JSON.stringify(user));
+                toast.dark("Vous êtes connecté", {
+                    transition: bounce
+                });
+                console.log("Liste: ", listeUtilisateur)
+                console.log("Username:", nom_utilisateur)
+                console.log("Mdp :", mot_de_passe)
             }
         })
 
@@ -42,6 +56,7 @@ const Home = () => {
     return (
         <div>
             <Navigation />
+            <ToastContainer />
             <h1>Home</h1>
             <h2>Se connecter</h2>
             <div id="contact-form">
