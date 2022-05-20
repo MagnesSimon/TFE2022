@@ -4,6 +4,7 @@ import axios from 'axios';
 import "animate.css/animate.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast, cssTransition } from "react-toastify";
+import { Navigate } from 'react-router-dom';
 
 
 const Connexion = () => {
@@ -40,15 +41,13 @@ const Connexion = () => {
                 toast.dark("Vous êtes connecté", {
                     transition: bounce
                 });
-                console.log("Liste: ", listeUtilisateur)
-                console.log("Username:", nom_utilisateur)
-                console.log("Mdp :", mot_de_passe)
             }
         })
 
         if (connecte == false) {
             alert("Identifiants incorrects")
         }
+        window.location.reload(false);
     }
 
 
