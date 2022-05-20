@@ -16,7 +16,7 @@ import NouvelleFamille from './pages/NouvelleFamille.pages';
 import Connexion from './components/connexion.components';
 
 const App = () => {
-  if (localStorage.getItem('utilisateur') == 1) {
+  if (localStorage.getItem('profil') == '1') {
     return (
       // Si le profil connecté est ADMIN
       // Browser router va permettre le routage des différentes pages du site.
@@ -44,7 +44,7 @@ const App = () => {
       </BrowserRouter>
     );
   }
-  else if (localStorage.getItem('utilisateur') == 2) {
+  if (localStorage.getItem('profil') == '2') {
     return (
       // Si le profil connecté est EMPLOYE
       // Browser router va permettre le routage des différentes pages du site.
@@ -72,7 +72,7 @@ const App = () => {
       </BrowserRouter>
     );
   }
-  else if (localStorage.getItem('utilisateur') == 3) {
+  if (localStorage.getItem('profil') == '3') {
     return (
       // Si le profil connecté est ETUDIANT
       // Browser router va permettre le routage des différentes pages du site.
@@ -100,7 +100,7 @@ const App = () => {
       </BrowserRouter>
     );
   }
-  else if (localStorage.getItem('utilisateur') == 4) {
+  if (localStorage.getItem('profil') == '4') {
     return (
       // Si le profil connecté est OUVRIER
       // Browser router va permettre le routage des différentes pages du site.

@@ -9,8 +9,6 @@ const Navigation = () => {
     const [utilisateur, setUtilisateur] = useState([localStorage.getItem("utilisateur")])
     const [profil, setProfil] = useState(localStorage.getItem("profil"))
 
-    console.log("profil Co", profil)
-
     // Déconnexion
     const resetLocalStorage = () => {
         localStorage.clear()
@@ -19,7 +17,8 @@ const Navigation = () => {
     }
 
     // Si le profil est ADMIN 
-    if (profil == 1) {
+    console.log("profil Co", profil)
+    if (profil == '1') {
         console.log("Profil Admin");
         return (
             < div >
@@ -65,7 +64,7 @@ const Navigation = () => {
         );
     }
     // Si le profil est EMPLOYE 
-    else if (profil == 2) {
+    else if (profil == '2') {
         console.log("Profil Employe");
         return (
             < div >
@@ -111,7 +110,7 @@ const Navigation = () => {
         );
     }
     // Si le profil est ETUDIANT 
-    else if (profil == 3) {
+    else if (profil == '3') {
         console.log("Profil Etudiant");
         return (
             < div >
@@ -157,7 +156,7 @@ const Navigation = () => {
         );
     }
     // Si le profil est OUVRIER 
-    else if (profil == 4) {
+    else if (profil == '4') {
         console.log("Profil Ouvrier");
         return (
             < div >
@@ -203,7 +202,7 @@ const Navigation = () => {
         );
     }
     // Si pas de profil connecté
-    else {
+    else if (profil === null) {
         console.log("Pas de profil connecté")
         return (
             < div >
