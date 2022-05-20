@@ -57,7 +57,11 @@ const Navigation = () => {
                         <NavLink to="/testzone" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                             <li>Zone test</li>
                         </NavLink>
-                        <button onClick={resetLocalStorage}>Déconnexion</button>
+                        <NavLink
+                            to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}
+                            onClick={() => { localStorage.removeItem('profil'); window.location.reload(false); }}>
+                            <li>Déconnexion</li>
+                        </NavLink>
                     </ul>
                 </div >
             </div >
@@ -99,11 +103,11 @@ const Navigation = () => {
                         <NavLink to="/fournisseur" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                             <li>Fournisseur</li>
                         </NavLink>
-                        {/* Page de test  */}
-                        {/* <NavLink to="/testzone" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                            <li>Zone test</li>
-                        </NavLink> */}
-                        <button onClick={resetLocalStorage}>Déconnexion</button>
+                        <NavLink
+                            to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}
+                            onClick={() => { localStorage.removeItem('profil'); window.location.reload(false); }}>
+                            <li>Déconnexion</li>
+                        </NavLink>
                     </ul>
                 </div >
             </div >
@@ -145,11 +149,11 @@ const Navigation = () => {
                         <NavLink to="/fournisseur" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                             <li>Fournisseur</li>
                         </NavLink>
-                        {/* Page de test  */}
-                        {/* <NavLink to="/testzone" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                            <li>Zone test</li>
-                        </NavLink> */}
-                        <button onClick={resetLocalStorage}>Déconnexion</button>
+                        <NavLink
+                            to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}
+                            onClick={() => { localStorage.removeItem('profil'); window.location.reload(false); }}>
+                            <li>Déconnexion</li>
+                        </NavLink>
                     </ul>
                 </div >
             </div >
@@ -187,15 +191,11 @@ const Navigation = () => {
                         <NavLink to="/categorie" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                             <li>Catégorie</li>
                         </NavLink>
-                        {/* Page de la liste des fournisseurs */}
-                        {/* <NavLink to="/fournisseur" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                            <li>Fournisseur</li>
-                        </NavLink> */}
-                        {/* Page de test 
-                        <NavLink to="/testzone" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                            <li>Zone test</li>
-                        </NavLink> */}
-                        <button onClick={resetLocalStorage}>Déconnexion</button>
+                        <NavLink
+                            to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}
+                            onClick={() => { localStorage.removeItem('profil'); window.location.reload(false); }}>
+                            <li>Déconnexion</li>
+                        </NavLink>
                     </ul>
                 </div >
             </div >
