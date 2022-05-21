@@ -102,8 +102,6 @@ const Fournisseur = () => {
                 console.log("Error: ")
                 console.log(err)
             });
-        window.alert("le fournisseur " + aEnvoyer.id_fournisseurToSend + " A bien été mise à jour")
-
         refreshPage();
     }
 

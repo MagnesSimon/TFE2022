@@ -111,7 +111,6 @@ const Famille = () => {
                 console.log("Error: ")
                 console.log(err)
             });
-        window.alert("La famille " + aEnvoyer.id_familleToSend + " A bien été mise à jour")
 
         refreshPage();
     }

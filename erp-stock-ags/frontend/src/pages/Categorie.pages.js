@@ -86,7 +86,6 @@ const Categorie = () => {
                 console.log("Error: ")
                 console.log(err)
             });
-        window.alert("La catégorie " + aEnvoyer.id_categorieToSend + " A bien été mise à jour")
 
         refreshPage();
     }

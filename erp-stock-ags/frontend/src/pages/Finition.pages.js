@@ -87,7 +87,6 @@ const Finition = () => {
                 console.log("Error: ")
                 console.log(err)
             });
-        window.alert("La finition " + aEnvoyer.id_finitionToSend + " A bien été mise à jour")
 
         refreshPage();
     }

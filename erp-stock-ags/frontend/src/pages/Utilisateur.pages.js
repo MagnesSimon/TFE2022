@@ -109,8 +109,6 @@ const Utilisateur = () => {
                 console.log("Error: ")
                 console.log(err)
             });
-        window.alert("Le profil de l'utilisateur  " + aEnvoyer.id_utilisateurToSend + " A bien été mise à jour")
-
         refreshPage();
     }
 
