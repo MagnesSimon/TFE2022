@@ -16,6 +16,7 @@ import NouvelleFamille from './pages/NouvelleFamille.pages';
 import Connexion from './components/connexion.components';
 import Profil from './pages/Profil.pages';
 import Utilisateur from './pages/Utilisateur.pages';
+import Historique from './pages/Historique.pages';
 
 const App = () => {
   if (localStorage.getItem('profil') == '1') {
@@ -43,6 +44,7 @@ const App = () => {
           <Route path='/nouvelleFamille' element={<NouvelleFamille />} />
           <Route path='/utilisateur' element={<Utilisateur />} />
           <Route path='/profil' element={<Profil />} />
+          <Route path='/historique' element={<Historique />} />
           <Route path='*' element={<ListePieces />} />
         </Routes>
       </BrowserRouter>
@@ -71,6 +73,7 @@ const App = () => {
           <Route path='/nouvelleCategorie' element={<NouvelleCategorie />} />
           <Route path='/nouveauFournisseur' element={<NouveauFournisseur />} />
           <Route path='/nouvelleFamille' element={<NouvelleFamille />} />
+          <Route path='/historique' element={<Historique />} />
           <Route path='*' element={<ListePieces />} />
         </Routes>
       </BrowserRouter>
@@ -99,6 +102,7 @@ const App = () => {
           <Route path='/nouvelleCategorie' element={<NouvelleCategorie />} />
           <Route path='/nouveauFournisseur' element={<NouveauFournisseur />} />
           <Route path='/nouvelleFamille' element={<NouvelleFamille />} />
+          <Route path='/historique' element={<Historique />} />
           <Route path='*' element={<ListePieces />} />
         </Routes>
       </BrowserRouter>

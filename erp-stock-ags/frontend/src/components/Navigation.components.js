@@ -52,6 +52,11 @@ const Navigation = () => {
                         <NavLink to="/profil" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                             <li>Profils</li>
                         </NavLink>
+                        {/* Page de la liste des profils  */}
+                        <NavLink to="/historique" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Historique</li>
+                        </NavLink>
+                        {/* Déconnexion */}
                         <NavLink
                             to="/reload" className={(nav) => (nav.isActive ? "nav-active" : "")}
                             onClick={() => { localStorage.removeItem('profil'); window.location.reload(false); }}>
@@ -102,6 +107,10 @@ const Navigation = () => {
                         <NavLink to="/fournisseur" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                             <li>Fournisseur</li>
                         </NavLink>
+                        {/* Page de la liste des profils  */}
+                        <NavLink to="/historique" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Historique</li>
+                        </NavLink>
                         <NavLink
                             to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}
                             onClick={() => { localStorage.removeItem('profil'); window.location.reload(false); }}>
@@ -147,6 +156,10 @@ const Navigation = () => {
                         {/* Page de la liste des fournisseurs */}
                         <NavLink to="/fournisseur" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                             <li>Fournisseur</li>
+                        </NavLink>
+                        {/* Page de la liste des profils  */}
+                        <NavLink to="/historique" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Historique</li>
                         </NavLink>
                         <NavLink
                             to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}
