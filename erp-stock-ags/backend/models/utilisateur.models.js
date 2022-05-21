@@ -25,21 +25,27 @@ Utilisateur.create = (newUtilisateur, result) => {
 };
 
 Utilisateur.findById = (id_utilisateur, result) => {
-    sql.query(`SELECT * FROM utilisateur WHERE id_utilisateur = ${id_utilisateur}`, (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        }
+    sql.query("SELECT utilisateur.id_utilisateur, " +
+        "utilisateur.prenom_utilisateur, " +
+        "utilisateur.nom_famille_utilisateur, " +
+        "utilisateur.telephone_utilisateur, " +
+        "utilisateur.id_profil, " +
+        "profil.libelle_profil " +
 
-        if (res.length) {
-            console.log("found user: ", res[0]);
-            result(null, res[0]);
-            return;
-        }
+        // FROM et JOIN
+        "FROM utilisateur as utilisateur " +
+        "INNER JOIN profil as profil " +
+        "ON utilisateur.id_profil = profil.id_profil " +
 
-        result({ kind: "not_found" }, null);
-    });
+        // Condition
+        `WHERE utilisateur.id_utilisateur ='${id_utilisateur}'`
+        , (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else result(null, res);
+        });
 };
 
 Utilisateur.findByUsername = (nom_utilisateur, result) => {

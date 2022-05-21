@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Navigation from '../components/Navigation.components';
 import axios from "axios"
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
 
 
 const Utilisateur = () => {
@@ -94,32 +100,86 @@ const Utilisateur = () => {
     return (
         <div>
             <Navigation />
-            <table className='tableau'>
-                <thead>
-                    {/* Colonne faisant office de titre */}
-                    <tr>
-                        <th>Id Utilisateur</th>
-                        <th>Prénom</th>
-                        <th>Nom de famille</th>
-                        <th>Numéro de téléphone</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* Les datas sont traitées. 
+            <div>
+                <table className='tableau'>
+                    <thead>
+                        {/* Colonne faisant office de titre */}
+                        <tr>
+                            <th>Id Utilisateur</th>
+                            <th>Prénom</th>
+                            <th>Nom de famille</th>
+                            <th>Numéro de téléphone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* Les datas sont traitées. 
                     Chaque élément de l'objet pièce mis dans une case de la ligne
                     Une fois que l'on a traité toutes les données d'une pièce,
                     on créer une ligne pour la pièce suivante
                     */}
-                    {utilisateurs.map(({ id_utilisateur, prenom_utilisateur, nom_famille_utilisateur, telephone_utilisateur }) => (
-                        <tr key={id_utilisateur}>
-                            <td onClick={() => handleClickOpen(id_utilisateur)}>{id_utilisateur}</td>
-                            <td>{prenom_utilisateur}</td>
-                            <td>{nom_famille_utilisateur}</td>
-                            <td>{telephone_utilisateur}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                        {utilisateurs.map(({ id_utilisateur, prenom_utilisateur, nom_famille_utilisateur, telephone_utilisateur }) => (
+                            <tr key={id_utilisateur}>
+                                <td onClick={() => handleClickOpen(id_utilisateur)}>{id_utilisateur}</td>
+                                <td>{prenom_utilisateur}</td>
+                                <td>{nom_famille_utilisateur}</td>
+                                <td>{telephone_utilisateur}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <Dialog className='dialog' open={open} onClose={handleClose}>
+                <DialogTitle>
+                    Fiche Utilisateur
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        {ficheUtilisateur.map(({
+                            id_utilisateur,
+                            prenom_utilisateur,
+                            nom_famille_utilisateur,
+                            telephone_utilisateur,
+                        }) => (
+                            <table className='tableauFT' id={"id_utilisateur"}>
+                                <thead>
+                                    <tr>
+                                        <th>                </th>
+                                        <th>Valeure actuelle</th>
+                                        <th>Modification</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>{id_utilisateur}</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PRENOM</td>
+                                        <td>{prenom_utilisateur}</td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>NOM DE FAMILLE</td>
+                                        <td>{nom_famille_utilisateur}</td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        ))}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Fermer
+                    </Button>
+                    <Button onClick={sendToAPI} color="primary" autoFocus>
+                        Valider
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };
