@@ -26,3 +26,4 @@ require("./routes/listeFamilles.routes")(app);
 require("./routes/listeCategories.routes")(app);
 require("./routes/fournisseur.routes")(app);
 require("./routes/utilisateur.routes")(app);
+require("./routes/profil.routes")(app);

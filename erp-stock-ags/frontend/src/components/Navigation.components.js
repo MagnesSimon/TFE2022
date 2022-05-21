@@ -6,18 +6,12 @@ Cette fonction permet de créer une barre de navigation qui permet de naviguer e
 */
 const Navigation = () => {
 
-    const [utilisateur, setUtilisateur] = useState([localStorage.getItem("utilisateur")])
+    // Profil connecté
     const [profil, setProfil] = useState(localStorage.getItem("profil"))
-
-    // Déconnexion
-    const resetLocalStorage = () => {
-        localStorage.clear()
-        window.location.reload(false);
-
-    }
 
     // Si le profil est ADMIN 
     console.log("profil Co", profil)
+
     if (profil == '1') {
         console.log("Profil Admin");
         return (
@@ -53,14 +47,22 @@ const Navigation = () => {
                         <NavLink to="/fournisseur" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                             <li>Fournisseur</li>
                         </NavLink>
-                        {/* Page de test  */}
-                        <NavLink to="/testzone" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                            <li>Zone test</li>
+                        {/* Page de la liste des utilisateurs  */}
+                        <NavLink to="/utilisateur" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Utilisateurs</li>
+                        </NavLink>                        {
+                        /* Page de la liste des profil  */}
+                        <NavLink to="/profil" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Profils</li>
                         </NavLink>
                         <NavLink
                             to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}
                             onClick={() => { localStorage.removeItem('profil'); window.location.reload(false); }}>
                             <li>Déconnexion</li>
+                        </NavLink>
+                        {/* Page de test  */}
+                        <NavLink to="/testzone" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            <li>Zone test</li>
                         </NavLink>
                     </ul>
                 </div >

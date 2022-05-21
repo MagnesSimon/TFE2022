@@ -14,6 +14,8 @@ import NouvelleCategorie from './pages/NouvelleCategorie.pages';
 import NouveauFournisseur from './pages/NouveauFournisseur.pages';
 import NouvelleFamille from './pages/NouvelleFamille.pages';
 import Connexion from './components/connexion.components';
+import Profil from './pages/Profil.pages';
+import Utilisateur from './pages/Utilisateur.pages';
 
 const App = () => {
   if (localStorage.getItem('profil') == '1') {
@@ -39,6 +41,8 @@ const App = () => {
           <Route path='/nouvelleCategorie' element={<NouvelleCategorie />} />
           <Route path='/nouveauFournisseur' element={<NouveauFournisseur />} />
           <Route path='/nouvelleFamille' element={<NouvelleFamille />} />
+          <Route path='/utilisateur' element={<Utilisateur />} />
+          <Route path='/profil' element={<Profil />} />
           <Route path='*' element={<ListePieces />} />
         </Routes>
       </BrowserRouter>
