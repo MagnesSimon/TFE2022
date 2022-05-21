@@ -9,7 +9,7 @@ module.exports = app => {
 
     // app.get("/listeUtilisateurbyusername/:username", profil.findUsername);
 
-    app.put("/listeProfil/update/:id", profil.update);
+    app.post("/listeProfil/update/", profil.update);
 
     //app.delete("/user/:id", user.delete);
 

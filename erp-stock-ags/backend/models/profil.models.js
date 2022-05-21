@@ -20,21 +20,16 @@ const Profil = function (profil) {
 // };
 
 Profil.findById = (id_profil, result) => {
-    sql.query(`SELECT * FROM profil WHERE id_profil = ${id_profil}`, (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        }
-
-        if (res.length) {
-            console.log("found profil: ", res[0]);
-            result(null, res[0]);
-            return;
-        }
-
-        result({ kind: "not_found" }, null);
-    });
+    sql.query("SELECT * FROM profil " +
+        // Condition
+        `WHERE id_profil ='${id_profil}'`
+        , (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else result(null, res);
+        });
 };
 
 Profil.getAll = result => {
@@ -50,8 +45,8 @@ Profil.getAll = result => {
 };
 
 Profil.updateById = (data, result) => {
-    sql.query("UPDATE `utilisateur` " +
-        "SET `libelle_profil` = '" + data.libelle_profil + "' , " +
+    sql.query("UPDATE `profil` " +
+        "SET `libelle_profil` = '" + data.libelle_profil + "'  " +
         " WHERE `id_profil` = " + "'" + data.id_profil + "'"
         , (err, res) => {
             if (err) {
