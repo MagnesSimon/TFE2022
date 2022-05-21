@@ -26,6 +26,7 @@ Utilisateur.create = (newUtilisateur, result) => {
 
 Utilisateur.findById = (id_utilisateur, result) => {
     sql.query("SELECT utilisateur.id_utilisateur, " +
+        "utilisateur.nom_utilisateur, " +
         "utilisateur.prenom_utilisateur, " +
         "utilisateur.nom_famille_utilisateur, " +
         "utilisateur.telephone_utilisateur, " +

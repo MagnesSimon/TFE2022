@@ -158,6 +158,7 @@ const Utilisateur = () => {
                     <DialogContentText>
                         {ficheUtilisateur.map(({
                             id_utilisateur,
+                            nom_utilisateur,
                             prenom_utilisateur,
                             nom_famille_utilisateur,
                             telephone_utilisateur,
@@ -176,6 +177,12 @@ const Utilisateur = () => {
                                         <td>ID</td>
                                         <td>{id_utilisateur}</td>
                                         <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>USERNAME</td>
+                                        <td>{nom_utilisateur}</td>
+                                        <td>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>PRENOM</td>
