@@ -7,7 +7,6 @@ const Historique = function (historique) {
     this.date_heure = historique.date_heure;
     this.reference = historique.reference;
     this.id_utilisateur = historique.id_utilisateur;
-    this.nom_utilisateur = historique.nom_utilisateur;
 }
 
 Historique.getAll = result => {
@@ -32,16 +31,11 @@ Historique.getAll = result => {
 }
 
 Historique.create = (newHistorique, result) => {
-    sql.query("INSERT INTO historique SET ?", newHistorique, (err, res) => {
-        if (err) {
-            console.log("error: ", err)
-            result(err, null);
-            return;
-        } else {
-            console.log("Fiche Historique crée avec succès");
-            result(null, { id: res.insertId, ...newFournisseur });
-        }
-    })
+    sql.query("INSERT INTO historique " +
+        "SET `quantite_modifie` = '" + newHistorique.quantite_modifie + "' , " +
+        // "`date_heure` = '" + date() + "' , " +
+        "`reference` = '" + newHistorique.reference + "' , " +
+        "`id_utilisateur` = '" + newHistorique.id_utilisateur + "' ")
 }
 
 module.exports = Historique

@@ -11,6 +11,10 @@ const AjoutPieces = (piece) => {
 
     // Contient la valeur encodée dans l'input quantité de pièce
     const [value, setValue] = useState([])
+    // Contient l'id du profil 
+    const [id_utilisateur, setId_utilisateur] = useState(localStorage.getItem("utilisateur"))
+    // date et heure
+    // const [date_heure, setDate_heure] = useState(Date)
 
     // Variable qui contient les données à modifier
     // @reference la récérence de la pièce à modifier
@@ -18,6 +22,13 @@ const AjoutPieces = (piece) => {
     let aModifier = {
         reference: piece.reference,
         quantite_en_stock: parseInt(value) + piece.qte
+    }
+    // Variable qui contient les données à ajouter dans l'hitorique
+    let AEnvoyerHistorique = {
+        quantite_modifie: parseInt(value),
+        reference: piece.reference,
+        id_utilisateur: id_utilisateur,
+        date_heure: Date.now
     }
 
     // Fonction qui permet de modifier la quantite
@@ -32,9 +43,18 @@ const AjoutPieces = (piece) => {
                 console.log("Error: ")
                 console.log(err)
             });
+        axios.post(window.url + "/historique/addhistorique", AEnvoyerHistorique)
+            .then(function (res) {
+                console.log('Succes Création fiche Historique')
+                console.log(res.data)
+            })
+            .catch(function (err) {
+                console.log("Error: ")
+                console.log(err)
+            });
 
         // refresh de la page après l'envoi de données
-        refreshPage();
+        //refreshPage();
     }
 
     // Input avec un champ ou il est possible d'encoder que des nombre

@@ -35,7 +35,7 @@ const Connexion = () => {
         listeUtilisateur.find((user) => {
             if (nom_utilisateur == user.nom_utilisateur && mot_de_passe == user.mot_de_passe) {
                 setConnecte(true)
-                localStorage.setItem("utilisateur", JSON.stringify(user));
+                localStorage.setItem("utilisateur", user.id_utilisateur);
                 localStorage.setItem("profil", user.id_profil);
                 toast.dark("Vous êtes connecté", {
                     transition: bounce
