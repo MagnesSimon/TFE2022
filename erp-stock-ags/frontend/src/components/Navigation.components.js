@@ -10,10 +10,7 @@ const Navigation = () => {
     const [profil, setProfil] = useState(localStorage.getItem("profil"))
 
     // Si le profil est ADMIN 
-    console.log("profil Co", profil)
-
     if (profil == '1') {
-        console.log("Profil Admin");
         return (
             < div >
                 {/* avec minuscule car dans le scss défini comme tel */}
