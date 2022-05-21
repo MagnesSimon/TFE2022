@@ -95,11 +95,9 @@ const Categorie = () => {
     return (
         <div>
             <Navigation />
-            <div>
-                <NavLink to='/nouvelleCategorie' className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                    <li>Ajouter une catégorie</li>
-                </NavLink>
-            </div>
+            <NavLink to='/nouvelleCategorie' className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                <li>Ajouter une catégorie</li>
+            </NavLink>
             {/* Création du tableau des pièces */}
             <table className='tableau'>
                 <thead>
@@ -125,75 +123,77 @@ const Categorie = () => {
                     ))}
                 </tbody>
             </table>
-            <Dialog className='dialog' open={open} onClose={handleClose}>
-                <DialogTitle>
-                    Fiche famille
-                </DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        {ficheCategorie.map(({
-                            id_categorie,
-                            nom_categorie,
-                            pole,
-                        }) => (
+            <div>
+                <Dialog className='dialog' open={open} onClose={handleClose}>
+                    <DialogTitle>
+                        Fiche famille
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            {ficheCategorie.map(({
+                                id_categorie,
+                                nom_categorie,
+                                pole,
+                            }) => (
 
-                            <table className='tableauFT' id={"id_categorie"}>
-                                <thead>
-                                    <tr>
-                                        <th>                </th>
-                                        <th>Valeure actuelle</th>
-                                        <th>Modification</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>{id_categorie}</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOM</td>
-                                        <td>{nom_categorie}</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                name='nom_categorie'
-                                                value={nom_categorieToSend}
-                                                onChange={(e) =>
-                                                    setNom_categorieToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                }
-                                            />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>POLE</td>
-                                        <td>{pole}</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                name='pole'
-                                                value={poleToSend}
-                                                onChange={(e) =>
-                                                    setPoleToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                }
-                                            />
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                <table className='tableauFT' id={"id_categorie"}>
+                                    <thead>
+                                        <tr>
+                                            <th>                </th>
+                                            <th>Valeure actuelle</th>
+                                            <th>Modification</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>{id_categorie}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NOM</td>
+                                            <td>{nom_categorie}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='nom_categorie'
+                                                    value={nom_categorieToSend}
+                                                    onChange={(e) =>
+                                                        setNom_categorieToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>POLE</td>
+                                            <td>{pole}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='pole'
+                                                    value={poleToSend}
+                                                    onChange={(e) =>
+                                                        setPoleToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-                        ))}
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Fermer
-                    </Button>
-                    <Button onClick={sendToAPI} color="primary" autoFocus>
-                        Valider
-                    </Button>
-                </DialogActions>
-            </Dialog>
+                            ))}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Fermer
+                        </Button>
+                        <Button onClick={sendToAPI} color="primary" autoFocus>
+                            Valider
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
         </div>
     );
 };
