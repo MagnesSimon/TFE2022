@@ -31,8 +31,7 @@ const Connexion = () => {
 
     const seConnecter = () => {
         setConnecte(false)
-
-
+        console.log("Liste user:", listeUtilisateur)
         listeUtilisateur.find((user) => {
             if (nom_utilisateur == user.nom_utilisateur && mot_de_passe == user.mot_de_passe) {
                 setConnecte(true)
@@ -43,11 +42,10 @@ const Connexion = () => {
                 });
             }
         })
-
         if (connecte == false) {
             alert("Identifiants incorrects")
         }
-        window.location.reload(false);
+        window.location.reload(false)
     }
 
 

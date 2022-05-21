@@ -68,6 +68,8 @@ Utilisateur.findByUsername = (nom_utilisateur, result) => {
 
 Utilisateur.getAll = result => {
     sql.query("SELECT utilisateur.id_utilisateur, " +
+        "utilisateur.nom_utilisateur, " +
+        "utilisateur.mot_de_passe, " +
         "utilisateur.prenom_utilisateur, " +
         "utilisateur.nom_famille_utilisateur, " +
         "utilisateur.telephone_utilisateur, " +
