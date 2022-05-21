@@ -67,20 +67,32 @@ Utilisateur.findByUsername = (nom_utilisateur, result) => {
 };
 
 Utilisateur.getAll = result => {
-    sql.query("SELECT * FROM utilisateur", (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(null, err);
-            return;
-        }
+    sql.query("SELECT utilisateur.id_utilisateur, " +
+        "utilisateur.prenom_utilisateur, " +
+        "utilisateur.nom_famille_utilisateur, " +
+        "utilisateur.telephone_utilisateur, " +
+        "utilisateur.id_profil, " +
+        "profil.libelle_profil " +
 
-        result(null, res);
-    });
+        // FROM et JOIN
+        "FROM utilisateur as utilisateur " +
+        "INNER JOIN profil as profil " +
+        "ON utilisateur.id_profil = profil.id_profil "
+        , (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(null, err);
+                return;
+            }
+
+            result(null, res);
+        });
 };
 
 Utilisateur.updateById = (data, result) => {
+    console.log("data", data)
     sql.query("UPDATE `utilisateur` " +
-        "SET `nom_utilisateur` = '" + data.nom_utilisateur + "' , " +
+        "SET `id_utilisateur` = '" + data.id_utilisateur + "' , " +
         "`prenom_utilisateur` = '" + data.prenom_utilisateur + "' , " +
         "`nom_famille_utilisateur` = '" + data.nom_famille_utilisateur + "' , " +
         "`telephone_utilisateur` = '" + data.telephone_utilisateur + "' ," +

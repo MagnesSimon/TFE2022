@@ -72,31 +72,36 @@ exports.findUsername = (req, res) => {
 };
 
 exports.update = (req, res) => {
+    //console.log(req)
     if (!req.body) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
     }
 
-    Utilisateur.updateById(
-        req.params.id,
-        new Utilisateur(req.body),
-        (err, data) => {
-            if (err) {
-                if (err.kind === "not_found") {
-                    res.status(404).send({
-                        message: `Not found User with id ${req.params.id}.`
-                    });
-                } else {
-                    res.status(500).send({
-                        message: "Error updating User with id " + req.params.id
-                    });
-                }
-            } else
-                res.send(data);
-        }
-    );
-};
+    const aUpdate = new Utilisateur({
+        id_utilisateur: req.body.id_utilisateurToSend,
+        prenom_utilisateur: req.body.prenom_utilisateurToSend,
+        nom_famille_utilisateur: req.body.nom_famille_utilisateurToSend,
+        telephone_utilisateur: req.body.telephone_utilisateurToSend,
+        id_profil: req.body.id_profilToSend,
+    });
+
+    Utilisateur.updateById(aUpdate, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: "Not found Utilisateur with id " + req.params.id
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error updating Utilisateur with id " + req.params.id
+                });
+            }
+        } else
+            res.send('UDPATE OK');
+    });
+}
 
 // exports.delete = (req, res) => {
 //     Utilisateur.remove(req.params.id, (err, data) => {

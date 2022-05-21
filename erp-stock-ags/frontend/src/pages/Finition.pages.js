@@ -100,7 +100,7 @@ const Finition = () => {
                     <li>Ajouter une finition</li>
                 </NavLink>
             </div>
-            {/* Création du tableau des pièces */}
+            {/* Création du tableau des finition */}
             <table className='tableau'>
                 <thead>
                     {/* Colonne faisant office de titre */}

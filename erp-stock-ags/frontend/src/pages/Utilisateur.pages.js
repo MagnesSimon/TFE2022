@@ -27,13 +27,18 @@ const Utilisateur = () => {
     const [prenom_utilisateurToSend, setPrenom_utilisateurToSend] = useState("")
     const [nom_famille_utilisateurToSend, setNom_famille_utilisateurToSend] = useState("")
     const [telephone_utilisateurToSend, setTelephone_utilisateurToSend] = useState("")
+    const [id_profilToSend, setId_profilToSend] = useState("")
+
+    // Contient les possibilite pour les profils
+    const [choixProfil, setChoixProfil] = useState([])
 
     // Fiche finition modifiée à envoyée
     const aEnvoyer = {
         id_utilisateurToSend,
         prenom_utilisateurToSend,
         nom_famille_utilisateurToSend,
-        telephone_utilisateurToSend
+        telephone_utilisateurToSend,
+        id_profilToSend
     }
 
     // Le useEffect se joue quand le composant est monté 
@@ -66,6 +71,15 @@ const Utilisateur = () => {
         setTelephone_utilisateurToSend("")
     }
 
+    // Récupération de la liste des profils
+    useEffect(() => {
+        axios.get(window.url + "/listeProfil")
+            .then((res) => setChoixProfil(res.data))
+    }, [])
+    const profilHandleChange = (e) => {
+        setId_profilToSend((v) => (e.target.validity.valid ? e.target.value : v))
+    }
+
     // Pour envoyer vers la DB
     const sendToAPI = () => {
         console.log("aEnvoyer", aEnvoyer)
@@ -82,8 +96,11 @@ const Utilisateur = () => {
         if (telephone_utilisateurToSend == "") {
             aEnvoyer.telephone_utilisateurToSend = ficheUtilisateur[0].telephone_utilisateur;
         }
+        if (id_profilToSend == "") {
+            aEnvoyer.id_profilToSend = ficheUtilisateur[0].id_profil;
+        }
 
-        axios.post(window.url + "utilisateur/update/", aEnvoyer)
+        axios.post(window.url + "/utilisateur/update/", aEnvoyer)
             .then(function (res) {
                 console.log('Succes Modification Fiche Finition')
                 console.log(res.data)
@@ -92,7 +109,7 @@ const Utilisateur = () => {
                 console.log("Error: ")
                 console.log(err)
             });
-        window.alert("La finition " + aEnvoyer.id_utilisateurToSend + " A bien été mise à jour")
+        window.alert("Le profil de l'utilisateur  " + aEnvoyer.id_utilisateurToSend + " A bien été mise à jour")
 
         refreshPage();
     }
@@ -109,6 +126,7 @@ const Utilisateur = () => {
                             <th>Prénom</th>
                             <th>Nom de famille</th>
                             <th>Numéro de téléphone</th>
+                            <th>Profil</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -117,12 +135,18 @@ const Utilisateur = () => {
                     Une fois que l'on a traité toutes les données d'une pièce,
                     on créer une ligne pour la pièce suivante
                     */}
-                        {utilisateurs.map(({ id_utilisateur, prenom_utilisateur, nom_famille_utilisateur, telephone_utilisateur }) => (
+                        {utilisateurs.map(({ id_utilisateur,
+                            prenom_utilisateur,
+                            nom_famille_utilisateur,
+                            telephone_utilisateur,
+                            libelle_profil
+                        }) => (
                             <tr key={id_utilisateur}>
                                 <td onClick={() => handleClickOpen(id_utilisateur)}>{id_utilisateur}</td>
                                 <td>{prenom_utilisateur}</td>
                                 <td>{nom_famille_utilisateur}</td>
                                 <td>{telephone_utilisateur}</td>
+                                <td>{libelle_profil}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -139,6 +163,7 @@ const Utilisateur = () => {
                             prenom_utilisateur,
                             nom_famille_utilisateur,
                             telephone_utilisateur,
+                            libelle_profil,
                         }) => (
                             <table className='tableauFT' id={"id_utilisateur"}>
                                 <thead>
@@ -164,6 +189,35 @@ const Utilisateur = () => {
                                         <td>NOM DE FAMILLE</td>
                                         <td>{nom_famille_utilisateur}</td>
                                         <td>
+                                        </td>
+                                    </tr>
+                                    <tr >
+                                        <td>TELEPHONE</td>
+                                        <td>{telephone_utilisateur}</td>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                name='telephone utilisateur'
+                                                pattern="[0-9]*"
+                                                value={telephone_utilisateurToSend}
+                                                onChange={(e) =>
+                                                    setTelephone_utilisateurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                }
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Profil</td>
+                                        <td>{libelle_profil}</td>
+                                        <td>
+                                            <select name="choixProfil"
+                                                id="selectChoixProfil"
+                                                value={id_profilToSend}
+                                                onChange={profilHandleChange}>
+                                                {choixProfil.map(({ id_profil, libelle_profil }) => (
+                                                    <option value={id_profil}>{libelle_profil}</option>
+                                                ))}
+                                            </select>
                                         </td>
                                     </tr>
                                 </tbody>
