@@ -31,12 +31,35 @@ const Connexion = () => {
 
     const seConnecter = () => {
         setConnecte(false)
-        console.log("Liste user:", listeUtilisateur)
         listeUtilisateur.find((user) => {
             if (nom_utilisateur == user.nom_utilisateur && mot_de_passe == user.mot_de_passe) {
                 setConnecte(true)
                 localStorage.setItem("utilisateur", user.id_utilisateur);
                 localStorage.setItem("profil", user.id_profil);
+
+                if (user.id_profil == '4') {
+                    localStorage.setItem("isOuvrier", true)
+                    localStorage.setItem("isEtudiant", false)
+                    localStorage.setItem("isEmploye", false)
+                    localStorage.setItem("isAdmin", false)
+                } else if (user.id_profil == '3') {
+                    localStorage.setItem("isOuvrier", true)
+                    localStorage.setItem("isEtudiant", true)
+                    localStorage.setItem("isEmploye", false)
+                    localStorage.setItem("isAdmin", false)
+                } else if (user.id_profil == '2') {
+                    localStorage.setItem("isOuvrier", true)
+                    localStorage.setItem("isEtudiant", true)
+                    localStorage.setItem("isEmploye", true)
+                    localStorage.setItem("isAdmin", false)
+                } else if (user.id_profil == '1') {
+                    localStorage.setItem("isOuvrier", true)
+                    localStorage.setItem("isEtudiant", true)
+                    localStorage.setItem("isEmploye", true)
+                    localStorage.setItem("isAdmin", true)
+                }
+
+
                 toast.dark("Vous êtes connecté", {
                     transition: bounce
                 });

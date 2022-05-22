@@ -154,243 +154,412 @@ const Piece = () => {
         setId_finitionToSend((v) => (e.target.validity.valid ? e.target.value : v))
     }
 
-
-
-    return (
-        <div>
-            {/* Création du tableau des pièces */}
-            {/* {tableVisible && <table className='tableau'> */}
-            <table className='tableau'>
-                <thead>
-                    {/* Colonne faisant office de titre */}
-                    <tr>
-                        <th>Référence</th>
-                        <th>Famille</th>
-                        <th>Valeur seuil</th>
-                        <th>Quantité en stock</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* Les datas sont traitées. 
+    // si le profil est ouvrier, pas de modification possible
+    if (localStorage.getItem('profil') == '4') {
+        return (
+            <div>
+                {/* Création du tableau des pièces */}
+                {/* {tableVisible && <table className='tableau'> */}
+                <table className='tableau'>
+                    <thead>
+                        {/* Colonne faisant office de titre */}
+                        <tr>
+                            <th>Référence</th>
+                            <th>Famille</th>
+                            <th>Valeur seuil</th>
+                            <th>Quantité en stock</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* Les datas sont traitées. 
                     Chaque élément de l'objet pièce mis dans une case de la ligne
                     Une fois que l'on a traité toutes les données d'une pièce,
                     on créer une ligne pour la pièce suivante
                     */}
-                    {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
-                        <tr key={reference} >
-                            <td onClick={() => handleClickOpen(reference)}>
-                                {reference}</td>
-                            <td>{nom_famille}</td>
-                            <td>{valeur_seuil}</td>
-                            <td>{quantite_en_stock}</td>
-                            <td>
-                                <AjoutPieces key={reference}
-                                    reference={reference}
-                                    qte={quantite_en_stock} />
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <Dialog className='dialog' open={openFT} onClose={handleClose}>
-                <DialogTitle>
-                    Fiche technique
-                </DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        {ficheTechniques.map(({
-                            reference,
-                            valeur_seuil,
-                            nom_famille,
-                            materiaux,
-                            nom_categorie,
-                            pole,
-                            nom_fournisseur,
-                            nom_finition,
-                            effet_finition,
-                            longueur,
-                            largeur,
-                            hauteur,
-                            rayon,
-                            poids }) => (
-                            <table className='tableauFT' id={reference}>
-                                <thead>
-                                    <tr>
-                                        <th>                </th>
-                                        <th>Valeure actuelle</th>
-                                        <th>Modification</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr key={reference} id={reference}>
-                                        <td>Référence</td>
-                                        <td>{reference}
-                                        </td>
-                                        <td>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Valeur Seuil</td>
-                                        <td>{valeur_seuil}</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                name='longueur'
-                                                pattern="[0-9]*"
-                                                value={valeur_seuilToSend}
-                                                onChange={(e) =>
-                                                    setValeur_seuilToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                }
-                                            />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Famille : Nom</td>
-                                        <td>{nom_famille}</td>
-                                        <td>
-                                            <select name="choixFamille"
-                                                id="selectChoixFamille"
-                                                value={id_familleToSend}
-                                                onChange={familleHandleChange}>
-                                                {choixFamille.map(({ id_famille, nom_famille, materiaux }) => (
-                                                    <option value={id_famille}>{nom_famille + " - " + materiaux}</option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Matériaux</td>
-                                        <td>{materiaux}</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Finition : Nom</td>
-                                        <td>
-                                            {nom_finition}
-                                        </td>
-                                        <td>
-                                            <select name="choixFinition"
-                                                id="selectChoixFinition"
-                                                value={id_finitionToSend}
-                                                onChange={finitionHandleChange}>
-                                                {choixFinition.map(({ id_finition, nom_finition, effet_finition }) => (
-                                                    <option value={id_finition}>{nom_finition + " - " + effet_finition}</option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Finition : Effet </td>
-                                        <td>{effet_finition}</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Longueur</td>
-                                        <td>{longueur}</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                name='longueur'
-                                                pattern="[0-9]*"
-                                                value={longueurToSend}
-                                                onChange={(e) =>
-                                                    setLongueurToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                }
-                                            />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Largeur</td>
-                                        <td>{largeur}</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                name='largeur'
-                                                pattern="[0-9]*"
-                                                value={largeurToSend}
-                                                onChange={(e) =>
-                                                    setLargeurToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                }
-                                            />
-                                        </td>
-                                    </tr>
-
-                                    <tr><td>Hauteur</td>
-                                        <td>{hauteur}</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                name='hauteur'
-                                                pattern="[0-9]*"
-                                                value={hauteurToSend}
-                                                onChange={(e) =>
-                                                    setHauteurToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                }
-                                            />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Rayon</td>
-                                        <td>{rayon}</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                name='longueur'
-                                                pattern="[0-9]*"
-                                                value={rayonToSend}
-                                                onChange={(e) =>
-                                                    setRayonToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                }
-                                            />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Poids</td>
-                                        <td>{poids}</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                name='poids'
-                                                pattern="[0-9]*"
-                                                value={poidsToSend}
-                                                onChange={(e) =>
-                                                    setPoidsToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                }
-                                            />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Catégorie</td>
-                                        <td>{nom_categorie}</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pôle</td>
-                                        <td>{pole}</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fournisseur </td>
-                                        <td>{nom_fournisseur}</td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
+                            <tr key={reference} >
+                                <td onClick={() => handleClickOpen(reference)}>
+                                    {reference}</td>
+                                <td>{nom_famille}</td>
+                                <td>{valeur_seuil}</td>
+                                <td>{quantite_en_stock}</td>
+                                <td>
+                                    <AjoutPieces key={reference}
+                                        reference={reference}
+                                        qte={quantite_en_stock} />
+                                </td>
+                            </tr>
                         ))}
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Fermer
-                    </Button>
-                    <Button onClick={sendToAPI} color="primary" autoFocus>
-                        Valider
-                    </Button>
-                </DialogActions>
-            </Dialog>
-        </div >
-    );
-};
+                    </tbody>
+                </table>
+                <Dialog className='dialog' open={openFT} onClose={handleClose}>
+                    <DialogTitle>
+                        Fiche technique
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            {ficheTechniques.map(({
+                                reference,
+                                valeur_seuil,
+                                nom_famille,
+                                materiaux,
+                                nom_categorie,
+                                pole,
+                                nom_fournisseur,
+                                nom_finition,
+                                effet_finition,
+                                longueur,
+                                largeur,
+                                hauteur,
+                                rayon,
+                                poids }) => (
+                                <table className='tableauFT' id={reference}>
+                                    <thead>
+                                        <tr>
+                                            <th>                </th>
+                                            <th>Valeure actuelle</th>
+                                            <th>Modification</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr key={reference} id={reference}>
+                                            <td>Référence</td>
+                                            <td>{reference}
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Valeur Seuil</td>
+                                            <td>{valeur_seuil}</td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Famille : Nom</td>
+                                            <td>{nom_famille}</td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Matériaux</td>
+                                            <td>{materiaux}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Finition : Nom</td>
+                                            <td>
+                                                {nom_finition}
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Finition : Effet </td>
+                                            <td>{effet_finition}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Longueur</td>
+                                            <td>{longueur}</td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Largeur</td>
+                                            <td>{largeur}</td>
+                                            <td>
+                                            </td>
+                                        </tr>
+
+                                        <tr><td>Hauteur</td>
+                                            <td>{hauteur}</td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rayon</td>
+                                            <td>{rayon}</td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Poids</td>
+                                            <td>{poids}</td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Catégorie</td>
+                                            <td>{nom_categorie}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pôle</td>
+                                            <td>{pole}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fournisseur </td>
+                                            <td>{nom_fournisseur}</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            ))}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Fermer
+                        </Button>
+                        <Button onClick={sendToAPI} color="primary" autoFocus>
+                            Valider
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div >
+        );
+    } else {
+        return (
+            <div>
+                {/* Création du tableau des pièces */}
+                {/* {tableVisible && <table className='tableau'> */}
+                <table className='tableau'>
+                    <thead>
+                        {/* Colonne faisant office de titre */}
+                        <tr>
+                            <th>Référence</th>
+                            <th>Famille</th>
+                            <th>Valeur seuil</th>
+                            <th>Quantité en stock</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* Les datas sont traitées. 
+                    Chaque élément de l'objet pièce mis dans une case de la ligne
+                    Une fois que l'on a traité toutes les données d'une pièce,
+                    on créer une ligne pour la pièce suivante
+                    */}
+                        {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
+                            <tr key={reference} >
+                                <td onClick={() => handleClickOpen(reference)}>
+                                    {reference}</td>
+                                <td>{nom_famille}</td>
+                                <td>{valeur_seuil}</td>
+                                <td>{quantite_en_stock}</td>
+                                <td>
+                                    <AjoutPieces key={reference}
+                                        reference={reference}
+                                        qte={quantite_en_stock} />
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <Dialog className='dialog' open={openFT} onClose={handleClose}>
+                    <DialogTitle>
+                        Fiche technique
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            {ficheTechniques.map(({
+                                reference,
+                                valeur_seuil,
+                                nom_famille,
+                                materiaux,
+                                nom_categorie,
+                                pole,
+                                nom_fournisseur,
+                                nom_finition,
+                                effet_finition,
+                                longueur,
+                                largeur,
+                                hauteur,
+                                rayon,
+                                poids }) => (
+                                <table className='tableauFT' id={reference}>
+                                    <thead>
+                                        <tr>
+                                            <th>                </th>
+                                            <th>Valeure actuelle</th>
+                                            <th>Modification</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr key={reference} id={reference}>
+                                            <td>Référence</td>
+                                            <td>{reference}
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Valeur Seuil</td>
+                                            <td>{valeur_seuil}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='longueur'
+                                                    pattern="[0-9]*"
+                                                    value={valeur_seuilToSend}
+                                                    onChange={(e) =>
+                                                        setValeur_seuilToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Famille : Nom</td>
+                                            <td>{nom_famille}</td>
+                                            <td>
+                                                <select name="choixFamille"
+                                                    id="selectChoixFamille"
+                                                    value={id_familleToSend}
+                                                    onChange={familleHandleChange}>
+                                                    {choixFamille.map(({ id_famille, nom_famille, materiaux }) => (
+                                                        <option value={id_famille}>{nom_famille + " - " + materiaux}</option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Matériaux</td>
+                                            <td>{materiaux}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Finition : Nom</td>
+                                            <td>
+                                                {nom_finition}
+                                            </td>
+                                            <td>
+                                                <select name="choixFinition"
+                                                    id="selectChoixFinition"
+                                                    value={id_finitionToSend}
+                                                    onChange={finitionHandleChange}>
+                                                    {choixFinition.map(({ id_finition, nom_finition, effet_finition }) => (
+                                                        <option value={id_finition}>{nom_finition + " - " + effet_finition}</option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Finition : Effet </td>
+                                            <td>{effet_finition}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Longueur</td>
+                                            <td>{longueur}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='longueur'
+                                                    pattern="[0-9]*"
+                                                    value={longueurToSend}
+                                                    onChange={(e) =>
+                                                        setLongueurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Largeur</td>
+                                            <td>{largeur}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='largeur'
+                                                    pattern="[0-9]*"
+                                                    value={largeurToSend}
+                                                    onChange={(e) =>
+                                                        setLargeurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+
+                                        <tr><td>Hauteur</td>
+                                            <td>{hauteur}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='hauteur'
+                                                    pattern="[0-9]*"
+                                                    value={hauteurToSend}
+                                                    onChange={(e) =>
+                                                        setHauteurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rayon</td>
+                                            <td>{rayon}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='longueur'
+                                                    pattern="[0-9]*"
+                                                    value={rayonToSend}
+                                                    onChange={(e) =>
+                                                        setRayonToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Poids</td>
+                                            <td>{poids}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='poids'
+                                                    pattern="[0-9]*"
+                                                    value={poidsToSend}
+                                                    onChange={(e) =>
+                                                        setPoidsToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Catégorie</td>
+                                            <td>{nom_categorie}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pôle</td>
+                                            <td>{pole}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fournisseur </td>
+                                            <td>{nom_fournisseur}</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            ))}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Fermer
+                        </Button>
+                        <Button onClick={sendToAPI} color="primary" autoFocus>
+                            Valider
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div >
+        );
+    };
+}
+
+
 
 export default Piece;
