@@ -28,6 +28,9 @@ const Finition = () => {
     const [nom_finitionToSend, setNom_finitionToSend] = useState("")
     const [effet_finitionToSend, setEffet_finitionToSend] = useState("")
 
+    // Vérification du profil
+    const [peutAjouter, setPeutAjouter] = useState(localStorage.getItem("isEmploye"))
+
     // Fiche finition modifiée à envoyée
     const aEnvoyer = {
         id_finitionToSend,
@@ -91,109 +94,210 @@ const Finition = () => {
         refreshPage();
     }
 
-    return (
-        <div>
-            <Navigation />
+    if (peutAjouter == 'true') {
+        return (
             <div>
-                <NavLink to='/nouvelleFinition' className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                    <li>Ajouter une finition</li>
-                </NavLink>
-            </div>
-            {/* Création du tableau des finition */}
-            <table className='tableau'>
-                <thead>
-                    {/* Colonne faisant office de titre */}
-                    <tr>
-                        <th>Id finition</th>
-                        <th>Nom finition</th>
-                        <th>Effet finition</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* Les datas sont traitées. 
-                    Chaque élément de l'objet pièce mis dans une case de la ligne
-                    Une fois que l'on a traité toutes les données d'une pièce,
-                    on créer une ligne pour la pièce suivante
-                    */}
-                    {finitions.map(({ id_finition, nom_finition, effet_finition }) => (
-                        <tr key={id_finition}>
-                            <td onClick={() => handleClickOpen(id_finition)}>{id_finition}</td>
-                            <td>{nom_finition}</td>
-                            <td>{effet_finition}</td>
+                <Navigation />
+                <div>
+                    <NavLink to='/nouvelleFinition' className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                        <li>Ajouter une finition</li>
+                    </NavLink>
+                </div>
+                {/* Création du tableau des finition */}
+                <table className='tableau'>
+                    <thead>
+                        {/* Colonne faisant office de titre */}
+                        <tr>
+                            <th>Id finition</th>
+                            <th>Nom finition</th>
+                            <th>Effet finition</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-            <Dialog className='dialog' open={open} onClose={handleClose}>
-                <DialogTitle>
-                    Fiche famille
-                </DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        {ficheFinition.map(({
-                            id_finition,
-                            nom_finition,
-                            effet_finition,
-                        }) => (
-                            <table className='tableauFT' id={"id_finition"}>
-                                <thead>
-                                    <tr>
-                                        <th>                </th>
-                                        <th>Valeure actuelle</th>
-                                        <th>Modification</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>{id_finition}</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOM</td>
-                                        <td>{nom_finition}</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                name='nom_finition'
-                                                value={nom_finitionToSend}
-                                                onChange={(e) =>
-                                                    setNom_finitionToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                }
-                                            />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>EFFET</td>
-                                        <td>{effet_finition}</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                name='effet_finition'
-                                                value={effet_finitionToSend}
-                                                onChange={(e) =>
-                                                    setEffet_finitionToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                }
-                                            />
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    </thead>
+                    <tbody>
+                        {/* Les datas sont traitées. 
+                        Chaque élément de l'objet pièce mis dans une case de la ligne
+                        Une fois que l'on a traité toutes les données d'une pièce,
+                        on créer une ligne pour la pièce suivante
+                        */}
+                        {finitions.map(({ id_finition, nom_finition, effet_finition }) => (
+                            <tr key={id_finition}>
+                                <td onClick={() => handleClickOpen(id_finition)}>{id_finition}</td>
+                                <td>{nom_finition}</td>
+                                <td>{effet_finition}</td>
+                            </tr>
                         ))}
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Fermer
-                    </Button>
-                    <Button onClick={sendToAPI} color="primary" autoFocus>
-                        Valider
-                    </Button>
-                </DialogActions>
-            </Dialog>
-        </div>
+                    </tbody>
+                </table>
+                <Dialog className='dialog' open={open} onClose={handleClose}>
+                    <DialogTitle>
+                        Fiche famille
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            {ficheFinition.map(({
+                                id_finition,
+                                nom_finition,
+                                effet_finition,
+                            }) => (
+                                <table className='tableauFT' id={"id_finition"}>
+                                    <thead>
+                                        <tr>
+                                            <th>                </th>
+                                            <th>Valeure actuelle</th>
+                                            <th>Modification</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>{id_finition}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NOM</td>
+                                            <td>{nom_finition}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='nom_finition'
+                                                    value={nom_finitionToSend}
+                                                    onChange={(e) =>
+                                                        setNom_finitionToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>EFFET</td>
+                                            <td>{effet_finition}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='effet_finition'
+                                                    value={effet_finitionToSend}
+                                                    onChange={(e) =>
+                                                        setEffet_finitionToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            ))}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Fermer
+                        </Button>
+                        <Button onClick={sendToAPI} color="primary" autoFocus>
+                            Valider
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
 
-    );
+        );
+    } else {
+        return (
+            <div>
+                <Navigation />
+                {/* Création du tableau des finition */}
+                <table className='tableau'>
+                    <thead>
+                        {/* Colonne faisant office de titre */}
+                        <tr>
+                            <th>Id finition</th>
+                            <th>Nom finition</th>
+                            <th>Effet finition</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* Les datas sont traitées. 
+                        Chaque élément de l'objet pièce mis dans une case de la ligne
+                        Une fois que l'on a traité toutes les données d'une pièce,
+                        on créer une ligne pour la pièce suivante
+                        */}
+                        {finitions.map(({ id_finition, nom_finition, effet_finition }) => (
+                            <tr key={id_finition}>
+                                <td onClick={() => handleClickOpen(id_finition)}>{id_finition}</td>
+                                <td>{nom_finition}</td>
+                                <td>{effet_finition}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <Dialog className='dialog' open={open} onClose={handleClose}>
+                    <DialogTitle>
+                        Fiche famille
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            {ficheFinition.map(({
+                                id_finition,
+                                nom_finition,
+                                effet_finition,
+                            }) => (
+                                <table className='tableauFT' id={"id_finition"}>
+                                    <thead>
+                                        <tr>
+                                            <th>                </th>
+                                            <th>Valeure actuelle</th>
+                                            <th>Modification</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>{id_finition}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NOM</td>
+                                            <td>{nom_finition}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='nom_finition'
+                                                    value={nom_finitionToSend}
+                                                    onChange={(e) =>
+                                                        setNom_finitionToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>EFFET</td>
+                                            <td>{effet_finition}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='effet_finition'
+                                                    value={effet_finitionToSend}
+                                                    onChange={(e) =>
+                                                        setEffet_finitionToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            ))}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Fermer
+                        </Button>
+                        <Button onClick={sendToAPI} color="primary" autoFocus>
+                            Valider
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
+
+        );
+    }
 };
 
 export default Finition;
