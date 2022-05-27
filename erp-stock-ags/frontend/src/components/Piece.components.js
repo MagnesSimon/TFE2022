@@ -154,6 +154,25 @@ const Piece = () => {
         setId_finitionToSend((v) => (e.target.validity.valid ? e.target.value : v))
     }
 
+    // Défini l'état d'ouverture de la boite de dialogue de suppression
+    const [openSupp, setOpenSupp] = useState(false)
+    // Variable qui stocke l'objet à supprimer
+    const [toSupp, setToSupp] = useState([])
+
+    const handleSuppOpen = (id) => {
+        setOpenSupp(true);
+        // Requête pour aller chercher la fiche technique
+        axios.get(window.url + "/listePieces/" + id)
+            .then((res) => setToSupp(res.data))
+
+        console.log("ToSupp", toSupp)
+        console.log("ToSupp.reference", toSupp[0].reference)
+    }
+    // Fonction pour fermer la boîte de dialogue
+    const handleSuppClose = () => {
+        // Remise à vide des valeurs ToSend à la fermeture
+        setOpenSupp(false);
+    };
     const suppression = (id) => {
         axios.delete(window.url + "/listePieces/delete/" + id)
             .then(function (res) {
@@ -164,7 +183,8 @@ const Piece = () => {
                 console.log("Error: ")
                 console.log(err)
             });
-        window.location.reload();
+        refreshPage();
+
     }
 
     // si le profil est ouvrier, pas de modification possible
@@ -369,11 +389,30 @@ const Piece = () => {
                                         reference={reference}
                                         qte={quantite_en_stock} />
                                 </td>
-                                <td onClick={() => suppression(reference)}>X</td>
+                                <td onClick={() => handleSuppOpen(reference)}>X</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+                <Dialog className='dialog' open={openSupp} onClose={handleSuppClose}>
+                    <DialogTitle>
+                        Fiche technique
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            <p>Voulez-vous vraiment supprimer cette pièce ?</p>
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleSuppClose} color="primary">
+                            Annuler
+                        </Button>
+                        <Button onClick={() => suppression(toSupp[0].reference)} color="primary" autoFocus>
+                            Valider
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+
                 <Dialog className='dialog' open={openFT} onClose={handleClose}>
                     <DialogTitle>
                         Fiche technique
