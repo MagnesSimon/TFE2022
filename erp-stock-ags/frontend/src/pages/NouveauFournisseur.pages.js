@@ -105,9 +105,9 @@ const NouveauFournisseur = () => {
                         id="selectChoixLocalite"
                         value={id_localite}
                         onChange={localiteHandleChange}>
-                        {choixLocalite.map(({ id_localite, code_postal, localite }) => (
+                        {choixLocalite.map(({ id_localite, code_postal, nom_localite }) => (
                             <option value={id_localite}>
-                                {code_postal + " - " + localite}
+                                {code_postal + " - " + nom_localite}
                             </option>
                         ))}
                     </select>
