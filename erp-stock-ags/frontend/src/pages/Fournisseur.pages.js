@@ -32,6 +32,10 @@ const Fournisseur = () => {
     // Contient le possibilité de localite pour la liste déroulante
     const [choixLocalite, setChoixLocalite] = useState([])
 
+    // Vérification du profil
+    const [peutAjouter, setPeutAjouter] = useState(localStorage.getItem("isEmploye"))
+
+
     // Fiche famille modifiée à envoyée
     const aEnvoyer = {
         id_fournisseurToSend,
@@ -116,168 +120,327 @@ const Fournisseur = () => {
         setId_localiteToSend("")
     }
 
-    return (
-        <div>
-            <Navigation />
+    if (peutAjouter == 'true') {
+        return (
             <div>
-                <NavLink to='/nouveauFournisseur' className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                    <li>Ajouter un fournisseur</li>
-                </NavLink>
-            </div>
+                <Navigation />
+                <div>
+                    <NavLink to='/nouveauFournisseur' className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                        <li>Ajouter un fournisseur</li>
+                    </NavLink>
+                </div>
 
-            {/* Création du tableau des pièces */}
-            <table className='tableau'>
-                <thead>
-                    {/* Colonne faisant office de titre */}
-                    <tr>
-                        <th>Id fournisseur</th>
-                        <th>Nom fournisseur</th>
-                        <th>mail </th>
-                        <th>telephone</th>
-                        <th>adresse</th>
-                        <th>Localite</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {fournisseur.map(({ id_fournisseur,
-                        nom_fournisseur,
-                        mail_fournisseur,
-                        tel_fournisseur,
-                        adresse_fournisseur,
-                        code_postal,
-                        nom_localite }) => (
-                        <tr key={id_fournisseur}>
-                            <td onClick={() => handleClickOpen(id_fournisseur)}>{id_fournisseur}</td>
-                            <td>{nom_fournisseur}</td>
-                            <td>{mail_fournisseur}</td>
-                            <td>{tel_fournisseur}</td>
-                            <td>{adresse_fournisseur}</td>
-                            <td>{code_postal + ' - ' + nom_localite}</td>
+                {/* Création du tableau des pièces */}
+                <table className='tableau'>
+                    <thead>
+                        {/* Colonne faisant office de titre */}
+                        <tr>
+                            <th>Id fournisseur</th>
+                            <th>Nom fournisseur</th>
+                            <th>mail </th>
+                            <th>telephone</th>
+                            <th>adresse</th>
+                            <th>Localite</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-            <div>
-                <Dialog className='dialog' open={open} onClose={handleClose}>
-                    <DialogTitle>
-                        Fiche fournisseur
-                    </DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            {ficheFournisseur.map(({
-                                id_fournisseur,
-                                nom_fournisseur,
-                                mail_fournisseur,
-                                tel_fournisseur,
-                                adresse_fournisseur,
-                                id_localite,
-                                code_postal,
-                                nom_localite
-                            }) => (
-                                <table className='tableauFT' id={"id_fournisseur"}>
-                                    <thead>
-                                        <tr>
-                                            <th>                </th>
-                                            <th>Valeure actuelle</th>
-                                            <th>Modification</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr >
-                                            <td>ID</td>
-                                            <td>{id_fournisseur}</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr >
-                                            <td>NOM</td>
-                                            <td>{nom_fournisseur}</td>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    name='nom_fournisseur'
-                                                    value={nom_fournisseurToSend}
-                                                    onChange={(e) =>
-                                                        setNom_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                    }
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr >
-                                            <td>MAIL</td>
-                                            <td>{mail_fournisseur}</td>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    name='materiaux'
-                                                    value={mail_fournisseurToSend}
-                                                    onChange={(e) =>
-                                                        setMail_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                    }
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr >
-                                            <td>TELEPHONE</td>
-                                            <td>{tel_fournisseur}</td>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    name='tel_fournisseur'
-                                                    pattern="[0-9]*"
-                                                    value={tel_fournisseurToSend}
-                                                    onChange={(e) =>
-                                                        setTel_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                    }
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr >
-                                            <td>ADRESSE</td>
-                                            <td>{adresse_fournisseur}</td>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    name='adresse_fournisseur'
-                                                    value={adresse_fournisseurToSend}
-                                                    onChange={(e) =>
-                                                        setAddresse_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                    }
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Localité</td>
-                                            <td>{code_postal + ": " + nom_localite}</td>
-                                            <td>
-                                                <select name="choixLocalite"
-                                                    id="selectChoixLocalite"
-                                                    multiple={false}
-                                                    value={id_localiteToSend}
-                                                    onChange={localiteHandleChange}>
-                                                    {choixLocalite.map(({ id_localite, code_postal, nom_localite }) => (
-                                                        <option value={id_localite}>{code_postal + ": " + nom_localite}</option>
-                                                    ))}
-                                                </select>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            ))}
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose} color="primary">
-                            Fermer
-                        </Button>
-                        <Button onClick={sendToAPI} color="primary" autoFocus>
-                            Valider
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-            </div>
+                    </thead>
+                    <tbody>
+                        {fournisseur.map(({ id_fournisseur,
+                            nom_fournisseur,
+                            mail_fournisseur,
+                            tel_fournisseur,
+                            adresse_fournisseur,
+                            code_postal,
+                            nom_localite }) => (
+                            <tr key={id_fournisseur}>
+                                <td onClick={() => handleClickOpen(id_fournisseur)}>{id_fournisseur}</td>
+                                <td>{nom_fournisseur}</td>
+                                <td>{mail_fournisseur}</td>
+                                <td>{tel_fournisseur}</td>
+                                <td>{adresse_fournisseur}</td>
+                                <td>{code_postal + ' - ' + nom_localite}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <div>
+                    <Dialog className='dialog' open={open} onClose={handleClose}>
+                        <DialogTitle>
+                            Fiche fournisseur
+                        </DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                {ficheFournisseur.map(({
+                                    id_fournisseur,
+                                    nom_fournisseur,
+                                    mail_fournisseur,
+                                    tel_fournisseur,
+                                    adresse_fournisseur,
+                                    id_localite,
+                                    code_postal,
+                                    nom_localite
+                                }) => (
+                                    <table className='tableauFT' id={"id_fournisseur"}>
+                                        <thead>
+                                            <tr>
+                                                <th>                </th>
+                                                <th>Valeure actuelle</th>
+                                                <th>Modification</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr >
+                                                <td>ID</td>
+                                                <td>{id_fournisseur}</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr >
+                                                <td>NOM</td>
+                                                <td>{nom_fournisseur}</td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        name='nom_fournisseur'
+                                                        value={nom_fournisseurToSend}
+                                                        onChange={(e) =>
+                                                            setNom_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                        }
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <td>MAIL</td>
+                                                <td>{mail_fournisseur}</td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        name='materiaux'
+                                                        value={mail_fournisseurToSend}
+                                                        onChange={(e) =>
+                                                            setMail_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                        }
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <td>TELEPHONE</td>
+                                                <td>{tel_fournisseur}</td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        name='tel_fournisseur'
+                                                        pattern="[0-9]*"
+                                                        value={tel_fournisseurToSend}
+                                                        onChange={(e) =>
+                                                            setTel_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                        }
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <td>ADRESSE</td>
+                                                <td>{adresse_fournisseur}</td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        name='adresse_fournisseur'
+                                                        value={adresse_fournisseurToSend}
+                                                        onChange={(e) =>
+                                                            setAddresse_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                        }
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Localité</td>
+                                                <td>{code_postal + ": " + nom_localite}</td>
+                                                <td>
+                                                    <select name="choixLocalite"
+                                                        id="selectChoixLocalite"
+                                                        multiple={false}
+                                                        value={id_localiteToSend}
+                                                        onChange={localiteHandleChange}>
+                                                        {choixLocalite.map(({ id_localite, code_postal, nom_localite }) => (
+                                                            <option value={id_localite}>{code_postal + ": " + nom_localite}</option>
+                                                        ))}
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                ))}
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleClose} color="primary">
+                                Fermer
+                            </Button>
+                            <Button onClick={sendToAPI} color="primary" autoFocus>
+                                Valider
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </div>
 
-        </div>
-    );
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                <Navigation />
+                {/* Création du tableau des pièces */}
+                <table className='tableau'>
+                    <thead>
+                        {/* Colonne faisant office de titre */}
+                        <tr>
+                            <th>Id fournisseur</th>
+                            <th>Nom fournisseur</th>
+                            <th>mail </th>
+                            <th>telephone</th>
+                            <th>adresse</th>
+                            <th>Localite</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {fournisseur.map(({ id_fournisseur,
+                            nom_fournisseur,
+                            mail_fournisseur,
+                            tel_fournisseur,
+                            adresse_fournisseur,
+                            code_postal,
+                            nom_localite }) => (
+                            <tr key={id_fournisseur}>
+                                <td onClick={() => handleClickOpen(id_fournisseur)}>{id_fournisseur}</td>
+                                <td>{nom_fournisseur}</td>
+                                <td>{mail_fournisseur}</td>
+                                <td>{tel_fournisseur}</td>
+                                <td>{adresse_fournisseur}</td>
+                                <td>{code_postal + ' - ' + nom_localite}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <div>
+                    <Dialog className='dialog' open={open} onClose={handleClose}>
+                        <DialogTitle>
+                            Fiche fournisseur
+                        </DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                {ficheFournisseur.map(({
+                                    id_fournisseur,
+                                    nom_fournisseur,
+                                    mail_fournisseur,
+                                    tel_fournisseur,
+                                    adresse_fournisseur,
+                                    id_localite,
+                                    code_postal,
+                                    nom_localite
+                                }) => (
+                                    <table className='tableauFT' id={"id_fournisseur"}>
+                                        <thead>
+                                            <tr>
+                                                <th>                </th>
+                                                <th>Valeure actuelle</th>
+                                                <th>Modification</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr >
+                                                <td>ID</td>
+                                                <td>{id_fournisseur}</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr >
+                                                <td>NOM</td>
+                                                <td>{nom_fournisseur}</td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        name='nom_fournisseur'
+                                                        value={nom_fournisseurToSend}
+                                                        onChange={(e) =>
+                                                            setNom_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                        }
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <td>MAIL</td>
+                                                <td>{mail_fournisseur}</td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        name='materiaux'
+                                                        value={mail_fournisseurToSend}
+                                                        onChange={(e) =>
+                                                            setMail_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                        }
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <td>TELEPHONE</td>
+                                                <td>{tel_fournisseur}</td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        name='tel_fournisseur'
+                                                        pattern="[0-9]*"
+                                                        value={tel_fournisseurToSend}
+                                                        onChange={(e) =>
+                                                            setTel_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                        }
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <td>ADRESSE</td>
+                                                <td>{adresse_fournisseur}</td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        name='adresse_fournisseur'
+                                                        value={adresse_fournisseurToSend}
+                                                        onChange={(e) =>
+                                                            setAddresse_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                        }
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Localité</td>
+                                                <td>{code_postal + ": " + nom_localite}</td>
+                                                <td>
+                                                    <select name="choixLocalite"
+                                                        id="selectChoixLocalite"
+                                                        multiple={false}
+                                                        value={id_localiteToSend}
+                                                        onChange={localiteHandleChange}>
+                                                        {choixLocalite.map(({ id_localite, code_postal, nom_localite }) => (
+                                                            <option value={id_localite}>{code_postal + ": " + nom_localite}</option>
+                                                        ))}
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                ))}
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleClose} color="primary">
+                                Fermer
+                            </Button>
+                            <Button onClick={sendToAPI} color="primary" autoFocus>
+                                Valider
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </div>
+
+            </div>
+        );
+    }
 };
 
 export default Fournisseur;

@@ -7,12 +7,6 @@ const ListePieces = () => {
 
     const [peutAjouter, setPeutAjouter] = useState(localStorage.getItem("isEmploye"))
 
-    // if (localStorage.getItem('profil' == '4') || localStorage.getItem('profil' == '3')) {
-    //     setPeutAjouter(false)
-    // } else {
-    //     setPeutAjouter(true)
-    // }
-
     console.log("Peut ajouter ?: ", peutAjouter)
 
     if (peutAjouter == 'true') {
