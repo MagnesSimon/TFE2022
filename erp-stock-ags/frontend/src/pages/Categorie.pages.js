@@ -93,17 +93,34 @@ const Categorie = () => {
         refreshPage();
     }
 
+    // Défini l'état d'ouverture de la boite de dialogue de suppression
+    const [openSupp, setOpenSupp] = useState(false)
+    // Variable qui stocke l'objet à supprimer
+    const [toSupp, setToSupp] = useState([])
+    // Ouvre la boite de dialogue de suppression
+    const handleSuppOpen = (id) => {
+        setOpenSupp(true);
+        // Requête pour aller chercher la fiche technique
+        axios.get(window.url + "/ListeCategories/" + id)
+            .then((res) => setToSupp(res.data))
+    }
+    // Fonction pour fermer la boîte de dialogue
+    const handleSuppClose = () => {
+        // Remise à vide des valeurs ToSupp à la fermeture
+        setOpenSupp(false);
+    };
+    // Fonction qui effectue la requete de suppression 
     const suppression = (id) => {
         axios.delete(window.url + "/listeCategories/delete/" + id)
             .then(function (res) {
-                console.log('Succes suppression de categorie')
+                console.log('Succes suppression de pièce')
                 console.log(res.data)
             })
             .catch(function (err) {
                 console.log("Error: ")
                 console.log(err)
             });
-        window.location.reload();
+        refreshPage();
     }
 
     if (localStorage.getItem('profil') == '1') {
@@ -135,12 +152,30 @@ const Categorie = () => {
                                 <td onClick={() => handleClickOpen(id_categorie)}>{id_categorie}</td>
                                 <td>{nom_categorie}</td>
                                 <td>{pole}</td>
-                                <td onClick={() => suppression(id_categorie)}>X</td>
+                                <td onClick={() => handleSuppOpen(id_categorie)}>X</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
                 <div>
+                    <Dialog className='dialog' open={openSupp} onClose={handleSuppClose}>
+                        <DialogTitle>
+                            Fiche technique
+                        </DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                <p>Voulez-vous vraiment supprimer cette catégorie ?</p>
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleSuppClose} color="primary">
+                                Annuler
+                            </Button>
+                            <Button onClick={() => suppression(toSupp[0].id_categorie)} color="primary" autoFocus>
+                                Valider
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
                     <Dialog className='dialog' open={open} onClose={handleClose}>
                         <DialogTitle>
                             Fiche famille

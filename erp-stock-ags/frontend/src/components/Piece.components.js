@@ -158,21 +158,19 @@ const Piece = () => {
     const [openSupp, setOpenSupp] = useState(false)
     // Variable qui stocke l'objet à supprimer
     const [toSupp, setToSupp] = useState([])
-
+    // Ouvre la boite de dialogue de suppression
     const handleSuppOpen = (id) => {
         setOpenSupp(true);
         // Requête pour aller chercher la fiche technique
         axios.get(window.url + "/listePieces/" + id)
             .then((res) => setToSupp(res.data))
-
-        console.log("ToSupp", toSupp)
-        console.log("ToSupp.reference", toSupp[0].reference)
     }
     // Fonction pour fermer la boîte de dialogue
     const handleSuppClose = () => {
-        // Remise à vide des valeurs ToSend à la fermeture
+        // Remise à vide des valeurs ToSupp à la fermeture
         setOpenSupp(false);
     };
+    // Fonction qui effectue la requete de suppression 
     const suppression = (id) => {
         axios.delete(window.url + "/listePieces/delete/" + id)
             .then(function (res) {
@@ -184,7 +182,6 @@ const Piece = () => {
                 console.log(err)
             });
         refreshPage();
-
     }
 
     // si le profil est ouvrier, pas de modification possible
