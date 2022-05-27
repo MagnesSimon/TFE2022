@@ -143,4 +143,16 @@ ListePieces.updateById = (data, result) => {
         " WHERE `reference` = " + "'" + data.reference + "'")
 }
 
+ListePieces.remove = (id, result) => {
+    sql.query("DELETE FROM piece WHERE reference = ?", id, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+        console.log("deleted article with id: ", id);
+        result(null, res);
+    });
+}
+
 module.exports = ListePieces;

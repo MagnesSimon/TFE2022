@@ -13,4 +13,6 @@ module.exports = app => {
 
     app.post("/listePieces/updateFT", ListePieces.updateById);
 
+    app.delete("/listePieces/delete/:id", ListePieces.delete);
+
 }
