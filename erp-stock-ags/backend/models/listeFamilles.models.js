@@ -89,4 +89,16 @@ ListeFamilles.updateById = (data, result) => {
         });
 }
 
+ListeFamilles.remove = (id, result) => {
+    sql.query("DELETE FROM famille WHERE id_famille = ?", id, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+        console.log("deleted famille with id: ", id);
+        result(null, res);
+    });
+}
+
 module.exports = ListeFamilles

@@ -8,4 +8,7 @@ module.exports = app => {
     app.post("/listeFamilles/updateById", ListeFamilles.updateById);
 
     app.get("/listeFamilles/:id", ListeFamilles.findOne);
+
+    app.delete("/listeFamilles/delete/:id", ListeFamilles.delete);
+
 }
