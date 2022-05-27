@@ -180,29 +180,8 @@ const Navigation = () => {
                 {/* avec minuscule car dans le scss défini comme tel */}
                 < div className="navigation" >
                     <ul>
-                        {/* Page de connexion  */}
-                        {/* <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                                <li>Connexion</li>
-                            </NavLink> */}
-                        {/* Page de la liste des pièces */}
                         <NavLink to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                             <li>Pièces</li>
-                        </NavLink>
-                        {/* Page de la liste des pièces en pénurie */}
-                        {/* <NavLink to="/penurie" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                            <li>Pénurie</li>
-                        </NavLink> */}
-                        {/* Page de la liste des familles */}
-                        <NavLink to="/familles" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                            <li>Familles</li>
-                        </NavLink>
-                        {/* Page de la liste des finition */}
-                        <NavLink to="/finitions" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                            <li>Finitions</li>
-                        </NavLink>
-                        {/* Page de la liste des catégorie */}
-                        <NavLink to="/categorie" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                            <li>Catégorie</li>
                         </NavLink>
                         <NavLink
                             to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}

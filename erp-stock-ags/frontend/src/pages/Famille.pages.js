@@ -35,6 +35,9 @@ const Famille = () => {
     const [choixFournisseur, setChoixFournisseur] = useState([])
     const [choixCategorie, setChoixCategorie] = useState([])
 
+    // Vérification du profil
+    const [peutAjouter, setPeutAjouter] = useState(localStorage.getItem("isEmploye"))
+
     // Fiche famille modifiée à envoyée
     const aEnvoyer = {
         id_familleToSend,
@@ -125,152 +128,296 @@ const Famille = () => {
         setId_categorieToSend("")
     }
 
-    return (
-        <div>
-            <Navigation />
+    if (peutAjouter == 'true') {
+        return (
             <div>
-                <NavLink to='/nouvelleFamille' className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                    <li>Ajouter une famille</li>
-                </NavLink>
-            </div>
-            {/* Création du tableau des pièces */}
-            <table className='tableau'>
-                <thead>
-                    {/* Colonne faisant office de titre */}
-                    <tr>
-                        <th>Id famille</th>
-                        <th>Nom famille</th>
-                        <th>Matériaux</th>
-                        <th>Fournisseur</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* Les datas sont traitées. 
+                <Navigation />
+                <div>
+                    <NavLink to='/nouvelleFamille' className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                        <li>Ajouter une famille</li>
+                    </NavLink>
+                </div>
+                {/* Création du tableau des pièces */}
+                <table className='tableau'>
+                    <thead>
+                        {/* Colonne faisant office de titre */}
+                        <tr>
+                            <th>Id famille</th>
+                            <th>Nom famille</th>
+                            <th>Matériaux</th>
+                            <th>Fournisseur</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* Les datas sont traitées. 
                     Chaque élément de l'objet pièce mis dans une case de la ligne
                     Une fois que l'on a traité toutes les données d'une pièce,
                     on créer une ligne pour la pièce suivante
                     */}
-                    {famille.map(({ id_famille, nom_famille, materiaux, nom_fournisseur }) => (
-                        <tr key={id_famille}>
-                            <td onClick={() => handleClickOpen(id_famille)}>{id_famille}</td>
-                            <td>{nom_famille}</td>
-                            <td>{materiaux}</td>
-                            <td>{nom_fournisseur}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-
-            <Dialog className='dialog' open={open} onClose={handleClose}>
-                <DialogTitle>
-                    Fiche famille
-                </DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        {ficheFamille.map(({
-                            id_famille,
-                            nom_famille,
-                            materiaux,
-                            id_fournisseur,
-                            id_categorie,
-                            nom_fournisseur,
-                            nom_categorie,
-                            pole
-                        }) => (
-                            <table className='tableauFT' id={"id_famille"}>
-                                <thead>
-                                    <tr>
-                                        <th>                </th>
-                                        <th>Valeure actuelle</th>
-                                        <th>Modification</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr >
-                                        <td>ID</td>
-                                        <td>{id_famille}</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr >
-                                        <td>NOM</td>
-                                        <td>{nom_famille}</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                name='nom_famille'
-                                                value={nom_familleToSend}
-                                                onChange={(e) =>
-                                                    setNom_familleToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                }
-                                            />
-                                        </td>
-                                    </tr>
-                                    <tr >
-                                        <td>MATERIAUX</td>
-                                        <td>{materiaux}</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                name='materiaux'
-                                                value={materiauxToSend}
-                                                onChange={(e) =>
-                                                    setMateriauxToSend((v) => (e.target.validity.valid ? e.target.value : v))
-                                                }
-                                            />
-                                        </td>
-                                    </tr>
-                                    <tr >
-                                        <td>FOURNISSEUR</td>
-                                        <td>{nom_fournisseur}</td>
-                                        <td>
-                                            <select name="choixFournisseur"
-                                                id="selectChoixFournisseur"
-                                                multiple={false}
-                                                value={id_fournisseurToSend}
-                                                onChange={fournisseurHandleChange}>
-                                                {choixFournisseur.map(({ id_fournisseur, nom_fournisseur }) => (
-                                                    <option value={id_fournisseur}>{nom_fournisseur}</option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr >
-                                        <td>CATEGORIE</td>
-                                        <td>{nom_categorie}</td>
-                                        <td>
-                                            <select name="choixCategorie"
-                                                id="selectChoixCategorie"
-                                                multiple={false}
-                                                value={id_categorieToSend}
-                                                onChange={categorieHandleChange}>
-                                                {choixCategorie.map(({ id_categorie, nom_categorie, pole }) => (
-                                                    <option value={id_categorie}>{nom_categorie + " - " + pole}</option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr key={pole}>
-                                        <td>POLE</td>
-                                        <td>{pole}</td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        {famille.map(({ id_famille, nom_famille, materiaux, nom_fournisseur }) => (
+                            <tr key={id_famille}>
+                                <td onClick={() => handleClickOpen(id_famille)}>{id_famille}</td>
+                                <td>{nom_famille}</td>
+                                <td>{materiaux}</td>
+                                <td>{nom_fournisseur}</td>
+                            </tr>
                         ))}
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Fermer
-                    </Button>
-                    <Button onClick={sendToAPI} color="primary" autoFocus>
-                        Valider
-                    </Button>
-                </DialogActions>
-            </Dialog>
+                    </tbody>
+                </table>
 
-        </div>
-    );
+                <Dialog className='dialog' open={open} onClose={handleClose}>
+                    <DialogTitle>
+                        Fiche famille
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            {ficheFamille.map(({
+                                id_famille,
+                                nom_famille,
+                                materiaux,
+                                id_fournisseur,
+                                id_categorie,
+                                nom_fournisseur,
+                                nom_categorie,
+                                pole
+                            }) => (
+                                <table className='tableauFT' id={"id_famille"}>
+                                    <thead>
+                                        <tr>
+                                            <th>                </th>
+                                            <th>Valeure actuelle</th>
+                                            <th>Modification</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr >
+                                            <td>ID</td>
+                                            <td>{id_famille}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr >
+                                            <td>NOM</td>
+                                            <td>{nom_famille}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='nom_famille'
+                                                    value={nom_familleToSend}
+                                                    onChange={(e) =>
+                                                        setNom_familleToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr >
+                                            <td>MATERIAUX</td>
+                                            <td>{materiaux}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='materiaux'
+                                                    value={materiauxToSend}
+                                                    onChange={(e) =>
+                                                        setMateriauxToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr >
+                                            <td>FOURNISSEUR</td>
+                                            <td>{nom_fournisseur}</td>
+                                            <td>
+                                                <select name="choixFournisseur"
+                                                    id="selectChoixFournisseur"
+                                                    multiple={false}
+                                                    value={id_fournisseurToSend}
+                                                    onChange={fournisseurHandleChange}>
+                                                    {choixFournisseur.map(({ id_fournisseur, nom_fournisseur }) => (
+                                                        <option value={id_fournisseur}>{nom_fournisseur}</option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr >
+                                            <td>CATEGORIE</td>
+                                            <td>{nom_categorie}</td>
+                                            <td>
+                                                <select name="choixCategorie"
+                                                    id="selectChoixCategorie"
+                                                    multiple={false}
+                                                    value={id_categorieToSend}
+                                                    onChange={categorieHandleChange}>
+                                                    {choixCategorie.map(({ id_categorie, nom_categorie, pole }) => (
+                                                        <option value={id_categorie}>{nom_categorie + " - " + pole}</option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr key={pole}>
+                                            <td>POLE</td>
+                                            <td>{pole}</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            ))}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Fermer
+                        </Button>
+                        <Button onClick={sendToAPI} color="primary" autoFocus>
+                            Valider
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+
+            </div>
+        );
+    } else {
+        return (
+            <div>
+                <Navigation />
+                {/* Création du tableau des pièces */}
+                <table className='tableau'>
+                    <thead>
+                        {/* Colonne faisant office de titre */}
+                        <tr>
+                            <th>Id famille</th>
+                            <th>Nom famille</th>
+                            <th>Matériaux</th>
+                            <th>Fournisseur</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* Les datas sont traitées. 
+                    Chaque élément de l'objet pièce mis dans une case de la ligne
+                    Une fois que l'on a traité toutes les données d'une pièce,
+                    on créer une ligne pour la pièce suivante
+                    */}
+                        {famille.map(({ id_famille, nom_famille, materiaux, nom_fournisseur }) => (
+                            <tr key={id_famille}>
+                                <td onClick={() => handleClickOpen(id_famille)}>{id_famille}</td>
+                                <td>{nom_famille}</td>
+                                <td>{materiaux}</td>
+                                <td>{nom_fournisseur}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+
+                <Dialog className='dialog' open={open} onClose={handleClose}>
+                    <DialogTitle>
+                        Fiche famille
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            {ficheFamille.map(({
+                                id_famille,
+                                nom_famille,
+                                materiaux,
+                                id_fournisseur,
+                                id_categorie,
+                                nom_fournisseur,
+                                nom_categorie,
+                                pole
+                            }) => (
+                                <table className='tableauFT' id={"id_famille"}>
+                                    <thead>
+                                        <tr>
+                                            <th>                </th>
+                                            <th>Valeure actuelle</th>
+                                            <th>Modification</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr >
+                                            <td>ID</td>
+                                            <td>{id_famille}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr >
+                                            <td>NOM</td>
+                                            <td>{nom_famille}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='nom_famille'
+                                                    value={nom_familleToSend}
+                                                    onChange={(e) =>
+                                                        setNom_familleToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr >
+                                            <td>MATERIAUX</td>
+                                            <td>{materiaux}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name='materiaux'
+                                                    value={materiauxToSend}
+                                                    onChange={(e) =>
+                                                        setMateriauxToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                    }
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr >
+                                            <td>FOURNISSEUR</td>
+                                            <td>{nom_fournisseur}</td>
+                                            <td>
+                                                <select name="choixFournisseur"
+                                                    id="selectChoixFournisseur"
+                                                    multiple={false}
+                                                    value={id_fournisseurToSend}
+                                                    onChange={fournisseurHandleChange}>
+                                                    {choixFournisseur.map(({ id_fournisseur, nom_fournisseur }) => (
+                                                        <option value={id_fournisseur}>{nom_fournisseur}</option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr >
+                                            <td>CATEGORIE</td>
+                                            <td>{nom_categorie}</td>
+                                            <td>
+                                                <select name="choixCategorie"
+                                                    id="selectChoixCategorie"
+                                                    multiple={false}
+                                                    value={id_categorieToSend}
+                                                    onChange={categorieHandleChange}>
+                                                    {choixCategorie.map(({ id_categorie, nom_categorie, pole }) => (
+                                                        <option value={id_categorie}>{nom_categorie + " - " + pole}</option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr key={pole}>
+                                            <td>POLE</td>
+                                            <td>{pole}</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            ))}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Fermer
+                        </Button>
+                        <Button onClick={sendToAPI} color="primary" autoFocus>
+                            Valider
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+
+            </div>
+        );
+    }
 };
 
 
