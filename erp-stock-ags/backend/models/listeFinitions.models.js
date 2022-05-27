@@ -63,4 +63,17 @@ ListeFinition.updateById = (data, result) => {
         " WHERE `id_finition` = " + "'" + data.id_finition + "'")
 }
 
+ListeFinition.remove = (id, result) => {
+    sql.query("DELETE FROM finition WHERE id_finition = ?", id, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+        console.log("deleted finition with id: ", id);
+        result(null, res);
+    });
+}
+
+
 module.exports = ListeFinition

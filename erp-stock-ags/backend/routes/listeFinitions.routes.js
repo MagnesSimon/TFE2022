@@ -8,4 +8,7 @@ module.exports = app => {
     app.post("/listeFinitions/updateById", ListeFinition.updateById);
 
     app.get("/listeFinitions/:id", ListeFinition.findOne);
+
+    app.delete("/listeFinitions/delete/:id", ListeFinition.delete);
+
 }

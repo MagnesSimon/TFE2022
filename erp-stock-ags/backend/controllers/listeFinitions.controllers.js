@@ -76,3 +76,19 @@ exports.updateById = (req, res) => {
             res.send('UDPATE OK');
     });
 }
+
+exports.delete = (req, res) => {
+    ListeFinition.remove(req.params.id, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found finition with id ${req.params.id}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Could not delete finition with id " + req.params.id
+                });
+            }
+        } else res.send({ message: `finition was deleted successfully!` });
+    });
+};
