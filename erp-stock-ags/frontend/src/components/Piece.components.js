@@ -164,7 +164,6 @@ const Piece = () => {
                 console.log("Error: ")
                 console.log(err)
             });
-
         window.location.reload();
     }
 

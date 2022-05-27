@@ -63,5 +63,17 @@ ListeCategories.updateById = (data, result) => {
         " WHERE `id_categorie` = " + "'" + data.id_categorie + "'")
 }
 
+ListeCategories.remove = (id, result) => {
+    sql.query("DELETE FROM categorie WHERE id_categorie = ?", id, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+        console.log("deleted categorie with id: ", id);
+        result(null, res);
+    });
+}
+
 
 module.exports = ListeCategories
