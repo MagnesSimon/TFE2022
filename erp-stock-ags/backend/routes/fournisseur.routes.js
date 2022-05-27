@@ -10,4 +10,7 @@ module.exports = app => {
     app.post("/fournisseur/updateById", Fournisseur.updateById);
 
     app.get("/fournisseur/:id", Fournisseur.findOne);
+
+    app.delete("/fournisseur/delete/:id", Fournisseur.delete);
+
 }

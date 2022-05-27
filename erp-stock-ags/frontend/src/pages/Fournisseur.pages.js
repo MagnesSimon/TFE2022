@@ -120,7 +120,223 @@ const Fournisseur = () => {
         setId_localiteToSend("")
     }
 
-    if (peutAjouter == 'true') {
+    // Défini l'état d'ouverture de la boite de dialogue de suppression
+    const [openSupp, setOpenSupp] = useState(false)
+    // Variable qui stocke l'objet à supprimer
+    const [toSupp, setToSupp] = useState([])
+    // Ouvre la boite de dialogue de suppression
+    const handleSuppOpen = (id) => {
+        setOpenSupp(true);
+        console.log("ToSupp", toSupp)
+        // Requête pour aller chercher la fiche technique
+        axios.get(window.url + "/fournisseur/" + id)
+            .then((res) => setToSupp(res.data))
+    }
+    // Fonction pour fermer la boîte de dialogue
+    const handleSuppClose = () => {
+        // Remise à vide des valeurs ToSupp à la fermeture
+        setOpenSupp(false);
+    };
+    // Fonction qui effectue la requete de suppression 
+    const suppression = (id) => {
+        axios.delete(window.url + "/fournisseur/delete/" + id)
+            .then(function (res) {
+                console.log('Succes suppression de fournisseur')
+                console.log(res.data)
+            })
+            .catch(function (err) {
+                console.log("Error: ")
+                console.log(err)
+            });
+        refreshPage();
+    }
+
+    if (localStorage.getItem('profil') == '1') {
+        return (
+            <div>
+                <Navigation />
+                <div>
+                    <NavLink to='/nouveauFournisseur' className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                        <li>Ajouter un fournisseur</li>
+                    </NavLink>
+                </div>
+
+                {/* Création du tableau des pièces */}
+                <table className='tableau'>
+                    <thead>
+                        {/* Colonne faisant office de titre */}
+                        <tr>
+                            <th>Id fournisseur</th>
+                            <th>Nom fournisseur</th>
+                            <th>mail </th>
+                            <th>telephone</th>
+                            <th>adresse</th>
+                            <th>Localite</th>
+                            <th>Suppression</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {fournisseur.map(({ id_fournisseur,
+                            nom_fournisseur,
+                            mail_fournisseur,
+                            tel_fournisseur,
+                            adresse_fournisseur,
+                            code_postal,
+                            nom_localite }) => (
+                            <tr key={id_fournisseur}>
+                                <td onClick={() => handleClickOpen(id_fournisseur)}>{id_fournisseur}</td>
+                                <td>{nom_fournisseur}</td>
+                                <td>{mail_fournisseur}</td>
+                                <td>{tel_fournisseur}</td>
+                                <td>{adresse_fournisseur}</td>
+                                <td>{code_postal + ' - ' + nom_localite}</td>
+                                <td onClick={() => handleSuppOpen(id_fournisseur)}>X</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <div>
+                    <Dialog className='dialog' open={openSupp} onClose={handleSuppClose}>
+                        <DialogTitle>
+                            Fiche technique
+                        </DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                <p>Voulez-vous vraiment supprimer ce fournisseur ?</p>
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleSuppClose} color="primary">
+                                Annuler
+                            </Button>
+                            <Button onClick={() => suppression(toSupp[0].id_fournisseur)} color="primary" autoFocus>
+                                Valider
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+
+                    <Dialog className='dialog' open={open} onClose={handleClose}>
+                        <DialogTitle>
+                            Fiche fournisseur
+                        </DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                {ficheFournisseur.map(({
+                                    id_fournisseur,
+                                    nom_fournisseur,
+                                    mail_fournisseur,
+                                    tel_fournisseur,
+                                    adresse_fournisseur,
+                                    id_localite,
+                                    code_postal,
+                                    nom_localite
+                                }) => (
+                                    <table className='tableauFT' id={"id_fournisseur"}>
+                                        <thead>
+                                            <tr>
+                                                <th>                </th>
+                                                <th>Valeure actuelle</th>
+                                                <th>Modification</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr >
+                                                <td>ID</td>
+                                                <td>{id_fournisseur}</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr >
+                                                <td>NOM</td>
+                                                <td>{nom_fournisseur}</td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        name='nom_fournisseur'
+                                                        value={nom_fournisseurToSend}
+                                                        onChange={(e) =>
+                                                            setNom_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                        }
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <td>MAIL</td>
+                                                <td>{mail_fournisseur}</td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        name='materiaux'
+                                                        value={mail_fournisseurToSend}
+                                                        onChange={(e) =>
+                                                            setMail_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                        }
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <td>TELEPHONE</td>
+                                                <td>{tel_fournisseur}</td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        name='tel_fournisseur'
+                                                        pattern="[0-9]*"
+                                                        value={tel_fournisseurToSend}
+                                                        onChange={(e) =>
+                                                            setTel_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                        }
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <td>ADRESSE</td>
+                                                <td>{adresse_fournisseur}</td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        name='adresse_fournisseur'
+                                                        value={adresse_fournisseurToSend}
+                                                        onChange={(e) =>
+                                                            setAddresse_fournisseurToSend((v) => (e.target.validity.valid ? e.target.value : v))
+                                                        }
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Localité</td>
+                                                <td>{code_postal + ": " + nom_localite}</td>
+                                                <td>
+                                                    <select name="choixLocalite"
+                                                        id="selectChoixLocalite"
+                                                        multiple={false}
+                                                        value={id_localiteToSend}
+                                                        onChange={localiteHandleChange}>
+                                                        {choixLocalite.map(({ id_localite, code_postal, nom_localite }) => (
+                                                            <option value={id_localite}>{code_postal + ": " + nom_localite}</option>
+                                                        ))}
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                ))}
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleClose} color="primary">
+                                Fermer
+                            </Button>
+                            <Button onClick={sendToAPI} color="primary" autoFocus>
+                                Valider
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </div>
+
+            </div>
+        )
+    }
+    else if (peutAjouter == 'true') {
         return (
             <div>
                 <Navigation />

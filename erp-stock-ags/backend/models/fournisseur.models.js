@@ -100,4 +100,16 @@ Fournisseur.updateById = (data, result) => {
         " WHERE `id_fournisseur` = " + "'" + data.id_fournisseur + "'")
 }
 
+Fournisseur.remove = (id, result) => {
+    sql.query("DELETE FROM fournisseur WHERE id_fournisseur = ?", id, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+        console.log("deleted fournisseur with id: ", id);
+        result(null, res);
+    });
+}
+
 module.exports = Fournisseur
