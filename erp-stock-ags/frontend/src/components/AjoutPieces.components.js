@@ -4,11 +4,6 @@ import "../GlobalData"
 
 const AjoutPieces = (piece) => {
 
-    // Fonction permettant de refresh la page quand elle est appelée
-    function refreshPage() {
-        window.location.reload();
-    }
-
     // Contient la valeur encodée dans l'input quantité de pièce
     const [value, setValue] = useState([])
     // Contient l'id du profil 
@@ -55,7 +50,6 @@ const AjoutPieces = (piece) => {
         // refresh de la page après l'envoi de données
         window.location.reload(false);
     }
-
     // Input avec un champ ou il est possible d'encoder que des nombre
     // Et bouton qui permet d'ajouter la valeur reprise dans l'input à la quantité
     return (
