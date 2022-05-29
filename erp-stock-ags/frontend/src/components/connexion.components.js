@@ -4,7 +4,6 @@ import axios from 'axios';
 import "animate.css/animate.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast, cssTransition } from "react-toastify";
-import { Navigate } from 'react-router-dom';
 
 
 const Connexion = () => {
@@ -32,30 +31,30 @@ const Connexion = () => {
     const seConnecter = () => {
         setConnecte(false)
         listeUtilisateur.find((user) => {
-            if (nom_utilisateur == user.nom_utilisateur && mot_de_passe == user.mot_de_passe) {
-                if (user.id_profil == '5') {
+            if (nom_utilisateur === user.nom_utilisateur && mot_de_passe === user.mot_de_passe) {
+                if (user.id_profil === '5') {
                     window.alert('Votre profil est archivé, vous ne pouvez pas vous connecter')
                 } else {
                     setConnecte(true)
                     localStorage.setItem("utilisateur", user.id_utilisateur);
                     localStorage.setItem("profil", user.id_profil);
                 }
-                if (user.id_profil == '4') {
+                if (user.id_profil === '4') {
                     localStorage.setItem("isOuvrier", true)
                     localStorage.setItem("isEtudiant", false)
                     localStorage.setItem("isEmploye", false)
                     localStorage.setItem("isAdmin", false)
-                } else if (user.id_profil == '3') {
+                } else if (user.id_profil === '3') {
                     localStorage.setItem("isOuvrier", true)
                     localStorage.setItem("isEtudiant", true)
                     localStorage.setItem("isEmploye", false)
                     localStorage.setItem("isAdmin", false)
-                } else if (user.id_profil == '2') {
+                } else if (user.id_profil === '2') {
                     localStorage.setItem("isOuvrier", true)
                     localStorage.setItem("isEtudiant", true)
                     localStorage.setItem("isEmploye", true)
                     localStorage.setItem("isAdmin", false)
-                } else if (user.id_profil == '1') {
+                } else if (user.id_profil === '1') {
                     localStorage.setItem("isOuvrier", true)
                     localStorage.setItem("isEtudiant", true)
                     localStorage.setItem("isEmploye", true)
@@ -68,7 +67,7 @@ const Connexion = () => {
                 });
             }
         })
-        if (connecte == false) {
+        if (connecte === false) {
             alert("Identifiants incorrects")
         }
         window.location.reload(false)

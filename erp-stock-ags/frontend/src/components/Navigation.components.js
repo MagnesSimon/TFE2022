@@ -11,7 +11,7 @@ const Navigation = () => {
     console.log("profil: ", profil)
 
     // Si le profil est ADMIN 
-    if (profil == '1') {
+    if (profil === '1') {
         return (
             < div >
                 {/* avec minuscule car dans le scss défini comme tel */}
@@ -73,7 +73,7 @@ const Navigation = () => {
         );
     }
     // Si le profil est EMPLOYE 
-    else if (profil == '2') {
+    else if (profil === '2') {
         console.log("Profil Employe");
         return (
             < div >
@@ -123,17 +123,13 @@ const Navigation = () => {
         );
     }
     // Si le profil est ETUDIANT 
-    else if (profil == '3') {
+    else if (profil === '3') {
         console.log("Profil Etudiant");
         return (
             < div >
                 {/* avec minuscule car dans le scss défini comme tel */}
                 < div className="navigation" >
                     <ul>
-                        {/* Page de connexion  */}
-                        {/* <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                                <li>Connexion</li>
-                            </NavLink> */}
                         {/* Page de la liste des pièces */}
                         <NavLink to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                             <li>Pièces</li>
@@ -173,7 +169,7 @@ const Navigation = () => {
         );
     }
     // Si le profil est OUVRIER 
-    else if (profil == '4') {
+    else if (profil === '4') {
         console.log("Profil Ouvrier");
         return (
             < div >

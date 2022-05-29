@@ -11,7 +11,6 @@ exports.findAll = (req, res) => {
 }
 
 exports.create = (req, res) => {
-    console.log(req)
     if (!req.body) {
         res.status(400).send({
             message: "Content can not be empty !"

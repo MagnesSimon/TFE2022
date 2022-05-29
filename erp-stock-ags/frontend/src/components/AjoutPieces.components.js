@@ -52,9 +52,8 @@ const AjoutPieces = (piece) => {
                 console.log("Error: ")
                 console.log(err)
             });
-
         // refresh de la page après l'envoi de données
-        //refreshPage();
+        window.location.reload(false);
     }
 
     // Input avec un champ ou il est possible d'encoder que des nombre

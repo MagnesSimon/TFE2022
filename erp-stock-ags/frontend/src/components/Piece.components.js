@@ -70,31 +70,31 @@ const Piece = () => {
     const sendToAPI = () => {
         console.log("aEnvoyer", aEnvoyer)
         // Remplir les champ laissé vide
-        if (referenceToSend == "") {
+        if (referenceToSend === "") {
             aEnvoyer.referenceToSend = ficheTechniques[0].reference;
         }
-        if (valeur_seuilToSend == "") {
+        if (valeur_seuilToSend === "") {
             aEnvoyer.valeur_seuilToSend = ficheTechniques[0].valeur_seuil;
         }
-        if (id_familleToSend == "") {
+        if (id_familleToSend === "") {
             aEnvoyer.id_familleToSend = ficheTechniques[0].id_famille;
         }
-        if (id_finitionToSend == "") {
+        if (id_finitionToSend === "") {
             aEnvoyer.id_finitionToSend = ficheTechniques[0].id_finition;
         }
-        if (longueurToSend == "") {
+        if (longueurToSend === "") {
             aEnvoyer.longueurToSend = ficheTechniques[0].longueur;
         }
-        if (largeurToSend == "") {
+        if (largeurToSend === "") {
             aEnvoyer.largeurToSend = ficheTechniques[0].largeur;
         }
-        if (hauteurToSend == "") {
+        if (hauteurToSend === "") {
             aEnvoyer.hauteurToSend = ficheTechniques[0].hauteur;
         }
-        if (rayonToSend == "") {
+        if (rayonToSend === "") {
             aEnvoyer.rayonToSend = ficheTechniques[0].rayon;
         }
-        if (poidsToSend == "") {
+        if (poidsToSend === "") {
             aEnvoyer.poidsToSend = ficheTechniques[0].poids;
         }
         //refreshPage()
@@ -108,12 +108,10 @@ const Piece = () => {
                 console.log(err)
             });
         window.alert("La pièce " + aEnvoyer.referenceToSend + " A bien été mise à jour")
-
         refreshPage();
-
-
     }
 
+    // Permet de remettre à 0 les valeur des ToSend
     const resetToSend = () => {
         // Remise à vide des ToSend
         setReferenceToSend("")
@@ -185,7 +183,7 @@ const Piece = () => {
     }
 
     // si le profil est ouvrier, pas de modification possible
-    if (localStorage.getItem('profil') == '4') {
+    if (localStorage.getItem('profil') === '4') {
         return (
             <div>
                 {/* Création du tableau des pièces */}
@@ -351,7 +349,7 @@ const Piece = () => {
                 </Dialog>
             </div >
         );
-    } else if (localStorage.getItem('profil') == '1') {
+    } else if (localStorage.getItem('profil') === '1') {
         return (
             <div>
                 {/* Création du tableau des pièces */}
@@ -423,7 +421,6 @@ const Piece = () => {
                                 materiaux,
                                 nom_categorie,
                                 pole,
-                                nom_fournisseur,
                                 nom_finition,
                                 effet_finition,
                                 longueur,
