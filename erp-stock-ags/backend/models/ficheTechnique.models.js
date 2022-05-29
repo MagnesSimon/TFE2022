@@ -9,9 +9,6 @@ const ficheTechnique = function (ficheTechnique) {
     this.nom_famille = ficheTechnique.nom_famille;
     this.materiaux = ficheTechnique.materiaux;
     this.nom_fournisseur = ficheTechnique.nom_fournisseur;
-    // this.valeur_seuil = ficheTechnique.valeur_seuil;
-    // this.quantite_en_stock = ficheTechnique.quantite_en_stock;
-
 }
 /*
 Permet de récupérer la fiche technique de chaque pièce
@@ -82,53 +79,5 @@ ficheTechnique.getById = (reference, result) => {
             result({ kind: "not_found" }, null);
         });
 };
-/*
-famille.updateById = (id_famille, nom_famille, materiau, pour_trou,
-                    specificite_technique, image, id_fournisseur, result) => {
-    sql.query(
-        "UPDATE famille SET specificite_technique = ?, nom_famille = ?, materiau = ?, pour_trou = ?," +
-        " specificite_technique = ?, image = ?, id_fournisseur = ?",
-            [famille.reference, famille.valeur_seuil, famille.quantite_en_stock, famille.id_jeu_de_dimension,
-            famille.id_famille, famille.id_categorie, famille.id_finition],
-        (err, res) => {
-            if (err) {
-                console.log("error: ", err);
-                result(null, err);
-                return;
-            }
-            console.log("updated famille: ", {id: id, ...famille});
-            result(null, {id: id, ...famille});
-        }
-    );
-};
-
-//Permet d'insérer une nouvelles pieces dans la DB
-ficheTechnique.create = (newFicheTechnique, result) => {
-    sql.query("INSERT INTO famille SET ?", newFicheTechnique, (err, res) => {
-        if(err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        }else {
-            console.log("famille crée avec succès",{ id: res.insertId, ...newFicheTechnique});
-            result(null, { id: res.insertId, ...newFicheTechnique});
-        }
-    });liste
-}
-
-/*
-famille.remove = (id, result) => {
-    sql.query("DELETE FROM famille WHERE id_famille = ?", id, (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(null, err);
-            return;
-        }
-
-        console.log("deleted famille with id: ", id);
-        result(null, res);
-    });
-};
-*/
 
 module.exports = ficheTechnique;

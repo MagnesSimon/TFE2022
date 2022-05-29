@@ -74,8 +74,6 @@ const Connexion = () => {
         window.location.reload(false)
     }
 
-
-
     return (
         <div>
             <Navigation />

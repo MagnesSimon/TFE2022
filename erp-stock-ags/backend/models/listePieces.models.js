@@ -150,7 +150,7 @@ ListePieces.remove = (id, result) => {
             result(null, err);
             return;
         }
-        console.log("deleted article with id: ", id);
+        console.log("deleted piece with id: ", id);
         result(null, res);
     });
 }
