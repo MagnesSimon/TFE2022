@@ -8,7 +8,6 @@ const Navigation = () => {
 
     // Profil connecté
     const [profil, setProfil] = useState(localStorage.getItem("profil"))
-    console.log("profil: ", profil)
 
     // Si le profil est ADMIN 
     if (profil === '1') {

@@ -14,6 +14,7 @@ const ListePieces = function (listePieces) {
     this.id_famille = listePieces.id_famille;
     this.id_finition = listePieces.id_finition;
     // Autres tables
+    this.materiaux = listePieces.materiaux
 }
 
 /* 
@@ -26,6 +27,7 @@ quantite_en_stock
 ListePieces.getAll = result => {
     sql.query("SELECT piece.reference," +
         "famille.nom_famille," +
+        "famille.materiaux," +
         "piece.valeur_seuil," +
         "piece.quantite_en_stock, " +
         "piece.longueur, " +

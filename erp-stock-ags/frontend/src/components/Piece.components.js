@@ -130,6 +130,7 @@ const Piece = () => {
     useEffect(() => {
         axios.get(window.url + "/listePieces")
             .then((res) => setData(res.data))
+        console.log(data);
     }, [])
 
     // Requête pour récupérer la liste des familles
@@ -205,11 +206,11 @@ const Piece = () => {
                     Une fois que l'on a traité toutes les données d'une pièce,
                     on créer une ligne pour la pièce suivante
                     */}
-                        {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
+                        {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock, materiaux }) => (
                             <tr key={reference} >
                                 <td onClick={() => handleClickOpen(reference)}>
                                     {reference}</td>
-                                <td>{nom_famille}</td>
+                                <td>{nom_famille + " en " + materiaux}</td>
                                 <td>{valeur_seuil}</td>
                                 <td>{quantite_en_stock}</td>
                                 <td>
@@ -372,11 +373,11 @@ const Piece = () => {
                     Une fois que l'on a traité toutes les données d'une pièce,
                     on créer une ligne pour la pièce suivante
                     */}
-                        {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
+                        {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock, materiaux }) => (
                             <tr key={reference} >
                                 <td onClick={() => handleClickOpen(reference)}>
                                     {reference}</td>
-                                <td>{nom_famille}</td>
+                                <td>{nom_famille + " en " + materiaux}</td>
                                 <td>{valeur_seuil}</td>
                                 <td>{quantite_en_stock}</td>
                                 <td>
@@ -622,11 +623,11 @@ const Piece = () => {
                     Une fois que l'on a traité toutes les données d'une pièce,
                     on créer une ligne pour la pièce suivante
                     */}
-                        {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
+                        {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock, materiaux }) => (
                             <tr key={reference} >
                                 <td onClick={() => handleClickOpen(reference)}>
                                     {reference}</td>
-                                <td>{nom_famille}</td>
+                                <td>{nom_famille + " en " + materiaux}</td>
                                 <td>{valeur_seuil}</td>
                                 <td>{quantite_en_stock}</td>
                                 <td>
