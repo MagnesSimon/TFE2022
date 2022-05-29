@@ -33,10 +33,13 @@ const Connexion = () => {
         setConnecte(false)
         listeUtilisateur.find((user) => {
             if (nom_utilisateur == user.nom_utilisateur && mot_de_passe == user.mot_de_passe) {
-                setConnecte(true)
-                localStorage.setItem("utilisateur", user.id_utilisateur);
-                localStorage.setItem("profil", user.id_profil);
-
+                if (user.id_profil == '5') {
+                    window.alert('Votre profil est archivé, vous ne pouvez pas vous connecter')
+                } else {
+                    setConnecte(true)
+                    localStorage.setItem("utilisateur", user.id_utilisateur);
+                    localStorage.setItem("profil", user.id_profil);
+                }
                 if (user.id_profil == '4') {
                     localStorage.setItem("isOuvrier", true)
                     localStorage.setItem("isEtudiant", false)

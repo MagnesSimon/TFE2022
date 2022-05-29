@@ -194,7 +194,7 @@ const Navigation = () => {
         );
     }
     // Si pas de profil connecté
-    else if (profil === null) {
+    else {
         console.log("Pas de profil connecté")
         return (
             < div >

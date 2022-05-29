@@ -75,5 +75,4 @@ ListeFinition.remove = (id, result) => {
     });
 }
 
-
 module.exports = ListeFinition
