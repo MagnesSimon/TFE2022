@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 const ListePieces = () => {
 
+    // Variable permettant de savoir si l'utilisateur a les droits pour faire un ajout
     const [peutAjouter, setPeutAjouter] = useState(localStorage.getItem("isEmploye"))
 
     console.log("Peut ajouter ?: ", peutAjouter)

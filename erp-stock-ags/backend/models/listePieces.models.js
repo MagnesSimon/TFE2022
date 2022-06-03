@@ -157,4 +157,30 @@ ListePieces.remove = (id, result) => {
     });
 }
 
+ListePieces.getSearch = (el, result) => {
+    sql.query("SELECT piece.reference," +
+        "famille.nom_famille," +
+        "famille.materiaux," +
+        "piece.valeur_seuil," +
+        "piece.quantite_en_stock, " +
+        "piece.longueur, " +
+        "piece.largeur, " +
+        "piece.hauteur, " +
+        "piece.rayon, " +
+        "piece.poids " +
+        "FROM piece as piece " +
+        "INNER JOIN famille as famille " +
+        "ON piece.id_famille = famille.id_famille " +
+        "WHERE piece.reference LIKE '%" + el +
+        "%' OR famille.nom_famille LIKE '%" + el +
+        "%' OR famille.materiaux LIKE '%" + el + "%' "
+        , (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else result(null, res);
+        });
+}
+
 module.exports = ListePieces;

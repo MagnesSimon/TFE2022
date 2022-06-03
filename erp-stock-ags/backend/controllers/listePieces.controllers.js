@@ -146,3 +146,20 @@ exports.delete = (req, res) => {
         } else res.send({ message: `piece was deleted successfully!` });
     });
 };
+
+
+exports.findSearch = (req, res) => {
+    ListePieces.getSearch(req.params.id, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found Piece with id ${req.params.id}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error retrieving Piece with id " + req.params.id
+                });
+            }
+        } else res.send(data);
+    });
+};
