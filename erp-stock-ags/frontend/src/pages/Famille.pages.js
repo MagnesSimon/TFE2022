@@ -160,10 +160,11 @@ const Famille = () => {
     }
 
 
-    if (localStorage.getItem('profil') == '1') {
+    if (localStorage.getItem('profil') === '1') {
         return (
             <div>
                 <Navigation />
+                <h1>Liste des familles</h1>
                 <div>
                     <NavLink to='/nouvelleFamille' className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Ajouter une famille</li>
@@ -329,10 +330,11 @@ const Famille = () => {
             </div>
         );
     }
-    else if (peutAjouter == 'true') {
+    else if (localStorage.getItem('profil') === '2') {
         return (
             <div>
                 <Navigation />
+                <h1>Liste des familles</h1>
                 <div>
                     <NavLink to='/nouvelleFamille' className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Ajouter une famille</li>
@@ -480,6 +482,7 @@ const Famille = () => {
         return (
             <div>
                 <Navigation />
+                <h1>Liste des familles</h1>
                 {/* Création du tableau des pièces */}
                 <table className='tableau'>
                     <thead>

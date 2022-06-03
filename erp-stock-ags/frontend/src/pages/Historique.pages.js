@@ -17,7 +17,7 @@ const Historique = () => {
     return (
         <div>
             <Navigation></Navigation>
-            <p>Historique</p>
+            <h1>Historique</h1>
             {/* Création du tableau des fiche historique */}
             <table className='tableau'>
                 <thead>

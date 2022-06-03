@@ -123,10 +123,11 @@ const Categorie = () => {
         refreshPage();
     }
 
-    if (localStorage.getItem('profil') == '1') {
+    if (localStorage.getItem('profil') === '1') {
         return (
             <div>
                 <Navigation />
+                <h1>Liste des Catégories</h1>
                 <NavLink to='/nouvelleCategorie' className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Ajouter une catégorie</li>
                 </NavLink>
@@ -249,10 +250,11 @@ const Categorie = () => {
             </div>
         );
     }
-    else if (peutAjouter == 'true') {
+    else if (localStorage.getItem('profil') === '2') {
         return (
             <div>
                 <Navigation />
+                <h1>Liste des Catégories</h1>
                 <NavLink to='/nouvelleCategorie' className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Ajouter une catégorie</li>
                 </NavLink>
@@ -358,6 +360,7 @@ const Categorie = () => {
         return (
             <div>
                 <Navigation />
+                <h1>Liste des Catégories</h1>
                 {/* Création du tableau des pièces */}
                 <table className='tableau'>
                     <thead>

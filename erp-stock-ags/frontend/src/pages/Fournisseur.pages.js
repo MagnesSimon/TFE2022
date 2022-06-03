@@ -168,6 +168,7 @@ const Fournisseur = () => {
         return (
             <div>
                 <Navigation />
+                <h1>Liste des fournisseurs</h1>
                 <div>
                     <NavLink to='/nouveauFournisseur' className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Ajouter un fournisseur</li>
@@ -354,11 +355,12 @@ const Fournisseur = () => {
             </div>
         )
     }
-    else if (peutAjouter == 'true') {
+    else if (localStorage.getItem('profil') == '2') {
         return (
             <div>
                 <Navigation />
                 <div>
+                    <h1>Liste des fournisseurs</h1>
                     <NavLink to='/nouveauFournisseur' className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Ajouter un fournisseur</li>
                     </NavLink>
@@ -527,6 +529,7 @@ const Fournisseur = () => {
         return (
             <div>
                 <Navigation />
+                <h1>Liste des fournisseurs</h1>
                 {/* Module de recherche */}
                 <input type="text"
                     value={recherche}

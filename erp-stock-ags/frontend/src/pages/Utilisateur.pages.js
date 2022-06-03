@@ -115,6 +115,7 @@ const Utilisateur = () => {
     return (
         <div>
             <Navigation />
+            <h1>Liste des utilisateurs</h1>
             <div>
                 <table className='tableau'>
                     <thead>

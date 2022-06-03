@@ -124,10 +124,11 @@ const Finition = () => {
         refreshPage();
     }
 
-    if (localStorage.getItem('profil') == '1') {
+    if (localStorage.getItem('profil') === '1') {
         return (
             <div>
                 <Navigation />
+                <h1>Liste des finitions</h1>
                 <div>
                     <NavLink to='/nouvelleFinition' className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Ajouter une finition</li>
@@ -251,11 +252,12 @@ const Finition = () => {
 
         );
     }
-    if (peutAjouter == 'true') {
+    if (localStorage.getItem('profil') === '2') {
         return (
             <div>
                 <Navigation />
                 <div>
+                    <h1>Liste des finitions</h1>
                     <NavLink to='/nouvelleFinition' className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Ajouter une finition</li>
                     </NavLink>
@@ -359,6 +361,7 @@ const Finition = () => {
         return (
             <div>
                 <Navigation />
+                <h1>Liste des finitions</h1>
                 {/* Création du tableau des finition */}
                 <table className='tableau'>
                     <thead>
