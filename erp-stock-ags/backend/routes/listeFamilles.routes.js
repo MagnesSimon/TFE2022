@@ -11,4 +11,6 @@ module.exports = app => {
 
     app.delete("/listeFamilles/delete/:id", ListeFamilles.delete);
 
+    app.get("/listeFamilles/search/:id", ListeFamilles.findSearch);
+
 }

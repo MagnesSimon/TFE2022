@@ -159,6 +159,19 @@ const Famille = () => {
         refreshPage();
     }
 
+    // Variable pour faire la recharche
+    const [recherche, setRecherche] = useState("")
+    // Fonction pour récupérer les éléments de la recherche
+    const search = () => {
+        if (recherche === "") {
+            axios.get(window.url + "/listeFamilles")
+                .then((res) => setFamilles(res.data))
+        } else {
+            axios.get(window.url + "/listeFamilles/search/" + recherche)
+                .then((res) => setFamilles(res.data))
+        }
+    }
+
 
     if (localStorage.getItem('profil') === '1') {
         return (
@@ -169,6 +182,13 @@ const Famille = () => {
                     <NavLink to='/nouvelleFamille' className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Ajouter une famille</li>
                     </NavLink>
+                    {/* Module de recherche */}
+                    <input type="text"
+                        value={recherche}
+                        placeholder='Recherche'
+                        onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+                    />
+                    <button onClick={search}>Rechercher</button>
                 </div>
                 {/* Création du tableau des pièces */}
                 <table className='tableau'>
@@ -339,6 +359,13 @@ const Famille = () => {
                     <NavLink to='/nouvelleFamille' className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Ajouter une famille</li>
                     </NavLink>
+                    {/* Module de recherche */}
+                    <input type="text"
+                        value={recherche}
+                        placeholder='Recherche'
+                        onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+                    />
+                    <button onClick={search}>Rechercher</button>
                 </div>
                 {/* Création du tableau des pièces */}
                 <table className='tableau'>
@@ -483,6 +510,13 @@ const Famille = () => {
             <div>
                 <Navigation />
                 <h1>Liste des familles</h1>
+                {/* Module de recherche */}
+                <input type="text"
+                    value={recherche}
+                    placeholder='Recherche'
+                    onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+                />
+                <button onClick={search}>Rechercher</button>
                 {/* Création du tableau des pièces */}
                 <table className='tableau'>
                     <thead>

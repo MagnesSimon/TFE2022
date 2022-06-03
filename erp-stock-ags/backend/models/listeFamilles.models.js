@@ -101,4 +101,24 @@ ListeFamilles.remove = (id, result) => {
     });
 }
 
+ListeFamilles.getSearch = (el, result) => {
+    sql.query("SELECT famille.id_famille,  " +
+        "famille.nom_famille," +
+        "famille.materiaux," +
+        "fournisseur.nom_fournisseur " +
+        "FROM famille as famille " +
+        "INNER JOIN fournisseur as fournisseur " +
+        "ON famille.id_fournisseur = fournisseur.id_fournisseur " +
+        "WHERE fournisseur.nom_fournisseur LIKE '%" + el +
+        "%' OR famille.nom_famille LIKE '%" + el +
+        "%' OR famille.materiaux LIKE '%" + el + "%' "
+        , (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else result(null, res);
+        });
+}
+
 module.exports = ListeFamilles
