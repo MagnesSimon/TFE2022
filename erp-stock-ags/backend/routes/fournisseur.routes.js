@@ -13,4 +13,6 @@ module.exports = app => {
 
     app.delete("/fournisseur/delete/:id", Fournisseur.delete);
 
+    app.get("/fournisseur/search/:id", Fournisseur.findSearch);
+
 }

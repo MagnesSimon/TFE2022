@@ -151,6 +151,19 @@ const Fournisseur = () => {
         refreshPage();
     }
 
+    // Variable pour faire la recharche
+    const [recherche, setRecherche] = useState("")
+    // Fonction pour récupérer les éléments de la recherche
+    const search = () => {
+        if (recherche === "") {
+            axios.get(window.url + "/fournisseur/")
+                .then((res) => setFournisseur(res.data))
+        } else {
+            axios.get(window.url + "/fournisseur/search/" + recherche)
+                .then((res) => setFournisseur(res.data))
+        }
+    }
+
     if (localStorage.getItem('profil') == '1') {
         return (
             <div>
@@ -160,7 +173,12 @@ const Fournisseur = () => {
                         <li>Ajouter un fournisseur</li>
                     </NavLink>
                 </div>
-
+                <input type="text"
+                    value={recherche}
+                    placeholder='Recherche'
+                    onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+                />
+                <button onClick={search}>Rechercher</button>
                 {/* Création du tableau des pièces */}
                 <table className='tableau'>
                     <thead>
@@ -345,7 +363,13 @@ const Fournisseur = () => {
                         <li>Ajouter un fournisseur</li>
                     </NavLink>
                 </div>
-
+                {/* Module de recherche */}
+                <input type="text"
+                    value={recherche}
+                    placeholder='Recherche'
+                    onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+                />
+                <button onClick={search}>Rechercher</button>
                 {/* Création du tableau des pièces */}
                 <table className='tableau'>
                     <thead>
@@ -503,6 +527,13 @@ const Fournisseur = () => {
         return (
             <div>
                 <Navigation />
+                {/* Module de recherche */}
+                <input type="text"
+                    value={recherche}
+                    placeholder='Recherche'
+                    onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+                />
+                <button onClick={search}>Rechercher</button>
                 {/* Création du tableau des pièces */}
                 <table className='tableau'>
                     <thead>

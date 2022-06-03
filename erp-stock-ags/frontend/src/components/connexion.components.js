@@ -30,6 +30,12 @@ const Connexion = () => {
 
     const seConnecter = () => {
         setConnecte(false)
+        // Remise à false partout
+        localStorage.setItem("isOuvrier", false)
+        localStorage.setItem("isEtudiant", false)
+        localStorage.setItem("isEmploye", false)
+        localStorage.setItem("isAdmin", false)
+
         listeUtilisateur.find((user) => {
             if (nom_utilisateur === user.nom_utilisateur && mot_de_passe === user.mot_de_passe) {
                 if (user.id_profil === '5') {
@@ -60,8 +66,6 @@ const Connexion = () => {
                     localStorage.setItem("isEmploye", true)
                     localStorage.setItem("isAdmin", true)
                 }
-
-
                 toast.dark("Vous êtes connecté", {
                     transition: bounce
                 });

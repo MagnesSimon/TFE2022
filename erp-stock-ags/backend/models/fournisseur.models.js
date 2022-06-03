@@ -112,4 +112,27 @@ Fournisseur.remove = (id, result) => {
     });
 }
 
+Fournisseur.getSearch = (el, result) => {
+    sql.query("SELECT fournisseur.id_fournisseur, " +
+        "fournisseur.nom_fournisseur, " +
+        "fournisseur.mail_fournisseur, " +
+        "fournisseur.tel_fournisseur, " +
+        "fournisseur.adresse_fournisseur, " +
+        "localite.code_postal, " +
+        "localite.nom_localite " +
+        "FROM fournisseur as fournisseur " +
+        "INNER JOIN localite as localite " +
+        "ON fournisseur.id_localite = localite.id_localite " +
+        "WHERE fournisseur.nom_fournisseur LIKE '%" + el +
+        "%' OR localite.code_postal LIKE '%" + el +
+        "%' OR localite.nom_localite LIKE '%" + el + "%' "
+        , (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else result(null, res);
+        });
+}
+
 module.exports = Fournisseur
