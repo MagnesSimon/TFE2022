@@ -163,3 +163,13 @@ exports.findSearch = (req, res) => {
         } else res.send(data);
     });
 };
+
+exports.findSearchPenurie = (req, res) => {
+    ListePieces.getSearchPenurie(req.params.id, (err, data) => {
+        if (err) {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving 'listePiece'."
+            });
+        } else res.send(data);
+    });
+}

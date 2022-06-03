@@ -17,5 +17,6 @@ module.exports = app => {
 
     app.get("/listePieces/search/:id", ListePieces.findSearch);
 
+    app.get("/listePenurie/search/:id", ListePieces.findSearchPenurie);
 
 }

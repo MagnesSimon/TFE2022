@@ -13,8 +13,27 @@ const ListePenurie = () => {
             .then((res) => setData(res.data))
     }, [])
 
+    // Variable pour faire la recharche
+    const [recherche, setRecherche] = useState("")
+    // Fonction pour récupérer les éléments de la recherche
+    const search = () => {
+        if (recherche === "") {
+            axios.get(window.url + "/listePenurie")
+                .then((res) => setData(res.data))
+        } else {
+            axios.get(window.url + "/listePenurie/search/" + recherche)
+                .then((res) => setData(res.data))
+        }
+    }
+
     return (
         <div>
+            <input type="text"
+                value={recherche}
+                placeholder='Recherche'
+                onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+            />
+            <button onClick={search}>Rechercher</button>
             {/* Création du tableau des pièces */}
             <table className='tableau'>
                 <thead>
@@ -33,10 +52,10 @@ const ListePenurie = () => {
                     Une fois que l'on a traité toutes les données d'une pièce,
                     on créer une ligne pour la pièce suivante
                     */}
-                    {data.map(({ reference, nom_famille, valeur_seuil, quantite_en_stock }) => (
+                    {data.map(({ reference, nom_famille, materiaux, valeur_seuil, quantite_en_stock }) => (
                         <tr key={reference}>
                             <td>{reference}</td>
-                            <td>{nom_famille}</td>
+                            <td>{nom_famille + " en " + materiaux}</td>
                             <td>{valeur_seuil}</td>
                             <td>{quantite_en_stock}</td>
                             <td>{valeur_seuil - quantite_en_stock}</td>
