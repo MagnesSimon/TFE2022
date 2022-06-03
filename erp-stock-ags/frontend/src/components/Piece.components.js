@@ -184,7 +184,7 @@ const Piece = () => {
     }
 
     // Variable pour faire la recharche
-    const [recherche, setRecherche] = useState("Recherche")
+    const [recherche, setRecherche] = useState("")
 
     // Fonction pour récupérer les éléments de la recherche
     const search = () => {
@@ -193,7 +193,7 @@ const Piece = () => {
                 .then((res) => setData(res.data))
         } else {
             axios.get(window.url + "/listePieces/search/" + recherche)
-            .then((res) => setData(res.data))
+                .then((res) => setData(res.data))
         }
     }
 
@@ -203,6 +203,7 @@ const Piece = () => {
             <div>
                 <input type="text"
                     value={recherche}
+                    placeholder='Recherche'
                     onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
                 />
                 <button onClick={search}>Rechercher</button>
@@ -372,6 +373,12 @@ const Piece = () => {
     } else if (localStorage.getItem('profil') === '1') {
         return (
             <div>
+                <input type="text"
+                    value={recherche}
+                    placeholder="Recherche"
+                    onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+                />
+                <button onClick={search}>Rechercher</button>
                 {/* Création du tableau des pièces */}
                 {/* {tableVisible && <table className='tableau'> */}
                 <table className='tableau'>
@@ -623,6 +630,12 @@ const Piece = () => {
     } else {
         return (
             <div>
+                <input type="text"
+                    value={recherche}
+                    placeholder='Recherche'
+                    onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+                />
+                <button onClick={search}>Rechercher</button>
                 {/* Création du tableau des pièces */}
                 {/* {tableVisible && <table className='tableau'> */}
                 <table className='tableau'>
