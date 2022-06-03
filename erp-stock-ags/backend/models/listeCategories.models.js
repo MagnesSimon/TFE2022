@@ -75,5 +75,18 @@ ListeCategories.remove = (id, result) => {
     });
 }
 
+ListeCategories.getSearch = (el, result) => {
+    sql.query("SELECT * " +
+        "FROM categorie " +
+        "WHERE nom_categorie LIKE '%" + el +
+        "%' OR pole LIKE '%" + el + "%' "
+        , (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else result(null, res);
+        });
+}
 
 module.exports = ListeCategories

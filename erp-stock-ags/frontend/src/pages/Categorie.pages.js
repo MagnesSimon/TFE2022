@@ -123,6 +123,20 @@ const Categorie = () => {
         refreshPage();
     }
 
+    // Variable pour faire la recharche
+    const [recherche, setRecherche] = useState("")
+    // Fonction pour récupérer les éléments de la recherche
+    const search = () => {
+        if (recherche === "") {
+            axios.get(window.url + "/listeCategories")
+                .then((res) => setCategorie(res.data))
+        } else {
+            axios.get(window.url + "/listeCategories/search/" + recherche)
+                .then((res) => setCategorie(res.data))
+        }
+    }
+
+
     if (localStorage.getItem('profil') === '1') {
         return (
             <div>
@@ -131,6 +145,12 @@ const Categorie = () => {
                 <NavLink to='/nouvelleCategorie' className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Ajouter une catégorie</li>
                 </NavLink>
+                <input type="text"
+                    value={recherche}
+                    placeholder='Recherche'
+                    onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+                />
+                <button onClick={search}>Rechercher</button>
                 {/* Création du tableau des pièces */}
                 <table className='tableau'>
                     <thead>
@@ -258,6 +278,12 @@ const Categorie = () => {
                 <NavLink to='/nouvelleCategorie' className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Ajouter une catégorie</li>
                 </NavLink>
+                <input type="text"
+                    value={recherche}
+                    placeholder='Recherche'
+                    onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+                />
+                <button onClick={search}>Rechercher</button>
                 {/* Création du tableau des pièces */}
                 <table className='tableau'>
                     <thead>
@@ -361,6 +387,12 @@ const Categorie = () => {
             <div>
                 <Navigation />
                 <h1>Liste des Catégories</h1>
+                <input type="text"
+                    value={recherche}
+                    placeholder='Recherche'
+                    onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+                />
+                <button onClick={search}>Rechercher</button>
                 {/* Création du tableau des pièces */}
                 <table className='tableau'>
                     <thead>

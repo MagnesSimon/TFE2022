@@ -10,4 +10,7 @@ module.exports = app => {
     app.get("/listeCategories/:id", ListeCategories.findOne);
 
     app.delete("/listeCategories/delete/:id", ListeCategories.delete);
+
+    app.get("/listeCategories/search/:id", ListeCategories.findSearch);
+
 }
