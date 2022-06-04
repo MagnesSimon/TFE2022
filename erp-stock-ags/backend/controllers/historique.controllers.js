@@ -69,7 +69,6 @@ exports.findByUser = (req, res) => {
 
 // Contrôle de la fonction permettant de trouver une fiche historique avec son ID 
 exports.findByRef = (req, res) => {
-    console.log(req)
     Historique.getByRef(req.params.id, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {

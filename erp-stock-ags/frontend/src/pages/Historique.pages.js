@@ -68,13 +68,13 @@ const Historique = () => {
         else if (id_utilisateurToSend === "Tous" && referenceToSend !== "Tous") {
             axios.get(window.url + "/historique/byRef/" + referenceToSend)
                 .then((res) => setHistorique(res.data))
-            console.log(window.url + "/historique/byRef/" + referenceToSend)
         } else {
             console.log("else")
         }
-        console.log("user", id_utilisateurToSend)
-        console.log("ref", referenceToSend)
     }
+
+    console.log("referenceToSend", referenceToSend)
+
     return (
         <div>
             <Navigation></Navigation>

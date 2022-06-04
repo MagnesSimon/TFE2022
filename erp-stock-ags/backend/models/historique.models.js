@@ -84,7 +84,6 @@ Historique.getByUser = (id_utilisateur, result) => {
         });
 }
 Historique.getByRef = (reference, result) => {
-    console.log("ref", reference)
     sql.query("SELECT historique.id_fiche_historique, " +
         "historique.quantite_modifie, " +
         "historique.date_heure, " +
