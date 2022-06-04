@@ -9,7 +9,7 @@ const NouvellePiece = () => {
     const navigate = useNavigate();
 
     // Variable récupérée dans les inputs
-    const [ref, setRef] = useState([])
+    const [ref = "/", setRef] = useState([])
     const [seuil = 0, setSeuil] = useState([])
     const [quantite = 0, setQuantite] = useState([])
     const [longueur = 0, setLongueur] = useState([])
@@ -18,8 +18,8 @@ const NouvellePiece = () => {
     const [rayon = 0, setRayon] = useState([])
     const [poids = 0, setPoids] = useState([])
     //Clé étrangère depuis les choix
-    const [finition, setFinition] = useState([])
-    const [famille, setFamille] = useState([])
+    const [finition, setFinition] = useState(1)
+    const [famille, setFamille] = useState(1)
     // Contient les différentes possibilités de finition existante dans la DB
     const [choixFinition, setChoixFinition] = useState([])
     // Contient les différentes possibilités de famille existante dans la DB

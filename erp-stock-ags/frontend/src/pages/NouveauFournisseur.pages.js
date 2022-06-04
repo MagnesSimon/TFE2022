@@ -13,7 +13,7 @@ const NouveauFournisseur = () => {
     const [mail_fournisseur, setMail_fournisseur] = useState([])
     const [tel_fournisseur, setTel_fournisseur] = useState([])
     const [adresse_fournisseur, setAdresse_fournisseur] = useState([])
-    const [id_localite, setId_localite] = useState([])
+    const [id_localite, setId_localite] = useState(1)
 
     // Contient les différentes possibilitées des localités
     const [choixLocalite, setChoixLocalite] = useState([])

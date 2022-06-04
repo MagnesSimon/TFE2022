@@ -15,7 +15,7 @@ const NouvelUtilisateur = () => {
     const [prenom_utilisateur, setPrenom_utilisateur] = useState([])
     const [nom_famille_utilisateur, setNom_famille_utilisateur] = useState([])
     const [telephone_utilisateur, setTelephone_utilisateur] = useState([])
-    const [id_profil, setId_profil] = useState([])
+    const [id_profil, setId_profil] = useState(4)
 
     // Contient les différentes possibilitées des profils
     const [choixProfil, setChoixProfil] = useState([])

@@ -14,7 +14,7 @@ const ListePieces = function (listePieces) {
     this.id_famille = listePieces.id_famille;
     this.id_finition = listePieces.id_finition;
     // Autres tables
-    this.materiaux = listePieces.materiaux
+    // this.materiaux = listePieces.materiaux
 }
 
 /* 

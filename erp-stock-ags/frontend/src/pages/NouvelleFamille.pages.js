@@ -8,10 +8,10 @@ const NouvelleFamille = () => {
     const navigate = useNavigate();
 
     // Variable que l'on récupère dans les inputs
-    const [nom_famille, setNom_famille] = useState([])
-    const [materiaux, setMateriaux] = useState([])
-    const [id_fournisseur, setId_fournisseur] = useState([])
-    const [id_categorie, setId_categorie] = useState([])
+    const [nom_famille, setNom_famille] = useState()
+    const [materiaux, setMateriaux] = useState()
+    const [id_fournisseur, setId_fournisseur] = useState(1)
+    const [id_categorie, setId_categorie] = useState(1)
 
     // Contient les différentes possibilitées des localités
     const [choixFournisseur, setChoixFournisseur] = useState([])

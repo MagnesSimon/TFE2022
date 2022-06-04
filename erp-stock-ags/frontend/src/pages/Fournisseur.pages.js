@@ -151,7 +151,7 @@ const Fournisseur = () => {
         refreshPage();
     }
 
-    // Variable pour faire la recharche
+    // Variable pour faire la recherche
     const [recherche, setRecherche] = useState("")
     // Fonction pour récupérer les éléments de la recherche
     const search = () => {
@@ -174,6 +174,7 @@ const Fournisseur = () => {
                         <li>Ajouter un fournisseur</li>
                     </NavLink>
                 </div>
+                {/* Module de recherche */}
                 <input type="text"
                     value={recherche}
                     placeholder='Recherche'
