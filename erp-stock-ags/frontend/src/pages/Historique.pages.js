@@ -74,7 +74,8 @@ const Historique = () => {
             axios.get(window.url + "/historique/byUser/" + id_utilisateurToSend)
                 .then((res) => setHistorique(res.data))
         } else {
-            console.log("else")
+            axios.get(window.url + "/historique/byUserAndRef/" + referenceToSend + "/" + id_utilisateurToSend)
+                .then((res) => setHistorique(res.data))
         }
     }
 

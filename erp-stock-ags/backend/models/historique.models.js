@@ -106,7 +106,7 @@ Historique.getByRef = (reference, result) => {
         });
 }
 
-Historique.getByUserAndRef = (id_utilisateur, result) => {
+Historique.getByUserAndRef = (reference, id_utilisateur, result) => {
     sql.query("SELECT historique.id_fiche_historique, " +
         "historique.quantite_modifie, " +
         "historique.date_heure, " +
@@ -118,8 +118,8 @@ Historique.getByUserAndRef = (id_utilisateur, result) => {
         "INNER JOIN utilisateur as utilisateur " +
         "ON historique.id_utilisateur = utilisateur.id_utilisateur " +
         //WHERE
-        `WHERE utilisateur.id_utilisateur ='${id_utilisateur}' `
-        //`AND historique.reference ='${reference}'`
+        "WHERE historique.reference = '" + reference + "' AND " +
+        "historique.id_utilisateur = '" + id_utilisateur + "' "
         , (err, res) => {
             if (err) {
                 console.log("Error: ", err);

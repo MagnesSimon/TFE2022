@@ -11,6 +11,6 @@ module.exports = app => {
 
     app.get("/historique/byRef/:id", Historique.findByRef);
 
-    app.get("/historique/byUserAndRef/:user/:ref", Historique.findByUserAndRef);
+    app.get("/historique/byUserAndRef/:reference/:id_utilisateur", Historique.findByUserAndRef);
 
 }

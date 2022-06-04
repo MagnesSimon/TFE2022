@@ -69,6 +69,7 @@ exports.findByUser = (req, res) => {
 
 // Contrôle de la fonction permettant de trouver une fiche historique avec son ID 
 exports.findByRef = (req, res) => {
+    console.log(req)
     Historique.getByRef(req.params.id, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
@@ -86,15 +87,15 @@ exports.findByRef = (req, res) => {
 
 // Contrôle de la fonction permettant de trouver une fiche historique avec son ID + user
 exports.findByUserAndRef = (req, res) => {
-    Historique.getByUserAndRef(req.params.user, req.params.ref, (err, data) => {
+    Historique.getByUserAndRef(req.params.reference, req.params.id_utilisateur, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
-                    message: `Not found fournisseur with id ${req.params.id}.`
+                    message: `Not found fournisseur with id ${req.params.reference}.`
                 });
             } else {
                 res.status(500).send({
-                    message: "Error retrieving fournisseur with id " + req.params.id
+                    message: "Error retrieving fournisseur with id " + req.params.reference
                 });
             }
         } else res.send(data);
