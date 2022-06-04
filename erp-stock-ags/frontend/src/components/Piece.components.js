@@ -185,7 +185,6 @@ const Piece = () => {
 
     // Variable pour faire la recharche
     const [recherche, setRecherche] = useState("")
-
     // Fonction pour récupérer les éléments de la recherche
     const search = () => {
         if (recherche === "") {
@@ -201,6 +200,7 @@ const Piece = () => {
     if (localStorage.getItem('profil') === '4') {
         return (
             <div>
+                {/* Module de recherche */}
                 <input type="text"
                     value={recherche}
                     placeholder='Recherche'

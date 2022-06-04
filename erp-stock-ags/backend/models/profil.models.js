@@ -6,19 +6,6 @@ const Profil = function (profil) {
     this.libelle_profil = profil.libelle_profil;
 };
 
-// Profil.create = (newProfil, result) => {
-//     sql.query("INSERT INTO profil SET ?", newProfil, (err, res) => {
-//         if (err) {
-//             console.log("error: ", err);
-//             result(err, null);
-//             return;
-//         }
-
-//         console.log("created profil: ", { id: res.insertId, ...newProfil });
-//         result(null, { id: res.insertId, ...newProfil });
-//     });
-// };
-
 Profil.findById = (id_profil, result) => {
     sql.query("SELECT * FROM profil " +
         // Condition
@@ -56,19 +43,5 @@ Profil.updateById = (data, result) => {
             } else result(null, res);
         });
 }
-
-
-// Profil.remove = (id, result) => {
-//     sql.query("DELETE FROM profil WHERE id = ?", id, (err, res) => {
-//         if (err) {
-//             console.log("error: ", err);
-//             result(null, err);
-//             return;
-//         }
-
-//         console.log("deleted profil with id: ", id);
-//         result(null, res);
-//     });
-// };
 
 module.exports = Profil;
