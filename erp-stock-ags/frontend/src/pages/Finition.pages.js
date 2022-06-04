@@ -124,6 +124,19 @@ const Finition = () => {
         refreshPage();
     }
 
+    // Variable pour faire la recharche
+    const [recherche, setRecherche] = useState("")
+    // Fonction pour récupérer les éléments de la recherche
+    const search = () => {
+        if (recherche === "") {
+            axios.get(window.url + "/listeFinitions")
+                .then((res) => setFinitions(res.data))
+        } else {
+            axios.get(window.url + "/listeFinitions/search/" + recherche)
+                .then((res) => setFinitions(res.data))
+        }
+    }
+
     if (localStorage.getItem('profil') === '1') {
         return (
             <div>
@@ -133,6 +146,13 @@ const Finition = () => {
                     <NavLink to='/nouvelleFinition' className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Ajouter une finition</li>
                     </NavLink>
+                    {/* Module de recherche */}
+                    <input type="text"
+                        value={recherche}
+                        placeholder='Recherche'
+                        onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+                    />
+                    <button onClick={search}>Rechercher</button>
                 </div>
                 {/* Création du tableau des finition */}
                 <table className='tableau'>
@@ -261,6 +281,13 @@ const Finition = () => {
                     <NavLink to='/nouvelleFinition' className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <li>Ajouter une finition</li>
                     </NavLink>
+                    {/* Module de recherche */}
+                    <input type="text"
+                        value={recherche}
+                        placeholder='Recherche'
+                        onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+                    />
+                    <button onClick={search}>Rechercher</button>
                 </div>
                 {/* Création du tableau des finition */}
                 <table className='tableau'>
@@ -362,6 +389,13 @@ const Finition = () => {
             <div>
                 <Navigation />
                 <h1>Liste des finitions</h1>
+                {/* Module de recherche */}
+                <input type="text"
+                    value={recherche}
+                    placeholder='Recherche'
+                    onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+                />
+                <button onClick={search}>Rechercher</button>
                 {/* Création du tableau des finition */}
                 <table className='tableau'>
                     <thead>

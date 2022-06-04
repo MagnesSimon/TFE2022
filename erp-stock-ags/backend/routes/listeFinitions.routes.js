@@ -11,4 +11,6 @@ module.exports = app => {
 
     app.delete("/listeFinitions/delete/:id", ListeFinition.delete);
 
+    app.get("/listeFinitions/search/:id", ListeFinition.findSearch);
+
 }

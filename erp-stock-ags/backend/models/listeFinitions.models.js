@@ -75,4 +75,18 @@ ListeFinition.remove = (id, result) => {
     });
 }
 
+ListeFinition.getSearch = (el, result) => {
+    sql.query("SELECT *  " +
+        "FROM finition " +
+        "WHERE nom_finition LIKE '%" + el +
+        "%' OR effet_finition LIKE '%" + el + "%' "
+        , (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else result(null, res);
+        });
+}
+
 module.exports = ListeFinition
