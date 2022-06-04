@@ -7,4 +7,10 @@ module.exports = app => {
 
     app.get("/historique/search/:id", Historique.findSearch);
 
+    app.get("/historique/byUser/:id", Historique.findByUser);
+
+    app.get("/historique/byRef/:id", Historique.findByRef);
+
+    app.get("/historique/byUserAndRef/:user/:ref", Historique.findByUserAndRef);
+
 }
