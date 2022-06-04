@@ -7,7 +7,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
-
+import { NavLink } from 'react-router-dom';
 
 const Utilisateur = () => {
 
@@ -160,6 +160,9 @@ const Utilisateur = () => {
         <div>
             <Navigation />
             <h1>Liste des utilisateurs</h1>
+            <NavLink to='/nouvelUtilisateur' className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                <li>Ajouter un utilisateur</li>
+            </NavLink>
             {/* Module de recherche */}
             <input type="text"
                 value={recherche}

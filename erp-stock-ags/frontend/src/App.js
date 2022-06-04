@@ -17,6 +17,7 @@ import Connexion from './components/connexion.components';
 import Profil from './pages/Profil.pages';
 import Utilisateur from './pages/Utilisateur.pages';
 import Historique from './pages/Historique.pages';
+import NouvelUtilisateur from './pages/NouvelUtilisateur.pages';
 
 const App = () => {
   if (localStorage.getItem('profil') == '1') {
@@ -43,6 +44,7 @@ const App = () => {
           <Route path='/nouveauFournisseur' element={<NouveauFournisseur />} />
           <Route path='/nouvelleFamille' element={<NouvelleFamille />} />
           <Route path='/utilisateur' element={<Utilisateur />} />
+          <Route path='/nouvelUtilisateur' element={<NouvelUtilisateur />} />
           <Route path='/profil' element={<Profil />} />
           <Route path='/historique' element={<Historique />} />
           <Route path='*' element={<ListePieces />} />
