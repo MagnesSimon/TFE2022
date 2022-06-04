@@ -722,6 +722,7 @@ const Piece = () => {
                                             <td>
                                                 <input
                                                     type="text"
+                                                    placeholder='longueur'
                                                     name='longueur'
                                                     pattern="[0-9]*"
                                                     value={valeur_seuilToSend}

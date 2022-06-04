@@ -86,6 +86,7 @@ const Connexion = () => {
                 <label >Nom d'utilisateur :</label>
                 <input
                     type="texte"
+                    placeholder='username'
                     id="username"
                     name="username"
                     value={nom_utilisateur}
@@ -98,6 +99,7 @@ const Connexion = () => {
                 <label htmlFor="mot_de_passe">Mot de passe :</label>
                 <input
                     type="password"
+                    placeholder='Password'
                     id="mot_de_passe"
                     name="mot_de_passe"
                     value={mot_de_passe}

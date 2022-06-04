@@ -56,6 +56,7 @@ const AjoutPieces = (piece) => {
         <div className='ajoutPieceForm'>
             <input
                 type="number"
+                placeholder='Quantité à ajouter/retirer'
                 value={value}
                 onChange={(e) =>
                     setValue((value) => (e.target.validity.valid ? e.target.value : value))
