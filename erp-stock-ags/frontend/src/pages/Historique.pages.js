@@ -68,12 +68,15 @@ const Historique = () => {
         else if (id_utilisateurToSend === "Tous" && referenceToSend !== "Tous") {
             axios.get(window.url + "/historique/byRef/" + referenceToSend)
                 .then((res) => setHistorique(res.data))
+        }
+        // Si toutes les ref
+        else if (referenceToSend === "Tous" && id_utilisateurToSend !== "Tous") {
+            axios.get(window.url + "/historique/byUser/" + id_utilisateurToSend)
+                .then((res) => setHistorique(res.data))
         } else {
             console.log("else")
         }
     }
-
-    console.log("referenceToSend", referenceToSend)
 
     return (
         <div>
@@ -104,7 +107,7 @@ const Historique = () => {
                 id="selectChoixReference"
                 value={referenceToSend}
                 onChange={referenceHandleChange}>
-                <option value="Tous">Tous</option>
+                <option value="Tous">Toutes</option>
                 {choixreference.map(({ reference }) => (
                     <option value={reference}>
                         {reference}
