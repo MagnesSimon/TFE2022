@@ -38,4 +38,27 @@ Historique.create = (newHistorique, result) => {
         "`id_utilisateur` = '" + newHistorique.id_utilisateur + "' ")
 }
 
+Historique.getSearch = (el, result) => {
+    sql.query("SELECT historique.id_fiche_historique, " +
+        "historique.quantite_modifie, " +
+        "historique.date_heure, " +
+        "historique.reference, " +
+        "historique.id_utilisateur, " +
+        "utilisateur.nom_utilisateur " +
+        // JOIN
+        "FROM historique as historique " +
+        "INNER JOIN utilisateur as utilisateur " +
+        "ON historique.id_utilisateur = utilisateur.id_utilisateur " +
+        // WHERE
+        "WHERE historique.reference LIKE '%" + el +
+        "%' OR utilisateur.nom_utilisateur LIKE '%" + el + "%' "
+        , (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else result(null, res);
+        });
+}
+
 module.exports = Historique

@@ -5,4 +5,6 @@ module.exports = app => {
 
     app.post("/historique/addhistorique/", Historique.create);
 
+    app.get("/historique/search/:id", Historique.findSearch);
+
 }
