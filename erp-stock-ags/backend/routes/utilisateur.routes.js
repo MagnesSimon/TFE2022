@@ -11,6 +11,8 @@ module.exports = app => {
 
     app.post("/utilisateur/update/", utilisateur.update);
 
-    //app.delete("/user/:id", user.delete);
+    app.delete("/utilisateur/:id", utilisateur.delete);
+
+    app.get("/utilisateur/search/:id", utilisateur.findSearch);
 
 };

@@ -111,17 +111,43 @@ Utilisateur.updateById = (data, result) => {
 }
 
 
-// User.remove = (id, result) => {
-//     sql.query("DELETE FROM user WHERE id = ?", id, (err, res) => {
-//         if (err) {
-//             console.log("error: ", err);
-//             result(null, err);
-//             return;
-//         }
+Utilisateur.remove = (id, result) => {
+    sql.query("DELETE FROM utilisateur WHERE id = ?", id, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
 
-//         console.log("deleted user with id: ", id);
-//         result(null, res);
-//     });
-// };
+        console.log("deleted utilisateur with id: ", id);
+        result(null, res);
+    });
+};
+
+Utilisateur.getSearch = (el, result) => {
+    sql.query("SELECT utilisateur.id_utilisateur, " +
+        "utilisateur.nom_utilisateur, " +
+        "utilisateur.mot_de_passe, " +
+        "utilisateur.prenom_utilisateur, " +
+        "utilisateur.nom_famille_utilisateur, " +
+        "utilisateur.telephone_utilisateur, " +
+        "utilisateur.id_profil, " +
+        "profil.libelle_profil " +
+        // FROM et JOIN
+        "FROM utilisateur as utilisateur " +
+        "INNER JOIN profil as profil " +
+        "ON utilisateur.id_profil = profil.id_profil " +
+        "WHERE utilisateur.nom_utilisateur LIKE '%" + el +
+        "%' OR utilisateur.prenom_utilisateur LIKE '%" + el +
+        "%' OR utilisateur.telephone_utilisateur LIKE '%" + el +
+        "%' OR utilisateur.nom_famille_utilisateur LIKE '%" + el + "%' "
+        , (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            } else result(null, res);
+        });
+}
 
 module.exports = Utilisateur;

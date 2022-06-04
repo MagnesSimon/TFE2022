@@ -112,10 +112,61 @@ const Utilisateur = () => {
         refreshPage();
     }
 
+    // Défini l'état d'ouverture de la boite de dialogue de suppression
+    const [openSupp, setOpenSupp] = useState(false)
+    // Variable qui stocke l'objet à supprimer
+    const [toSupp, setToSupp] = useState([])
+    // Ouvre la boite de dialogue de suppression
+    const handleSuppOpen = (id) => {
+        setOpenSupp(true);
+        console.log("ToSupp", toSupp)
+        // Requête pour aller chercher la fiche technique
+        axios.get(window.url + "/fournisseur/" + id)
+            .then((res) => setToSupp(res.data))
+    }
+    // Fonction pour fermer la boîte de dialogue
+    const handleSuppClose = () => {
+        // Remise à vide des valeurs ToSupp à la fermeture
+        setOpenSupp(false);
+    };
+    // Fonction qui effectue la requete de suppression 
+    const suppression = (id) => {
+        axios.delete(window.url + "/fournisseur/delete/" + id)
+            .then(function (res) {
+                console.log('Succes suppression de fournisseur')
+                console.log(res.data)
+            })
+            .catch(function (err) {
+                console.log("Error: ")
+                console.log(err)
+            });
+        refreshPage();
+    }
+
+    // Variable pour faire la recharche
+    const [recherche, setRecherche] = useState("")
+    // Fonction pour récupérer les éléments de la recherche
+    const search = () => {
+        if (recherche === "") {
+            axios.get(window.url + "/listeUtilisateur/")
+                .then((res) => setUtilisateurs(res.data))
+        } else {
+            axios.get(window.url + "/utilisateur/search/" + recherche)
+                .then((res) => setUtilisateurs(res.data))
+        }
+    }
+
     return (
         <div>
             <Navigation />
             <h1>Liste des utilisateurs</h1>
+            {/* Module de recherche */}
+            <input type="text"
+                value={recherche}
+                placeholder='Recherche'
+                onChange={(e) => setRecherche((v) => e.target.validity.valid ? e.target.value : v)}
+            />
+            <button onClick={search}>Rechercher</button>
             <div>
                 <table className='tableau'>
                     <thead>
@@ -126,6 +177,7 @@ const Utilisateur = () => {
                             <th>Nom de famille</th>
                             <th>Numéro de téléphone</th>
                             <th>Profil</th>
+                            {/* <th>Suppression</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -146,11 +198,32 @@ const Utilisateur = () => {
                                 <td>{nom_famille_utilisateur}</td>
                                 <td>{telephone_utilisateur}</td>
                                 <td>{libelle_profil}</td>
+                                {/* <td onClick={() => handleSuppOpen(id_utilisateur)}>X</td> */}
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
+            {/* Boite de dialogue de suppression */}
+            <Dialog className='dialog' open={openSupp} onClose={handleSuppClose}>
+                <DialogTitle>
+                    Fiche technique
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        <p>Voulez-vous vraiment supprimer cet utilisateur ?</p>
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleSuppClose} color="primary">
+                        Annuler
+                    </Button>
+                    <Button onClick={() => suppression(toSupp[0].id_fournisseur)} color="primary" autoFocus>
+                        Valider
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
             <Dialog className='dialog' open={open} onClose={handleClose}>
                 <DialogTitle>
                     Fiche Utilisateur
