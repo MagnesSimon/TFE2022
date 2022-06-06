@@ -152,19 +152,24 @@ const App = () => {
         <Routes>
           {/* Les routes permettent de définir la page que l'on affiche en fonction de son url */}
           <Route path='/' element={<Connexion />} />
-          {/* <Route path='/listepieces' element={<ListePieces />} />
-          <Route path='/familles' element={<Famille />} />
-          <Route path='/penurie' element={<Penuire />} />
-          <Route path='/testzone' element={<TestPage />} />
-          <Route path='/nouvellePiece' element={<NouvellePiece />} />
-          <Route path='/finitions' element={<Finition />} />
-          <Route path='/ficheTechnique' element={<FicheTechnique />} />
-          <Route path='/categorie' element={<Categorie />} />
-          <Route path='/fournisseur' element={<Fournisseur />} />
-          <Route path='/nouvelleFinition' element={<NouvelleFinition />} />
-          <Route path='/nouvelleCategorie' element={<NouvelleCategorie />} />
-          <Route path='/nouveauFournisseur' element={<NouveauFournisseur />} />
-          <Route path='/nouvelleFamille' element={<NouvelleFamille />} /> */}
+          <Route path='/listepieces' element={<Connexion />} />
+          <Route path='/familles' element={<Connexion />} />
+          <Route path='/penurie' element={<Connexion />} />
+          <Route path='/testzone' element={<Connexion />} />
+          <Route path='/nouvellePiece' element={<Connexion />} />
+          <Route path='/finitions' element={<Connexion />} />
+          <Route path='/ficheTechnique' element={<Connexion />} />
+          <Route path='/categorie' element={<Connexion />} />
+          <Route path='/fournisseur' element={<Connexion />} />
+          <Route path='/nouvelleFinition' element={<Connexion />} />
+          <Route path='/nouvelleCategorie' element={<Connexion />} />
+          <Route path='/nouveauFournisseur' element={<Connexion />} />
+          <Route path='/nouvelleFamille' element={<Connexion />} />
+          <Route path='/utilisateur' element={<Connexion />} />
+          <Route path='/nouvelUtilisateur' element={<Connexion />} />
+          <Route path='/profil' element={<Connexion />} />
+          <Route path='/historique' element={<Connexion />} />
+          <Route path='/connexion' element={<Connexion />} />
           <Route path='*' element={<Connexion />} />
         </Routes>
       </BrowserRouter>
