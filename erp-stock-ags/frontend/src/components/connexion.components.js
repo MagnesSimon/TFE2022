@@ -5,9 +5,13 @@ import "animate.css/animate.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast, cssTransition } from "react-toastify";
 import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Connexion = () => {
+
+    const navigate = useNavigate();
 
     // Constient la liste des utilisateurs
     const [listeUtilisateur, setListeUtilisateur] = useState([])
@@ -75,8 +79,8 @@ const Connexion = () => {
         if (connecte === false) {
             alert("Identifiants incorrects")
         }
-        window.location.reload(true)
-        // Navigate('/listePieces')
+        // window.location.reload(true)
+        navigate('/listePieces')
     }
 
     return (
