@@ -75,7 +75,7 @@ const Connexion = () => {
         if (connecte === false) {
             alert("Identifiants incorrects")
         }
-        window.location.reload(false)
+        window.location.reload(true)
         // Navigate('/listePieces')
     }
 
