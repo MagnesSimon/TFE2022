@@ -1,17 +1,21 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Navigation from '../components/Navigation.components';
+import moment from "moment";
 
 
 const Historique = () => {
 
     // Variable qui reprend la liste des fiche historiques
     const [historique, setHistorique] = useState([])
+    const [date, setDate] = useState()
+    console.log(historique)
 
     // Permet de récupérer la liste des fournisseur depuis l'API
     useEffect(() => {
         axios.get(window.url + "/historique/")
             .then((res) => setHistorique(res.data))
+
     }, [])
 
     // Variable pour faire la recherche
@@ -137,7 +141,7 @@ const Historique = () => {
                         <tr key={id_fiche_historique}>
                             <td >{reference}</td>
                             <td>{nom_utilisateur}</td>
-                            <td>{date_heure}</td>
+                            <td>{moment(date_heure).format('DD-MM-YY - HH:mm')}</td>
                             <td>{quantite_modifie}</td>
                         </tr>
                     ))}

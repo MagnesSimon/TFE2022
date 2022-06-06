@@ -15,7 +15,9 @@ effet_finition
 */
 ListeFinition.getAll = result => {
     sql.query("SELECT *  " +
-        "FROM finition", (err, res) => {
+        "FROM finition " +
+        "ORDER BY nom_finition "
+        , (err, res) => {
             if (err) {
                 console.log("Error: ", err);
                 result(null, err);
