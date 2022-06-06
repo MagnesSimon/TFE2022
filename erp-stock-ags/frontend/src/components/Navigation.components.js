@@ -63,9 +63,9 @@ const Navigation = () => {
                             <li>Déconnexion</li>
                         </NavLink>
                         {/* Page de test  */}
-                        <NavLink to="/testzone" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                        {/* <NavLink to="/testzone" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                             <li>Zone test</li>
-                        </NavLink>
+                        </NavLink> */}
                     </ul>
                 </div >
             </div >
