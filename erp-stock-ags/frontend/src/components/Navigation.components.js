@@ -58,8 +58,8 @@ const Navigation = () => {
                         </NavLink>
                         {/* Déconnexion */}
                         <NavLink
-                            to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}
-                            onClick={() => { localStorage.removeItem('profil'); window.location.reload(false); }}>
+                            to="/connexion" className={(nav) => (nav.isActive ? "nav-active" : "")}
+                            onClick={() => { localStorage.removeItem('profil'); }}>
                             <li>Déconnexion</li>
                         </NavLink>
                         {/* Page de test  */}
@@ -112,8 +112,8 @@ const Navigation = () => {
                             <li>Historique</li>
                         </NavLink>
                         <NavLink
-                            to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}
-                            onClick={() => { localStorage.removeItem('profil'); window.location.reload(false); }}>
+                            to="/connexion" className={(nav) => (nav.isActive ? "nav-active" : "")}
+                            onClick={() => { localStorage.removeItem('profil'); }}>
                             <li>Déconnexion</li>
                         </NavLink>
                     </ul>
@@ -158,8 +158,8 @@ const Navigation = () => {
                             <li>Historique</li>
                         </NavLink>
                         <NavLink
-                            to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}
-                            onClick={() => { localStorage.removeItem('profil'); window.location.reload(false); }}>
+                            to="/connexion" className={(nav) => (nav.isActive ? "nav-active" : "")}
+                            onClick={() => { localStorage.removeItem('profil'); }}>
                             <li>Déconnexion</li>
                         </NavLink>
                     </ul>
@@ -179,8 +179,8 @@ const Navigation = () => {
                             <li>Pièces</li>
                         </NavLink>
                         <NavLink
-                            to="/listePieces" className={(nav) => (nav.isActive ? "nav-active" : "")}
-                            onClick={() => { localStorage.removeItem('profil'); window.location.reload(false); }}>
+                            to="/connexion" className={(nav) => (nav.isActive ? "nav-active" : "")}
+                            onClick={() => { localStorage.removeItem('profil'); }}>
                             <li>Déconnexion</li>
                         </NavLink>
                     </ul>

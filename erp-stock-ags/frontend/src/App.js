@@ -47,6 +47,7 @@ const App = () => {
           <Route path='/nouvelUtilisateur' element={<NouvelUtilisateur />} />
           <Route path='/profil' element={<Profil />} />
           <Route path='/historique' element={<Historique />} />
+          <Route path='/connexion' element={<Connexion />} />
           <Route path='*' element={<ListePieces />} />
         </Routes>
       </BrowserRouter>
@@ -76,6 +77,7 @@ const App = () => {
           <Route path='/nouveauFournisseur' element={<NouveauFournisseur />} />
           <Route path='/nouvelleFamille' element={<NouvelleFamille />} />
           <Route path='/historique' element={<Historique />} />
+          <Route path='/connexion' element={<Connexion />} />
           <Route path='*' element={<ListePieces />} />
         </Routes>
       </BrowserRouter>
@@ -105,6 +107,7 @@ const App = () => {
           <Route path='/nouveauFournisseur' element={<NouveauFournisseur />} />
           <Route path='/nouvelleFamille' element={<NouvelleFamille />} />
           <Route path='/historique' element={<Historique />} />
+          <Route path='/connexion' element={<Connexion />} />
           <Route path='*' element={<ListePieces />} />
         </Routes>
       </BrowserRouter>
@@ -133,6 +136,7 @@ const App = () => {
           <Route path='/nouvelleCategorie' element={<NouvelleCategorie />} />
           <Route path='/nouveauFournisseur' element={<NouveauFournisseur />} />
           <Route path='/nouvelleFamille' element={<NouvelleFamille />} />
+          <Route path='/connexion' element={<Connexion />} />
           <Route path='*' element={<ListePieces />} />
         </Routes>
       </BrowserRouter>
