@@ -10,7 +10,7 @@ Pour y accèder:
 * http://localhost:3001/
 
 ## Modules à installer
-** ATTENTION ces modules doivent être installé dans le folder /backend !! **
+**ATTENTION ces modules doivent être installé dans le folder /backend !!**
 * npm install express
 * npm install cors
 * npm install nodemailer
