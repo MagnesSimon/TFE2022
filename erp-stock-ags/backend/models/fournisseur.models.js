@@ -28,7 +28,8 @@ Fournisseur.getAll = result => {
         "localite.nom_localite " +
         "FROM fournisseur as fournisseur " +
         "INNER JOIN localite as localite " +
-        "WHERE fournisseur.id_localite = localite.id_localite "
+        "WHERE fournisseur.id_localite = localite.id_localite " +
+        "ORDER BY fournisseur.nom_fournisseur "
         , (err, res) => {
             if (err) {
                 console.log("Error: ", err);

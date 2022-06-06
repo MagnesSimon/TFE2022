@@ -37,7 +37,8 @@ ListePieces.getAll = result => {
         "piece.poids " +
         "FROM piece as piece " +
         "INNER JOIN famille as famille " +
-        "ON piece.id_famille = famille.id_famille"
+        "ON piece.id_famille = famille.id_famille " +
+        "ORDER BY piece.reference "
         , (err, res) => {
             if (err) {
                 console.log("Error: ", err);
@@ -67,7 +68,8 @@ ListePieces.getPenurie = result => {
         "FROM piece as piece " +
         "INNER JOIN famille as famille " +
         "ON piece.id_famille = famille.id_famille " +
-        "WHERE piece.quantite_en_stock < piece.valeur_seuil "
+        "WHERE piece.quantite_en_stock < piece.valeur_seuil " +
+        "ORDER BY piece.reference "
         , (err, res) => {
             if (err) {
                 console.log("Error: ", err);

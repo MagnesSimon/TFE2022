@@ -22,7 +22,8 @@ ListeFamilles.getAll = result => {
         "fournisseur.nom_fournisseur " +
         "FROM famille as famille " +
         "INNER JOIN fournisseur as fournisseur " +
-        "WHERE famille.id_fournisseur = fournisseur.id_fournisseur"
+        "WHERE famille.id_fournisseur = fournisseur.id_fournisseur " +
+        "ORDER BY famille.nom_famille  "
         , (err, res) => {
             if (err) {
                 console.log("Error: ", err);

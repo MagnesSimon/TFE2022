@@ -15,7 +15,9 @@ materiaux
 */
 ListeCategories.getAll = result => {
     sql.query("SELECT *  " +
-        "FROM categorie", (err, res) => {
+        "FROM categorie " +
+        "ORDER BY nom_categorie "
+        , (err, res) => {
             if (err) {
                 console.log("Error: ", err);
                 result(null, err);
