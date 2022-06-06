@@ -38,11 +38,11 @@ const Navigation = () => {
                         </NavLink>
                         {/* Page de la liste des catégorie */}
                         <NavLink to="/categorie" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                            <li>Catégorie</li>
+                            <li>Catégories</li>
                         </NavLink>
                         {/* Page de la liste des fournisseurs */}
                         <NavLink to="/fournisseur" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                            <li>Fournisseur</li>
+                            <li>Fournisseurs</li>
                         </NavLink>
                         {/* Page de la liste des utilisateurs  */}
                         <NavLink to="/utilisateur" className={(nav) => (nav.isActive ? "nav-active" : "")}>
@@ -58,7 +58,7 @@ const Navigation = () => {
                         </NavLink>
                         {/* Déconnexion */}
                         <NavLink
-                            to="/reload" className={(nav) => (nav.isActive ? "nav-active" : "")}
+                            to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}
                             onClick={() => { localStorage.removeItem('profil'); window.location.reload(false); }}>
                             <li>Déconnexion</li>
                         </NavLink>

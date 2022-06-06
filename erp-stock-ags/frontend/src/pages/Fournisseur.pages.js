@@ -189,9 +189,9 @@ const Fournisseur = () => {
                             <th>Id fournisseur</th>
                             <th>Nom fournisseur</th>
                             <th>mail </th>
-                            <th>telephone</th>
+                            <th>téléphone</th>
                             <th>adresse</th>
-                            <th>Localite</th>
+                            <th>Localité</th>
                             <th>Suppression</th>
                         </tr>
                     </thead>
@@ -381,9 +381,9 @@ const Fournisseur = () => {
                             <th>Id fournisseur</th>
                             <th>Nom fournisseur</th>
                             <th>mail </th>
-                            <th>telephone</th>
+                            <th>téléphone</th>
                             <th>adresse</th>
-                            <th>Localite</th>
+                            <th>Localité</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -546,9 +546,9 @@ const Fournisseur = () => {
                             <th>Id fournisseur</th>
                             <th>Nom fournisseur</th>
                             <th>mail </th>
-                            <th>telephone</th>
+                            <th>téléphone</th>
                             <th>adresse</th>
-                            <th>Localite</th>
+                            <th>Localité</th>
                         </tr>
                     </thead>
                     <tbody>
