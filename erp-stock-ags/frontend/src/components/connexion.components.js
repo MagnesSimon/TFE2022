@@ -4,6 +4,7 @@ import axios from 'axios';
 import "animate.css/animate.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast, cssTransition } from "react-toastify";
+import { Navigate } from 'react-router-dom';
 
 
 const Connexion = () => {
@@ -75,6 +76,7 @@ const Connexion = () => {
             alert("Identifiants incorrects")
         }
         window.location.reload(false)
+        // Navigate('/listePieces')
     }
 
     return (
