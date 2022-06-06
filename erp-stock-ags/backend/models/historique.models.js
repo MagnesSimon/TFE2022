@@ -19,7 +19,8 @@ Historique.getAll = result => {
         // JOIN
         "FROM historique as historique " +
         "INNER JOIN utilisateur as utilisateur " +
-        "ON historique.id_utilisateur = utilisateur.id_utilisateur "
+        "ON historique.id_utilisateur = utilisateur.id_utilisateur " +
+        " ORDER BY date_heure DESC"
         , (err, res) => {
             if (err) {
                 console.log("Error: ", err);

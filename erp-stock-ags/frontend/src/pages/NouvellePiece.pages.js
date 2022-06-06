@@ -156,7 +156,7 @@ const NouvellePiece = () => {
                 </div>
                 <div>
                     <label>
-                        Longueur :
+                        Longueur (mm):
                         <input
                             type="text"
                             name='longueur'
@@ -170,7 +170,7 @@ const NouvellePiece = () => {
                 </div>
                 <div>
                     <label>
-                        Largeur :
+                        Largeur (mm):
                         <input
                             type="text"
                             name='largeur'
@@ -184,7 +184,7 @@ const NouvellePiece = () => {
                 </div>
                 <div>
                     <label>
-                        Hauteur :
+                        Hauteur (mm):
                         <input
                             type="text"
                             name='hauteur'
@@ -198,7 +198,7 @@ const NouvellePiece = () => {
                 </div>
                 <div>
                     <label>
-                        Rayon :
+                        Rayon (mm):
                         <input
                             type="text"
                             name='rayon'
@@ -212,7 +212,7 @@ const NouvellePiece = () => {
                 </div>
                 <div>
                     <label>
-                        Poids :
+                        Poids (g):
                         <input
                             type="text"
                             name='poids'
