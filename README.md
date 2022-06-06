@@ -1,5 +1,8 @@
 # TFE2022
 
+L'application est disponible en ligne via l'URL suivantes: https://92.222.23.114/  ou encore https://simonmagnes.com 
+L'API est disponible en suivant l'URL suivantes: http://92.222.23.114:3001/ 
+
 # Backend
 Node -v: v16.14.2 <br>
 Pour y accèder:
@@ -7,7 +10,7 @@ Pour y accèder:
 * http://localhost:3001/
 
 ## Modules à installer
-** ATTENTION ces modules doivent être installé dans le folder /backend !!**
+**ATTENTION ces modules doivent être installé dans le folder /backend !!**
 * npm install express
 * npm install cors
 * npm install nodemailer
