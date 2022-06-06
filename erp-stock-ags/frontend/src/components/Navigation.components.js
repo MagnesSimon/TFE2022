@@ -113,7 +113,7 @@ const Navigation = () => {
                         </NavLink>
                         <NavLink
                             to="/listePieces" className={(nav) => (nav.isActive ? "" : "")}
-                            onClick={() => { localStorage.removeItem('profil'); window.location.reload(false) }}>
+                            onClick={() => { localStorage.removeItem('profil'); window.reload(false) }}>
                             <li>Déconnexion</li>
                         </NavLink>
                     </ul>
@@ -159,7 +159,7 @@ const Navigation = () => {
                         </NavLink>
                         <NavLink
                             to="/listePieces" className={(nav) => (nav.isActive ? "" : "")}
-                            onClick={() => { localStorage.removeItem('profil'); window.location.reload(false) }}>
+                            onClick={() => { localStorage.removeItem('profil'); window.reload(false) }}>
                             <li>Déconnexion</li>
                         </NavLink>
                     </ul>
