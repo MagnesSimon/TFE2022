@@ -3,6 +3,14 @@
 L'application est disponible en ligne via l'URL suivantes: https://92.222.23.114/  ou encore https://simonmagnes.com 
 L'API est disponible en suivant l'URL suivantes: http://92.222.23.114:3001/ 
 
+* Lien vers le github: https://github.com/MagnesSimon/TFE2022.git
+* Lien vers le trello: https://trello.com/invite/b/DeF6VLGH/bfd41a6d7af45eeb7d25618e3e3154bd/tfe-2022
+* Temps de travail clockify:
+
+![chrome_Jc85tbbLpg](https://user-images.githubusercontent.com/55548308/172236414-a4d60240-0364-400c-8e73-9850de998b5d.png)
+![chrome_RiLmUtoPEb](https://user-images.githubusercontent.com/55548308/172236570-92b45c00-6637-4c8c-8812-d52d979002d0.png)
+
+
 # Backend
 Node -v: v16.14.2 <br>
 Pour y accèder:
