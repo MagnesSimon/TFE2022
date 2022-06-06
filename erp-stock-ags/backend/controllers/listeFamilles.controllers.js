@@ -1,4 +1,4 @@
-const ListeFamilles = require("../models/ListeFamilles.models")
+const ListeFamilles = require("../models/listeFamilles.models")
 
 exports.findAll = (req, res) => {
     ListeFamilles.getAll((err, data) => {
