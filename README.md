@@ -21,6 +21,7 @@ Pour y accèder:
 * npm install @material-ui/core
 * npm install dialog-size
 * npm install --save react-toastify
+* npm install moment --save
 
 ## Fonctionnement
 1. Dans le dossier "config":
