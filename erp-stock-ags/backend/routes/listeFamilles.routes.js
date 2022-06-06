@@ -1,5 +1,5 @@
 module.exports = app => {
-    const ListeFamilles = require("../controllers/ListeFamilles.controllers");
+    const ListeFamilles = require("../controllers/listeFamilles.controllers");
 
     app.get("/listeFamilles/", ListeFamilles.findAll);
 

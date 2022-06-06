@@ -7,7 +7,7 @@ module.exports = {
 
 // module.exports = {
 //     HOST: "92.222.23.114",
-//     USER: "react",
+//     USER: "",
 //     PASSWORD: "",
-//     DB: "erp_stock_2022"
+//     DB: "erp_stock_2022_2"
 // };
