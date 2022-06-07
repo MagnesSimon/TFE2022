@@ -106,7 +106,13 @@ const Fournisseur = () => {
                 console.log("Error: ")
                 console.log(err)
             });
-        refreshPage();
+        // refreshPage();
+
+        window.alert("Le fournisseur  a bien été mis à jour")
+        axios.get(window.url + "/fournisseur")
+            .then((res) => setFournisseur(res.data))
+
+        handleClose()
     }
 
     // Permet de reset les valeur des ToSend
@@ -148,7 +154,13 @@ const Fournisseur = () => {
                 console.log("Error: ")
                 console.log(err)
             });
-        refreshPage();
+        // refreshPage();
+
+        window.alert("Le fournisseur " + id + " a bien été supprimé")
+        axios.get(window.url + "/fournisseur")
+            .then((res) => setFournisseur(res.data))
+
+        handleSuppClose()
     }
 
     // Variable pour faire la recherche
@@ -218,7 +230,7 @@ const Fournisseur = () => {
                 <div>
                     <Dialog className='dialog' open={openSupp} onClose={handleSuppClose}>
                         <DialogTitle>
-                            Fiche technique
+                            Suppression
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText>

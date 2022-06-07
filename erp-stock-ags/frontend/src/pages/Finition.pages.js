@@ -91,7 +91,12 @@ const Finition = () => {
                 console.log(err)
             });
 
-        refreshPage();
+        // refreshPage();
+        window.alert("La finition a bien été mise à jour")
+        axios.get(window.url + "/listeFinitions")
+            .then((res) => setFinitions(res.data))
+
+        handleClose()
     }
 
     // Défini l'état d'ouverture de la boite de dialogue de suppression
@@ -121,7 +126,13 @@ const Finition = () => {
                 console.log("Error: ")
                 console.log(err)
             });
-        refreshPage();
+        // refreshPage();
+
+        window.alert("La finition " + id + " a bien été supprimée")
+        axios.get(window.url + "/listeFinitions")
+            .then((res) => setFinitions(res.data))
+
+        handleSuppClose()
     }
 
     // Variable pour faire la recharche
@@ -184,7 +195,7 @@ const Finition = () => {
 
                 <Dialog className='dialog' open={openSupp} onClose={handleSuppClose}>
                     <DialogTitle>
-                        Fiche technique
+                        Supression
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText>

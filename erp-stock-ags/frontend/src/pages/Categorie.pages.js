@@ -90,7 +90,12 @@ const Categorie = () => {
                 console.log(err)
             });
 
-        refreshPage();
+        // refreshPage();
+        window.alert("La catégorie  a bien été mise à jour")
+        axios.get(window.url + "/listeCategories")
+            .then((res) => setCategorie(res.data))
+
+        handleClose()
     }
 
     // Défini l'état d'ouverture de la boite de dialogue de suppression
@@ -120,7 +125,12 @@ const Categorie = () => {
                 console.log("Error: ")
                 console.log(err)
             });
-        refreshPage();
+        // refreshPage();
+        window.alert("La catégorie " + id + " a bien été supprimée")
+        axios.get(window.url + "/listeCategories")
+            .then((res) => setCategorie(res.data))
+
+        handleSuppClose()
     }
 
     // Variable pour faire la recharche
@@ -181,7 +191,7 @@ const Categorie = () => {
                 <div>
                     <Dialog className='dialog' open={openSupp} onClose={handleSuppClose}>
                         <DialogTitle>
-                            Fiche technique
+                            Suppression
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText>

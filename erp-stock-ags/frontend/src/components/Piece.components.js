@@ -14,7 +14,7 @@ import { NavLink } from 'react-router-dom';
 const Piece = () => {
 
     function refreshPage() {
-        window.location.reload();
+        window.location.reload('/');
     }
 
     // data contient la liste des pièces récupérée depuis la db
@@ -110,7 +110,10 @@ const Piece = () => {
                 console.log(err)
             });
         window.alert("La pièce " + aEnvoyer.referenceToSend + " A bien été mise à jour")
-        refreshPage();
+        axios.get(window.url + "/listePieces")
+            .then((res) => setData(res.data))
+
+        handleClose()
     }
 
     // Permet de remettre à 0 les valeur des ToSend
@@ -132,7 +135,6 @@ const Piece = () => {
     useEffect(() => {
         axios.get(window.url + "/listePieces")
             .then((res) => setData(res.data))
-        console.log(data);
     }, [])
 
     // Requête pour récupérer la liste des familles
@@ -176,13 +178,18 @@ const Piece = () => {
         axios.delete(window.url + "/listePieces/delete/" + id)
             .then(function (res) {
                 console.log('Succes suppression de pièce')
-                console.log(res.data)
             })
             .catch(function (err) {
                 console.log("Error: ")
                 console.log(err)
             });
-        refreshPage();
+        // window.location.reload(data)
+
+        window.alert("La pièce " + id + " a bien été supprimée")
+        axios.get(window.url + "/listePieces")
+            .then((res) => setData(res.data))
+
+        handleSuppClose()
     }
 
     // Variable pour faire la recharche
@@ -423,7 +430,7 @@ const Piece = () => {
                 </table>
                 <Dialog className='dialog' open={openSupp} onClose={handleSuppClose}>
                     <DialogTitle>
-                        Fiche technique
+                        Suppression
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText>

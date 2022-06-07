@@ -115,7 +115,13 @@ const Famille = () => {
                 console.log(err)
             });
 
-        refreshPage();
+        // refreshPage();
+
+        window.alert("La famille a bien été mise à jour")
+        axios.get(window.url + "/listeFamilles")
+            .then((res) => setFamilles(res.data))
+
+        handleClose()
     }
 
     // Permet de reset les valeur des ToSend
@@ -156,7 +162,13 @@ const Famille = () => {
                 console.log("Error: ")
                 console.log(err)
             });
-        refreshPage();
+        // refreshPage();
+
+        window.alert("La famille " + id + " a bien été supprimée")
+        axios.get(window.url + "/listeFamilles")
+            .then((res) => setFamilles(res.data))
+
+        handleSuppClose()
     }
 
     // Variable pour faire la recharche
@@ -222,7 +234,7 @@ const Famille = () => {
 
                 <Dialog className='dialog' open={openSupp} onClose={handleSuppClose}>
                     <DialogTitle>
-                        Fiche technique
+                        Suppression
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText>
